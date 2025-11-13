@@ -1,0 +1,20 @@
+{
+  "name": "vastraverse-fullstack",
+  "version": "1.0.0",
+  "description": "VastraVerse - Indian Fashion E-commerce Platform",
+  "scripts": {
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd frontend && npm install && npm run build",
+    "build:backend": "cd backend && npm install && npm run build",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "start": "cd backend && npm start"
+  },
+  "keywords": ["ecommerce", "fashion", "indian", "react", "nodejs", "supabase"],
+  "author": "VastraVerse Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
