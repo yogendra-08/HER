@@ -22,6 +22,7 @@ import ProductDetailsPage from './pages/ProductDetailsPage';
 import AdminPage from './pages/AdminPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import CheckoutPage from './pages/CheckoutPage';
 import { User, getAuthToken } from './utils/api';
 
 const App: React.FC = () => {
@@ -56,6 +57,7 @@ const App: React.FC = () => {
           <Route path="/products/:category" element={<ProductsPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/login" element={<LoginPage setUser={setUser} />} />
           <Route path="/signup" element={<SignupPage setUser={setUser} />} />
