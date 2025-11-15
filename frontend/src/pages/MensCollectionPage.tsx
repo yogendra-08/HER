@@ -10,19 +10,47 @@ import { useCart } from '../hooks/useCart';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
+// Interface matching the JSON structure
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  image: string;
+  stock: number;
+  rating: number;
+  sizes: string[];
+}
+
 // Placeholder products for Men's collection
-const mensProducts: Product[] = [
-  {
-    id: 301,
-    name: 'Classic White Shirt',
-    description: 'Premium cotton shirt with perfect fit for formal occasions',
-    price: 2499,
-    category: 'Aria Luxe',
-    image: 'https://images.unsplash.com/photo-1520975922203-27d7c9691a49?w=600&h=800&fit=crop',
-    stock: 20,
-    rating: 4.8,
-    sizes: ['S', 'M', 'L', 'XL', 'XXL']
-  },
+const useMensProducts = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/mens_products.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (err) {
+        console.error('Error loading products:', err);
+        setError('Failed to load products. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  return { products, loading, error };
+};
   {
     id: 302,
     name: 'Slim Fit Denim Jeans',
@@ -522,6 +550,50 @@ const ProductSkeleton: React.FC = () => {
 };
 
 const MensCollectionPage: React.FC = () => {
+  const { products: mensProducts, loading, error } = useMensProducts();
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [sortOption, setSortOption] = useState('featured');
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+  const [showFilters, setShowFilters] = useState(false);
+  const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
+  const { addToCart } = useCart();
+  const filterRef = useRef<HTMLDivElement>(null);
+
+  // Filter and sort products
+  useEffect(() => {
+    let result = [...mensProducts];
+
+    // Apply price filter
+    result = result.filter(
+      (product) => product.price >= priceRange[0] && product.price <= priceRange[1]
+    );
+
+    // Apply size filter
+    if (selectedSizes.length > 0) {
+      result = result.filter((product) =>
+        selectedSizes.some((size) => product.sizes.includes(size))
+      );
+    }
+
+    // Apply sorting
+    result.sort((a, b) => {
+      switch (sortOption) {
+        case 'price-low-high':
+          return a.price - b.price;
+        case 'price-high-low':
+          return b.price - a.price;
+        case 'rating':
+          return b.rating - a.rating;
+        case 'newest':
+          return b.id - a.id;
+        default:
+          return 0;
+      }
+    });
+
+    setFilteredProducts(result);
+  }, [mensProducts, sortOption, priceRange, selectedSizes]);
   const [allProducts] = useState<Product[]>(mensProducts);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
