@@ -24,17 +24,17 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import CheckoutPage from './pages/CheckoutPage';
 import OrdersPage from './pages/OrdersPage';
-import { User, getAuthToken } from './utils/api';
+import ContactPage from './pages/ContactPage';
+import { getCurrentUser, type LocalUser } from './utils/localStorageAuth';
 
 const App: React.FC = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<Omit<LocalUser, 'password'> | null>(null);
 
   useEffect(() => {
-    // Check if user is logged in on mount
-    const token = getAuthToken();
-    if (token) {
-      // Optionally fetch user profile here
-      // For now, we'll just check if token exists
+    // Check if user is logged in on mount from localStorage
+    const currentUser = getCurrentUser();
+    if (currentUser) {
+      setUser(currentUser);
     }
   }, []);
 
@@ -63,6 +63,7 @@ const App: React.FC = () => {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/login" element={<LoginPage setUser={setUser} />} />
           <Route path="/signup" element={<SignupPage setUser={setUser} />} />
+          <Route path="/contact" element={<ContactPage />} />
           
           {/* Catch all route */}
           <Route 

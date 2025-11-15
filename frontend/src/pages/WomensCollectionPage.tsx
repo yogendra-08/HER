@@ -10,273 +10,38 @@ import { useCart } from '../hooks/useCart';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
-// Placeholder products for Women's collection
-const womensProducts: Product[] = [
-  {
-    id: 401,
-    name: 'Silk Embroidered Saree',
-    description: 'Beautiful red silk saree with intricate golden zari border and pallu work',
-    price: 2599,
-    category: 'Aria Luxe',
-    image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop',
-    stock: 15,
-    rating: 4.8,
-    sizes: ['Free Size']
-  },
-  {
-    id: 402,
-    name: 'Floral Anarkali Gown',
-    description: 'Graceful floor-length Anarkali gown with floral prints and soft georgette fabric',
-    price: 1899,
-    category: 'Ethnic Elegance',
-    image: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=600&h=800&fit=crop',
-    stock: 18,
-    rating: 4.6,
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 403,
-    name: 'Chikankari Kurti',
-    description: 'Beautiful white chikankari embroidered kurti, handcrafted from Lucknow',
-    price: 1099,
-    category: 'Artisan Made',
-    image: 'https://images.unsplash.com/photo-1617034182210-91e5336b4999?w=600&h=800&fit=crop',
-    stock: 22,
-    rating: 4.5,
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 404,
-    name: 'Pastel Lehenga Choli',
-    description: 'Pastel pink lehenga choli set with mirror work and embroidered dupatta',
-    price: 3299,
-    category: 'Bridal Collection',
-    image: 'https://images.unsplash.com/photo-1622021830629-066c09ad248c?w=600&h=800&fit=crop',
-    stock: 12,
-    rating: 4.9,
-    sizes: ['S', 'M', 'L']
-  },
-  {
-    id: 405,
-    name: 'Designer Salwar Suit',
-    description: 'Elegant designer salwar suit with intricate embroidery and premium fabric',
-    price: 2799,
-    category: 'Aria Luxe',
-    image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=800&fit=crop',
-    stock: 16,
-    rating: 4.7,
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 406,
-    name: 'Cotton Printed Dress',
-    description: 'Comfortable cotton dress with beautiful Indian prints and modern fit',
-    price: 1499,
-    category: 'Ethnic Elegance',
-    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&h=800&fit=crop',
-    stock: 20,
-    rating: 4.6,
-    sizes: ['S', 'M', 'L']
-  },
-  {
-    id: 407,
-    name: 'Embroidered Dupatta',
-    description: 'Elegant embroidered dupatta with zari work and tassel borders',
-    price: 899,
-    category: 'Artisan Made',
-    image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=800&fit=crop',
-    stock: 25,
-    rating: 4.5,
-    sizes: ['Free Size']
-  },
-  {
-    id: 408,
-    name: 'Bridal Lehenga',
-    description: 'Exquisite bridal lehenga with heavy embroidery and premium fabric',
-    price: 8999,
-    category: 'Bridal Collection',
-    image: 'https://images.unsplash.com/photo-1622021830629-066c09ad248c?w=600&h=800&fit=crop',
-    stock: 8,
-    rating: 4.9,
-    sizes: ['S', 'M', 'L']
-  },
-  {
-    id: 409,
-    name: 'Kurta Set',
-    description: 'Stylish kurta set with palazzo pants and matching dupatta',
-    price: 2199,
-    category: 'Aria Luxe',
-    image: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=600&h=800&fit=crop',
-    stock: 17,
-    rating: 4.6,
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 410,
-    name: 'Maxi Dress',
-    description: 'Elegant maxi dress with beautiful patterns and comfortable fit',
-    price: 1799,
-    category: 'Ethnic Elegance',
-    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&h=800&fit=crop',
-    stock: 19,
-    rating: 4.7,
-    sizes: ['S', 'M', 'L']
-  },
-  {
-    id: 411,
-    name: 'Bandhani Saree',
-    description: 'Traditional bandhani saree with vibrant colors and intricate patterns',
-    price: 2399,
-    category: 'Artisan Made',
-    image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop',
-    stock: 14,
-    rating: 4.8,
-    sizes: ['Free Size']
-  },
-  {
-    id: 412,
-    name: 'Designer Gown',
-    description: 'Luxury designer gown perfect for parties and special occasions',
-    price: 4999,
-    category: 'Bridal Collection',
-    image: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=600&h=800&fit=crop',
-    stock: 11,
-    rating: 4.8,
-    sizes: ['S', 'M', 'L']
-  },
-  {
-    id: 413,
-    name: 'Cotton Kurti',
-    description: 'Comfortable cotton kurti with modern prints and relaxed fit',
-    price: 1299,
-    category: 'Aria Luxe',
-    image: 'https://images.unsplash.com/photo-1617034182210-91e5336b4999?w=600&h=800&fit=crop',
-    stock: 23,
-    rating: 4.5,
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 414,
-    name: 'Silk Lehenga',
-    description: 'Premium silk lehenga with intricate work and elegant design',
-    price: 5999,
-    category: 'Ethnic Elegance',
-    image: 'https://images.unsplash.com/photo-1622021830629-066c09ad248c?w=600&h=800&fit=crop',
-    stock: 10,
-    rating: 4.9,
-    sizes: ['S', 'M', 'L']
-  },
-  {
-    id: 415,
-    name: 'Printed Palazzo Set',
-    description: 'Stylish printed palazzo set with kurta and dupatta',
-    price: 1999,
-    category: 'Artisan Made',
-    image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=800&fit=crop',
-    stock: 21,
-    rating: 4.6,
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 416,
-    name: 'Bridal Saree',
-    description: 'Exquisite bridal saree with heavy zari work and premium silk',
-    price: 7999,
-    category: 'Bridal Collection',
-    image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop',
-    stock: 9,
-    rating: 4.9,
-    sizes: ['Free Size']
-  },
-  {
-    id: 417,
-    name: 'Georgette Saree',
-    description: 'Elegant georgette saree with beautiful prints and comfortable drape',
-    price: 1899,
-    category: 'Aria Luxe',
-    image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop',
-    stock: 18,
-    rating: 4.7,
-    sizes: ['Free Size']
-  },
-  {
-    id: 418,
-    name: 'Designer Anarkali',
-    description: 'Luxury designer Anarkali with mirror work and elegant embroidery',
-    price: 3499,
-    category: 'Ethnic Elegance',
-    image: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=600&h=800&fit=crop',
-    stock: 13,
-    rating: 4.8,
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 419,
-    name: 'Handloom Saree',
-    description: 'Traditional handloom saree with authentic craftsmanship',
-    price: 2199,
-    category: 'Artisan Made',
-    image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop',
-    stock: 16,
-    rating: 4.6,
-    sizes: ['Free Size']
-  },
-  {
-    id: 420,
-    name: 'Party Wear Gown',
-    description: 'Stylish party wear gown with modern design and elegant fit',
-    price: 3999,
-    category: 'Bridal Collection',
-    image: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=600&h=800&fit=crop',
-    stock: 12,
-    rating: 4.7,
-    sizes: ['S', 'M', 'L']
-  },
-  {
-    id: 421,
-    name: 'Cotton Saree',
-    description: 'Comfortable cotton saree perfect for daily wear',
-    price: 1399,
-    category: 'Aria Luxe',
-    image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop',
-    stock: 24,
-    rating: 4.5,
-    sizes: ['Free Size']
-  },
-  {
-    id: 422,
-    name: 'Designer Lehenga',
-    description: 'Contemporary designer lehenga with modern aesthetics',
-    price: 4499,
-    category: 'Ethnic Elegance',
-    image: 'https://images.unsplash.com/photo-1622021830629-066c09ad248c?w=600&h=800&fit=crop',
-    stock: 11,
-    rating: 4.8,
-    sizes: ['S', 'M', 'L']
-  },
-  {
-    id: 423,
-    name: 'Embroidered Kurti',
-    description: 'Beautiful embroidered kurti with intricate thread work',
-    price: 1699,
-    category: 'Artisan Made',
-    image: 'https://images.unsplash.com/photo-1617034182210-91e5336b4999?w=600&h=800&fit=crop',
-    stock: 20,
-    rating: 4.6,
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 424,
-    name: 'Wedding Lehenga',
-    description: 'Exquisite wedding lehenga with heavy embroidery and premium quality',
-    price: 9999,
-    category: 'Bridal Collection',
-    image: 'https://images.unsplash.com/photo-1622021830629-066c09ad248c?w=600&h=800&fit=crop',
-    stock: 7,
-    rating: 5.0,
-    sizes: ['S', 'M', 'L']
-  }
-];
+import { getWomensProducts } from '../services/localJsonService';
+
+// Custom hook to fetch women's products
+const useWomensProducts = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const womensProducts = await getWomensProducts();
+        if (womensProducts.length === 0) {
+          setError('No products found in womens_products.json. Please check if the file exists in the public folder.');
+        } else {
+          setProducts(womensProducts);
+          console.log(`✅ Loaded ${womensProducts.length} women's products from local JSON`);
+        }
+      } catch (err) {
+        console.error('Error loading products:', err);
+        setError('Failed to load products from womens_products.json. Please check if the file exists.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  return { products, loading, error };
+};
 
 interface WomensProductCardProps {
   product: Product;
@@ -478,7 +243,7 @@ const ProductSkeleton: React.FC = () => {
 };
 
 const WomensCollectionPage: React.FC = () => {
-  const [allProducts] = useState<Product[]>(womensProducts);
+  const { products: allProducts, loading, error } = useWomensProducts();
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [showFilters, setShowFilters] = useState(false);
@@ -567,7 +332,7 @@ const WomensCollectionPage: React.FC = () => {
     if (isLoading || !hasMore) return;
 
     setIsLoading(true);
-    
+
     setTimeout(() => {
       const currentCount = displayedProducts.length;
       const startIndex = currentCount;

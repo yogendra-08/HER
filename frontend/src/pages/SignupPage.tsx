@@ -6,11 +6,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, User, Phone, MapPin } from 'lucide-react';
-import { authAPI, setAuthToken, User as UserType } from '../utils/api';
+import { registerUser, type LocalUser } from '../utils/localStorageAuth';
 import toast from 'react-hot-toast';
 
 interface SignupPageProps {
-  setUser: (user: UserType) => void;
+  setUser: (user: Omit<LocalUser, 'password'>) => void;
 }
 
 const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
@@ -67,19 +67,20 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
 
     try {
       const { confirmPassword, ...signupData } = formData;
-      const response = await authAPI.register(signupData);
+      const { user, token } = registerUser({
+        name: signupData.name,
+        email: signupData.email,
+        password: signupData.password,
+        phone: signupData.phone,
+        address: signupData.address,
+      });
       
-      if (response.success && response.data) {
-        setAuthToken(response.data.token);
-        setUser(response.data.user);
-        toast.success('Account created successfully!');
-        navigate('/');
-      } else {
-        toast.error(response.message || 'Signup failed. Please try again.');
-      }
+      setUser(user);
+      toast.success('Account created successfully!');
+      navigate('/');
     } catch (error: any) {
       console.error('Signup failed:', error);
-      const errorMessage = error.response?.data?.message || error.message || 'Signup failed. Please try again.';
+      const errorMessage = error.message || 'Signup failed. Please try again.';
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);

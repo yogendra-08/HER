@@ -17,14 +17,14 @@ import {
   Package,
   Phone
 } from 'lucide-react';
-import { User as UserType, removeAuthToken } from '../utils/api';
+import { logoutUser, type LocalUser } from '../utils/localStorageAuth';
 import { useCart } from '../hooks/useCart';
 import { useWishlist } from '../hooks/useWishlist';
 import toast from 'react-hot-toast';
 
 interface NavbarProps {
-  user: UserType | null;
-  setUser: (user: UserType | null) => void;
+  user: Omit<LocalUser, 'password'> | null;
+  setUser: (user: Omit<LocalUser, 'password'> | null) => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
@@ -37,7 +37,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
   const { totalItems: wishlistCount } = useWishlist();
 
   const handleLogout = () => {
-    removeAuthToken();
+    logoutUser();
     setUser(null);
     setIsProfileMenuOpen(false);
     toast.success('Logged out successfully!');

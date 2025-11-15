@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Heart, ShoppingCart, Star, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { Product } from '../utils/api';
-import { localProductsAPI } from '../utils/localApi';
+import { getProductById, getAllProducts } from '../services/localJsonService';
 import { useCart } from '../hooks/useCart';
 import toast from 'react-hot-toast';
 
@@ -38,12 +38,10 @@ const ProductDetailsPage: React.FC = () => {
         setLoading(true);
         setError(null);
         console.log('Fetching product with ID:', id);
-        const response = await localProductsAPI.getByIdJSON(parseInt(id));
-        console.log('Product API response:', response);
+        const productData = await getProductById(parseInt(id));
+        console.log('Product data loaded:', productData);
         
-        if (response.success && response.data && response.data.product) {
-          const productData = response.data.product;
-          console.log('Product data loaded:', productData);
+        if (productData) {
           setProduct(productData);
           
           // Set default size and color
@@ -54,24 +52,21 @@ const ProductDetailsPage: React.FC = () => {
             setSelectedColor(productData.colors[0].name);
           }
 
-          // Fetch related products
-          if (productData.related && productData.related.length > 0) {
-            try {
-              const relatedPromises = productData.related.map((relatedId: number) =>
-                localProductsAPI.getByIdJSON(relatedId)
-              );
-              const relatedResponses = await Promise.all(relatedPromises);
-              const related = relatedResponses
-                .filter(res => res.success && res.data)
-                .map(res => res.data!.product);
-              setRelatedProducts(related);
-            } catch (relatedError) {
-              console.warn('Error fetching related products:', relatedError);
-              // Don't fail the whole page if related products fail
-            }
+          // Fetch related products (get products from same category)
+          try {
+            const allProducts = await getAllProducts();
+            const related = allProducts
+              .filter(p => p.id !== productData.id && 
+                      (p.category === productData.category || 
+                       p.brand === productData.brand))
+              .slice(0, 4); // Get 4 related products
+            setRelatedProducts(related);
+          } catch (relatedError) {
+            console.warn('Error fetching related products:', relatedError);
+            // Don't fail the whole page if related products fail
           }
         } else {
-          console.error('Product not found in response:', response);
+          console.error('Product not found');
           setError('Product not found');
         }
       } catch (err: any) {

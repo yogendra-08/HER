@@ -29,43 +29,12 @@ const ProductsPage: React.FC = () => {
     const fetchProductsFromAPI = async () => {
       try {
         setIsLoading(true);
-
-        // DummyJSON API endpoints for different categories
-        const apiEndpoints = [
-          // Men's products
-          'https://dummyjson.com/products/category/mens-shirts',
-          'https://dummyjson.com/products/category/mens-shoes',
-          // Women's products
-          'https://dummyjson.com/products/category/womens-dresses',
-          'https://dummyjson.com/products/category/womens-bags',
-          // Kids products (using tops as kids category)
-          'https://dummyjson.com/products/category/tops',
-        ];
-
-        const responses = await Promise.all(
-          apiEndpoints.map(url => fetch(url))
-        );
-
-        const dataPromises = responses.map(res => res.json());
-        const allData = await Promise.all(dataPromises);
-
-        // Normalize DummyJSON products to match our Product interface
-        const normalizeProduct = (p: any): Product => ({
-          ...p,
-          name: p.title, // Map title to name for backward compatibility
-          image: p.thumbnail || p.images[0], // Use thumbnail or first image
-          sizes: ['S', 'M', 'L', 'XL'], // Default sizes
-        });
-
-        // Combine all products from different categories
-        const combinedProducts: Product[] = allData.flatMap(data => 
-          (data.products || []).map(normalizeProduct)
-        );
-
-        console.log('Loaded products from DummyJSON API:', combinedProducts.length);
-        setAllProducts(combinedProducts);
+        const { getAllProducts } = await import('../services/localJsonService');
+        const allProducts = await getAllProducts();
+        console.log('Loaded products from local JSON files:', allProducts.length);
+        setAllProducts(allProducts);
       } catch (error) {
-        console.error('Error fetching products from DummyJSON API:', error);
+        console.error('Error fetching products from local JSON files:', error);
       } finally {
         setIsLoading(false);
       }

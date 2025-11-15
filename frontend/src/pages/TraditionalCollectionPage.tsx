@@ -7,10 +7,53 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Heart, ShoppingCart, Filter, X, Eye, Star } from 'lucide-react';
 import { Product } from '../utils/api';
 import { useCart } from '../hooks/useCart';
+import { getAllProducts } from '../services/localJsonService';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
-// Placeholder products for Traditional collection
+// Custom hook to fetch Traditional products
+const useTraditionalProducts = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        // Traditional: Get all products and filter for traditional items
+        const allProducts = await getAllProducts();
+        // Filter for traditional categories or use all products if no matches
+        let traditionalProducts = allProducts.filter(p => 
+          p.category?.toLowerCase().includes('traditional') ||
+          p.category?.toLowerCase().includes('ethnic') ||
+          p.name?.toLowerCase().includes('saree') ||
+          p.name?.toLowerCase().includes('kurta') ||
+          p.name?.toLowerCase().includes('lehenga')
+        );
+        
+        // If no traditional products found, use all products
+        if (traditionalProducts.length === 0) {
+          traditionalProducts = allProducts;
+        }
+        
+        traditionalProducts = traditionalProducts.slice(0, 200); // Limit to 200 products
+        setProducts(traditionalProducts);
+      } catch (err) {
+        console.error('Error loading products:', err);
+        setError('Failed to load products. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  return { products, loading, error };
+};
+
+// Placeholder products for Traditional collection (fallback)
 const traditionalProducts: Product[] = [
   {
     id: 601,
@@ -478,7 +521,14 @@ const ProductSkeleton: React.FC = () => {
 };
 
 const TraditionalCollectionPage: React.FC = () => {
-  const [allProducts] = useState<Product[]>(traditionalProducts);
+  const { products: fetchedProducts, loading: isLoadingProducts } = useTraditionalProducts();
+  const [allProducts, setAllProducts] = useState<Product[]>(traditionalProducts);
+  
+  useEffect(() => {
+    if (fetchedProducts.length > 0) {
+      setAllProducts(fetchedProducts);
+    }
+  }, [fetchedProducts]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [showFilters, setShowFilters] = useState(false);

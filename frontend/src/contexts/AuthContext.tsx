@@ -1,10 +1,9 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { Session, User } from '@supabase/supabase-js';
-import { supabase } from '../lib/supabase';
+import { getCurrentUser, loginUser, registerUser, logoutUser, isAuthenticated, type LocalUser } from '../utils/localStorageAuth';
 
 type AuthContextType = {
-  user: User | null;
-  session: Session | null;
+  user: Omit<LocalUser, 'password'> | null;
+  session: { token: string } | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
   signUp: (email: string, password: string, userData: any) => Promise<{ error: any }>;
@@ -14,72 +13,67 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
+  const [user, setUser] = useState<Omit<LocalUser, 'password'> | null>(null);
+  const [session, setSession] = useState<{ token: string } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check active sessions and set the user
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
+    // Check if user is logged in from localStorage
+    const checkAuth = () => {
+      try {
+        if (isAuthenticated()) {
+          const currentUser = getCurrentUser();
+          const token = localStorage.getItem('vastraverse_token');
+          if (currentUser && token) {
+            setUser(currentUser);
+            setSession({ token });
+          }
+        }
+      } catch (error) {
+        console.error('Error checking authentication:', error);
+      } finally {
         setLoading(false);
       }
-    );
-
-    // Get the current user session if it exists
-    const getSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
     };
 
-    getSession();
-
-    return () => {
-      subscription?.unsubscribe();
-    };
+    checkAuth();
   }, []);
 
   // Sign in with email and password
   const signIn = async (email: string, password: string) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    
-    if (error) {
-      return { error };
+    try {
+      const { user: loggedInUser, token } = loginUser(email, password);
+      setUser(loggedInUser);
+      setSession({ token });
+      return { data: { user: loggedInUser, token }, error: null };
+    } catch (error: any) {
+      return { error: { message: error.message || 'Login failed' } };
     }
-    
-    return { data, error: null };
   };
 
   // Sign up with email and password
   const signUp = async (email: string, password: string, userData: any) => {
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          full_name: userData.fullName,
-          // Add any additional user data here
-        },
-      },
-    });
-
-    if (error) {
-      return { error };
+    try {
+      const { user: newUser, token } = registerUser({
+        email,
+        password,
+        name: userData.fullName || userData.name || '',
+        phone: userData.phone,
+        address: userData.address,
+      });
+      setUser(newUser);
+      setSession({ token });
+      return { data: { user: newUser, token }, error: null };
+    } catch (error: any) {
+      return { error: { message: error.message || 'Signup failed' } };
     }
-
-    return { data, error: null };
   };
 
   // Sign out
   const signOut = async () => {
-    await supabase.auth.signOut();
+    logoutUser();
+    setUser(null);
+    setSession(null);
   };
 
   const value = {

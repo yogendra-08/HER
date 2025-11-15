@@ -7,10 +7,42 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Heart, ShoppingCart, Filter, X, Eye, Star } from 'lucide-react';
 import { Product } from '../utils/api';
 import { useCart } from '../hooks/useCart';
+import { getAllProducts } from '../services/localJsonService';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
-// Placeholder products for Gen Z collection
+// Custom hook to fetch GenZ products
+const useGenZProducts = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        // GenZ: Get mix of all products (trendy/young audience)
+        const allProducts = await getAllProducts();
+        // Filter for high-rated products or take a random sample
+        const genZProducts = allProducts
+          .filter(p => (p.rating && p.rating > 4.0) || Math.random() > 0.5)
+          .slice(0, 200); // Limit to 200 products
+        setProducts(genZProducts);
+      } catch (err) {
+        console.error('Error loading products:', err);
+        setError('Failed to load products. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  return { products, loading, error };
+};
+
+// Placeholder products for Gen Z collection (fallback)
 const genZProducts: Product[] = [
   {
     id: 201,
@@ -588,7 +620,14 @@ const ProductSkeleton: React.FC = () => {
 };
 
 const GenZPage: React.FC = () => {
-  const [allProducts] = useState<Product[]>(genZProducts);
+  const { products: fetchedProducts, loading: isLoadingProducts } = useGenZProducts();
+  const [allProducts, setAllProducts] = useState<Product[]>(genZProducts);
+  
+  useEffect(() => {
+    if (fetchedProducts.length > 0) {
+      setAllProducts(fetchedProducts);
+    }
+  }, [fetchedProducts]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [showFilters, setShowFilters] = useState(false);

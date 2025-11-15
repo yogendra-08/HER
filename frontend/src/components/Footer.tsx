@@ -86,9 +86,9 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold font-heading mb-4" style={{ color: '#C49E54' }}>Customer Service</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="transition-colors" style={{ color: '#E9E4D4' }} onMouseEnter={(e) => e.currentTarget.style.color = '#C49E54'} onMouseLeave={(e) => e.currentTarget.style.color = '#E9E4D4'}>
+                <Link to="/contact" className="transition-colors" style={{ color: '#E9E4D4' }} onMouseEnter={(e) => e.currentTarget.style.color = '#C49E54'} onMouseLeave={(e) => e.currentTarget.style.color = '#E9E4D4'}>
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="transition-colors" style={{ color: '#E9E4D4' }} onMouseEnter={(e) => e.currentTarget.style.color = '#C49E54'} onMouseLeave={(e) => e.currentTarget.style.color = '#E9E4D4'}>

@@ -6,11 +6,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
-import { authAPI, setAuthToken, User } from '../utils/api';
+import { loginUser, type LocalUser } from '../utils/localStorageAuth';
 import toast from 'react-hot-toast';
 
 interface LoginPageProps {
-  setUser: (user: User) => void;
+  setUser: (user: Omit<LocalUser, 'password'>) => void;
 }
 
 const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
@@ -34,18 +34,13 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
     setIsLoading(true);
 
     try {
-      const response = await authAPI.login(formData);
-      if (response.success && response.data) {
-        setAuthToken(response.data.token);
-        setUser(response.data.user);
-        toast.success('Login successful!');
-        navigate('/');
-      } else {
-        toast.error(response.message || 'Login failed. Please try again.');
-      }
+      const { user, token } = loginUser(formData.email, formData.password);
+      setUser(user);
+      toast.success('Login successful!');
+      navigate('/');
     } catch (error: any) {
       console.error('Login failed:', error);
-      const errorMessage = error.response?.data?.message || error.message || 'Login failed. Please try again.';
+      const errorMessage = error.message || 'Login failed. Please try again.';
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);

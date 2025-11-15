@@ -5,50 +5,50 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Heart, ShoppingCart, Filter, X, Eye, Star } from 'lucide-react';
+import { Product } from '../utils/api';
 import { useCart } from '../hooks/useCart';
+import { getMensProducts } from '../services/localJsonService';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
-// Interface for product data
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  image: string;
-  stock: number;
-  rating: number;
-  sizes: string[];
-}
-
-// Custom hook to fetch men's products
+// Custom hook to fetch men's products from local JSON file
 const useMensProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('/mens_products.json');
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
-        }
-        const data = await response.json();
-        setProducts(data);
-      } catch (err) {
-        console.error('Error loading products:', err);
-        setError('Failed to load products. Please try again later.');
-      } finally {
-        setLoading(false);
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const mensProducts = await getMensProducts();
+      if (mensProducts.length === 0) {
+        setError('No products found in mens_products.json. Please check if the file exists in the public folder.');
+      } else {
+        setProducts(mensProducts);
+        console.log(`✅ Loaded ${mensProducts.length} men's products from local JSON`);
       }
-    };
+    } catch (err: any) {
+      console.error('Error loading products:', err);
+      const errorMessage = err?.message || 'Failed to load products from mens_products.json. Please check if the file exists.';
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchProducts();
   }, []);
 
-  return { products, loading, error };
+  return {
+    products,
+    loading,
+    error,
+    loadMore: () => {},
+    hasMore: false,
+    retry: fetchProducts
+  };
 };
 
 interface MensProductCardProps {
@@ -301,10 +301,17 @@ const ProductSkeleton: React.FC = () => {
 };
 
 const MensCollectionPage: React.FC = () => {
-  const { products: mensProducts, loading, error } = useMensProducts();
-  const [allProducts] = useState<Product[]>(mensProducts);
+  const { products: mensProducts, loading, error, retry } = useMensProducts();
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
+  
+  // Update allProducts when mensProducts are loaded
+  useEffect(() => {
+    if (mensProducts.length > 0) {
+      setAllProducts(mensProducts);
+    }
+  }, [mensProducts]);
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState('newest');
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
@@ -317,7 +324,9 @@ const MensCollectionPage: React.FC = () => {
 
   // Filter and sort products
   useEffect(() => {
-    let result = [...mensProducts];
+    if (allProducts.length === 0) return;
+    
+    let result = [...allProducts];
 
     // Apply price filter
     result = result.filter(
@@ -356,7 +365,7 @@ const MensCollectionPage: React.FC = () => {
 
     setFilteredProducts(result);
     setDisplayedProducts(result.slice(0, 12)); // Show first 12 products initially
-  }, [mensProducts, sortBy, priceRange, selectedSizes, selectedBrands]);
+  }, [allProducts, sortBy, priceRange, selectedSizes, selectedBrands]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const observerTarget = useRef<HTMLDivElement>(null);
@@ -662,46 +671,67 @@ const MensCollectionPage: React.FC = () => {
 
           {/* Products Grid */}
           <div className="flex-1">
-            <div className="mb-4 text-sm text-gray-600">
-              {filteredProducts.length} products found
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {displayedProducts.map((product, index) => (
-                <div
-                  key={product.id}
-                  className="fade-in-up"
-                  style={{
-                    animationDelay: `${(index % PRODUCTS_PER_PAGE) * 50}ms`,
-                    animationFillMode: 'both'
-                  }}
-                >
-                  <MensProductCard product={product} />
-                </div>
-              ))}
-              
-              {/* Loading Skeletons */}
-              {isLoading && (
-                <>
-                  {Array.from({ length: PRODUCTS_PER_PAGE }).map((_, index) => (
-                    <ProductSkeleton key={`skeleton-${index}`} />
-                  ))}
-                </>
-              )}
-            </div>
-            
-            {/* Infinite Scroll Trigger */}
-            <div ref={observerTarget} className="h-10"></div>
-            
-            {filteredProducts.length === 0 && (
-              <div className="text-center py-20">
-                <p className="text-gray-600">No products found matching your filters.</p>
+            {loading && (
+              <div className="text-center py-8">
+                <p className="text-gray-600">Loading products...</p>
               </div>
             )}
-            
-            {!hasMore && displayedProducts.length > 0 && (
+            {error && (
               <div className="text-center py-8">
-                <p className="text-gray-500 text-sm">You've reached the end of the collection</p>
+                <p className="text-red-600 mb-4">{error}</p>
+                <button
+                  onClick={retry}
+                  disabled={loading}
+                  className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  {loading ? 'Retrying...' : 'Retry'}
+                </button>
               </div>
+            )}
+            {!loading && !error && (
+              <>
+                <div className="mb-4 text-sm text-gray-600">
+                  {filteredProducts.length} products found
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {displayedProducts.map((product, index) => (
+                    <div
+                      key={product.id}
+                      className="fade-in-up"
+                      style={{
+                        animationDelay: `${(index % PRODUCTS_PER_PAGE) * 50}ms`,
+                        animationFillMode: 'both'
+                      }}
+                    >
+                      <MensProductCard product={product} />
+                    </div>
+                  ))}
+              
+                  {/* Loading Skeletons */}
+                  {isLoading && (
+                    <>
+                      {Array.from({ length: PRODUCTS_PER_PAGE }).map((_, index) => (
+                        <ProductSkeleton key={`skeleton-${index}`} />
+                      ))}
+                    </>
+                  )}
+                  
+                  {filteredProducts.length === 0 && !loading && (
+                    <div className="text-center py-20 col-span-full">
+                      <p className="text-gray-600">No products found matching your filters.</p>
+                    </div>
+                  )}
+                  
+                  {!hasMore && displayedProducts.length > 0 && (
+                    <div className="text-center py-8 col-span-full">
+                      <p className="text-gray-500 text-sm">You've reached the end of the collection</p>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Infinite Scroll Trigger */}
+                <div ref={observerTarget} className="h-10"></div>
+              </>
             )}
           </div>
         </div>
