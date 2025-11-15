@@ -210,47 +210,47 @@ const HomePage: React.FC = () => {
   const categories = [
     {
       name: 'Men',
-      image: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=400&h=500&fit=crop&q=80',
+      image: 'https://cdn.thecoolist.com/wp-content/uploads/2017/08/How-to-dress-for-your-body-type.jpg',
       link: '/products/men'
     },
     {
       name: 'Women',
-      image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=500&fit=crop&q=80',
+      image: 'https://cdn.shopify.com/s/files/1/1746/5485/files/1_7a6c4c07-a4d7-4299-b90a-c4a8825bf8d9_540x.jpg?v=1742403363',
       link: '/products/women'
     },
     {
       name: 'Kids',
-      image: 'https://images.unsplash.com/photo-1503919005314-30d93d07d823?w=400&h=500&fit=crop&q=80',
+      image: 'https://img.lazcdn.com/g/ff/kf/Sb04d45722db141e0acc9942985210aa1v.jpg_720x720q80.jpg',
       link: '/products/kids'
     },
     {
       name: 'Sarees',
-      image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=400&h=500&fit=crop&q=80',
+      image: 'https://rimzimfashion.com/cdn/shop/files/30.webp?v=1726117571',
       link: '/products/sarees'
     },
     {
       name: 'Kurtas',
-      image: 'https://images.unsplash.com/photo-1621786860304-1b1a0a0197a1?w=400&h=500&fit=crop&q=80',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScCUUUXIFZNoWRlUsdhFgZSkGRCVhmgeQq96QFuKi47wVj1fokXY3ycScm3nD2Zl5E4NI&usqp=CAU',
       link: '/products/kurtas'
     },
     {
       name: 'Ethnic Sets',
-      image: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=400&h=500&fit=crop&q=80',
+      image: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&h=1000&fit=crop&q=80',
       link: '/products/ethnic-sets'
     },
     {
       name: 'T-Shirts',
-      image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=500&fit=crop&q=80',
+      image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=1000&fit=crop&q=80',
       link: '/products/t-shirts'
     },
     {
       name: 'Winterwear',
-      image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=500&fit=crop&q=80',
+      image: 'https://www.instyle.com/thmb/LnlUK5oZbdqPqvcAgRQ7Jc1Axw4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-2117544782-a48b916b48854f3a8e459745b34fbf4e.jpg',
       link: '/products/winterwear'
     },
     {
       name: 'Hoodies',
-      image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=500&fit=crop&q=80',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGKJWudmmKe5m6QzdZELR0Ti0u0KiNjrRbUQ&',
       link: '/products/hoodies'
     }
   ];
@@ -262,56 +262,48 @@ const HomePage: React.FC = () => {
     { icon: Heart, value: '95%', label: 'Customer Satisfaction' },
   ];
 
-  // Trending Brands with actual logo images
+  // Trending Brands with high-quality logo images
   const trendingBrands = [
     { 
-      name: 'FabIndia', 
-      logo: 'https://logos-world.net/wp-content/uploads/2021/08/Fabindia-Logo.png' 
-    },
-    { 
-      name: 'W for Women', 
-      logo: 'https://logos-world.net/wp-content/uploads/2021/08/W-For-Women-Logo.png' 
-    },
-    { 
-      name: 'Biba', 
-      logo: 'https://logos-world.net/wp-content/uploads/2021/08/Biba-Logo.png' 
-    },
-    { 
-      name: 'Roadster', 
-      logo: 'https://logos-world.net/wp-content/uploads/2021/08/Roadster-Logo.png' 
-    },
-    { 
-      name: 'H&M', 
-      logo: 'https://logos-world.net/wp-content/uploads/2020/04/HM-Logo.png' 
+      name: 'Nike', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png' 
     },
     { 
       name: 'Adidas', 
-      logo: 'https://logos-world.net/wp-content/uploads/2020/04/Adidas-Logo.png' 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png' 
     },
     { 
-      name: 'Nike', 
-      logo: 'https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png' 
+      name: 'Zara', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Zara_Logo.png/1024px-Zara_Logo.png' 
     },
     { 
-      name: 'Wrangler', 
-      logo: 'https://logos-world.net/wp-content/uploads/2020/04/Wrangler-Logo.png' 
+      name: 'H&M', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1200px-H%26M-Logo.svg.png' 
     },
     { 
-      name: "Levi's", 
-      logo: 'https://logos-world.net/wp-content/uploads/2020/04/Levis-Logo.png' 
+      name: 'Levi\'s', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Levi%27s_logo.svg/1024px-Levi%27s_logo.svg.png' 
     },
     { 
-      name: 'Aurelia', 
-      logo: 'https://logos-world.net/wp-content/uploads/2021/08/Aurelia-Logo.png' 
+      name: 'Puma', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Puma_logo.svg/1024px-Puma_logo.svg.png' 
     },
     { 
-      name: 'Louis Philippe', 
-      logo: 'https://logos-world.net/wp-content/uploads/2021/08/Louis-Philippe-Logo.png' 
+      name: 'Gucci', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Gucci_Logo.svg/1024px-Gucci_Logo.svg.png' 
     },
     { 
-      name: 'Van Heusen', 
-      logo: 'https://logos-world.net/wp-content/uploads/2021/08/Van-Heusen-Logo.png' 
+      name: 'Tommy Hilfiger', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Tommy_Hilfiger_Logo.svg/1024px-Tommy_Hilfiger_Logo.svg.png' 
     },
+    { 
+      name: 'FabIndia', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Fabindia_logo.svg/1200px-Fabindia_logo.svg.png' 
+    },
+    { 
+      name: 'Biba', 
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/BIBA_logo.png/1200px-BIBA_logo.png' 
+    }
   ];
 
   const brandsScrollRef = useRef<HTMLDivElement>(null);
@@ -351,8 +343,8 @@ const HomePage: React.FC = () => {
                   backgroundSize: 'cover'
                 }}
               >
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-royalBrown/90 via-chocolate/80 to-maroon/90"></div>
+                {/* Blur effect with dark overlay */}
+                <div className="absolute inset-0 backdrop-blur-sm bg-black/30"></div>
               </div>
               
               {/* Content */}
