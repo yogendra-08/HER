@@ -6,12 +6,22 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-// API Base URL - For Netlify Functions or Direct Backend
-const API_BASE_URL = import.meta.env.VITE_API_URL || (
-  import.meta.env.DEV 
-    ? 'http://localhost:5000/api' // Direct backend server in development
-    : '/.netlify/functions'
-);
+// API Base URL - For Netlify Functions
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/.netlify/functions';
+
+// In development, you can still use a local backend if needed
+const DEV_API_URL = 'http://localhost:5000/api';
+
+// Function to determine the base URL
+const getBaseUrl = () => {
+  if (import.meta.env.DEV) {
+    // Use local backend in development if available, otherwise use Netlify Functions
+    return window.location.hostname === 'localhost' ? DEV_API_URL : '/.netlify/functions';
+  }
+  return API_BASE_URL;
+};
+
+const BASE_URL = getBaseUrl();
 
 // Log API configuration in development
 if (import.meta.env.DEV) {
@@ -24,7 +34,7 @@ if (import.meta.env.DEV) {
 
 // Create axios instance with default config
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: BASE_URL,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',

@@ -1,0 +1,8 @@
+# Handle client-side routing - return index.html for all non-file requests
+/* /index.html 200
+
+# API routes
+/api/* /.netlify/functions/:splat 200
+
+# Auth routes
+/auth/* /.netlify/functions/auth/:splat 200
