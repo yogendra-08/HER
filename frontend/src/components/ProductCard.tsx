@@ -51,7 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     }).format(price);
   };
 
-  const isOutOfStock = product.stock === 0;
+  const isOutOfStock = (product.stock || 0) === 0;
   const inCart = isInCart(product.id);
   const cartQuantity = getItemQuantity(product.id);
   const inWishlist = isInWishlist(product.id);
@@ -130,14 +130,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <Star
                 key={star}
                 className={`h-4 w-4 ${
-                  star <= Math.floor(product.rating)
+                  star <= Math.floor(product.rating || 0)
                     ? 'text-yellow-400 fill-current'
                     : 'text-gray-300'
                 }`}
               />
             ))}
           </div>
-          <span className="text-sm text-gray-500 ml-2">({product.rating})</span>
+          <span className="text-sm text-gray-500 ml-2">({product.rating || 0})</span>
         </div>
 
         <div className="flex items-center justify-between mb-4">
@@ -152,7 +152,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
           
           <div className="text-sm text-chocolate">
-            {product.stock > 0 ? `${product.stock} left` : 'Out of stock'}
+            {(product.stock || 0) > 0 ? `${product.stock} left` : 'Out of stock'}
           </div>
         </div>
 

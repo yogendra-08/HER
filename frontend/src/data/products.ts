@@ -8,10 +8,28 @@ export interface Product {
   name: string;
   category: string;
   price: number;
-  rating: number;
-  description: string;
-  sizes: string[];
+  rating?: number;
+  description?: string;
+  sizes?: string[];
   image: string;
+  brand?: string;
+  gender?: string;
+  stock?: number;
+  images?: string[];
+  discounted_price?: number;
+  discount_percentage?: number;
+  base_colour?: string;
+  season?: string;
+  usage?: string;
+  colors?: Array<{ name: string; hex: string }>;
+  related?: number[];
+  reviews?: Array<{
+    id: number;
+    user: string;
+    rating: number;
+    comment: string;
+    date: string;
+  }>;
 }
 
 export const products: Product[] = [

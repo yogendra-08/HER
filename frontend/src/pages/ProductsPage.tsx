@@ -31,9 +31,9 @@ const ProductsPage: React.FC = () => {
         setIsLoading(true);
 
         const [mensRes, womensRes, kidsRes] = await Promise.all([
-          fetch('/mens.json'),
-          fetch('/womens.json'),
-          fetch('/kids.json'),
+          fetch('/mens_products.json'),
+          fetch('/womens_products.json'),
+          fetch('/kids_products.json'),
         ]);
 
         if (!mensRes.ok || !womensRes.ok || !kidsRes.ok) {
@@ -46,12 +46,24 @@ const ProductsPage: React.FC = () => {
           kidsRes.json(),
         ]);
 
+        // Normalize products to ensure all required fields
+        const normalizeProducts = (items: any[]): Product[] =>
+          items.map((p) => ({
+            ...p,
+            image: p.image || (Array.isArray(p.images) && p.images.length > 0 ? p.images[0] : 'https://via.placeholder.com/400x600?text=No+Image'),
+            description: p.description || `${p.brand || ''} ${p.name || 'Product'}`.trim(),
+            rating: p.rating || 4.0,
+            stock: p.stock !== undefined ? p.stock : 10,
+            sizes: p.sizes || ['S', 'M', 'L', 'XL'],
+          }));
+
         const combinedProducts: Product[] = [
-          ...(mensData || []),
-          ...(womensData || []),
-          ...(kidsData || []),
+          ...normalizeProducts(mensData?.products || []),
+          ...normalizeProducts(womensData?.products || []),
+          ...normalizeProducts(kidsData?.products || []),
         ];
 
+        console.log('Loaded products:', combinedProducts.length);
         setAllProducts(combinedProducts);
       } catch (error) {
         console.error('Error fetching products from JSON:', error);
