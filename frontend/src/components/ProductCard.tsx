@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { Heart, ShoppingCart, Star, Eye } from 'lucide-react';
 import { Product } from '../utils/api';
 import { useCart } from '../hooks/useCart';
+import { useWishlist } from '../hooks/useWishlist';
 import toast from 'react-hot-toast';
 
 interface ProductCardProps {
@@ -16,6 +17,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart, isInCart, getItemQuantity } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
 
   const handleAddToCart = async () => {
     try {
@@ -25,9 +27,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     }
   };
 
-  const handleAddToWishlist = () => {
-    // This would be implemented with wishlist functionality
-    toast.success('Added to wishlist!');
+  const handleToggleWishlist = () => {
+    toggleWishlist({
+      id: product.id,
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      category: product.category,
+      stock: product.stock,
+    });
   };
 
   const formatPrice = (price: number) => {
@@ -40,6 +49,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const isOutOfStock = product.stock === 0;
   const inCart = isInCart(product.id);
   const cartQuantity = getItemQuantity(product.id);
+  const inWishlist = isInWishlist(product.id);
 
   return (
     <div className="card-product group bg-white border" style={{ borderColor: '#C49E54', borderWidth: '1px' }}>
@@ -59,10 +69,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         
         {/* Wishlist button */}
         <button
-          onClick={handleAddToWishlist}
+          onClick={handleToggleWishlist}
           className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors"
         >
-          <Heart className="h-4 w-4 text-gray-600 hover:text-red-500" />
+          <Heart className={`h-4 w-4 ${
+            inWishlist ? 'fill-red-500 text-red-500' : 'text-gray-600 hover:text-red-500'
+          }`} />
         </button>
 
         {/* Quick add to cart overlay */}
@@ -186,11 +198,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </button>
             
             <button
-              onClick={handleAddToWishlist}
-              className="p-2 border border-gold/30 rounded-luxury hover:border-gold hover:text-gold transition-colors"
+              onClick={handleToggleWishlist}
+              className="p-2 border rounded-luxury transition-colors"
               style={{ borderColor: '#C49E54' }}
             >
-              <Heart className="h-4 w-4" />
+              <Heart className={`h-4 w-4 ${
+                inWishlist ? 'fill-red-500 text-red-500' : 'text-gold'
+              }`} />
             </button>
           </div>
         </div>

@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { User as UserType, removeAuthToken } from '../utils/api';
 import { useCart } from '../hooks/useCart';
+import { useWishlist } from '../hooks/useWishlist';
 import toast from 'react-hot-toast';
 
 interface NavbarProps {
@@ -33,6 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { totalItems } = useCart();
+  const { totalItems: wishlistCount } = useWishlist();
 
   const handleLogout = () => {
     removeAuthToken();
@@ -119,6 +121,11 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
               title="Wishlist"
             >
               <Heart className="h-5 w-5" strokeWidth={1.5} />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-gold text-royalBrown text-xs rounded-full h-4 w-4 flex items-center justify-center font-medium text-[10px]">
+                  {wishlistCount}
+                </span>
+              )}
             </Link>
 
             {/* Cart */}

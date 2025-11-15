@@ -6,14 +6,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { Filter, Search, ChevronLeft, ChevronRight } from 'lucide-react';
-import { products, Product } from '../data/products';
+import { Product } from '../data/products';
 import ProductCard from '../components/ProductCard';
 
 const ProductsPage: React.FC = () => {
   const { category } = useParams();
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('search');
-  
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState(searchQuery || '');
   const [showFilters, setShowFilters] = useState(false);
@@ -21,20 +21,57 @@ const ProductsPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
+  const [isLoading, setIsLoading] = useState(false);
   
   const productsPerPage = 12;
 
   useEffect(() => {
-    let filtered = products;
-    
-    // Filter by category if specified
+    const fetchProductsFromJson = async () => {
+      try {
+        setIsLoading(true);
+
+        const [mensRes, womensRes, kidsRes] = await Promise.all([
+          fetch('/mens.json'),
+          fetch('/womens.json'),
+          fetch('/kids.json'),
+        ]);
+
+        if (!mensRes.ok || !womensRes.ok || !kidsRes.ok) {
+          throw new Error('Failed to load product JSON files');
+        }
+
+        const [mensData, womensData, kidsData] = await Promise.all([
+          mensRes.json(),
+          womensRes.json(),
+          kidsRes.json(),
+        ]);
+
+        const combinedProducts: Product[] = [
+          ...(mensData || []),
+          ...(womensData || []),
+          ...(kidsData || []),
+        ];
+
+        setAllProducts(combinedProducts);
+      } catch (error) {
+        console.error('Error fetching products from JSON:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProductsFromJson();
+  }, []);
+
+  useEffect(() => {
+    let filtered = allProducts;
+
     if (category) {
-      filtered = products.filter(product => 
+      filtered = allProducts.filter(product =>
         product.category.toLowerCase().includes(category.toLowerCase())
       );
     }
-    
-    // Filter by search query if specified
+
     if (searchQuery) {
       filtered = filtered.filter(product =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -42,20 +79,17 @@ const ProductsPage: React.FC = () => {
         product.category.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
-    
-    // Apply category filters
+
     if (selectedCategories.length > 0) {
       filtered = filtered.filter(product =>
         selectedCategories.includes(product.category.toLowerCase())
       );
     }
-    
-    // Apply price range filter
+
     filtered = filtered.filter(product =>
       product.price >= priceRange.min && product.price <= priceRange.max
     );
-    
-    // Sort products
+
     if (sortBy === 'price-low') {
       filtered.sort((a, b) => a.price - b.price);
     } else if (sortBy === 'price-high') {
@@ -63,10 +97,10 @@ const ProductsPage: React.FC = () => {
     } else if (sortBy === 'newest') {
       filtered.sort((a, b) => (b.id || 0) - (a.id || 0));
     }
-    
+
     setFilteredProducts(filtered);
-    setCurrentPage(1); // Reset to first page when filters change
-  }, [category, searchQuery, selectedCategories, priceRange, sortBy]);
+    setCurrentPage(1);
+  }, [allProducts, category, searchQuery, selectedCategories, priceRange, sortBy]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -255,7 +289,11 @@ const ProductsPage: React.FC = () => {
             </div>
 
             {/* Products Grid */}
-            {currentProducts.length > 0 ? (
+            {isLoading ? (
+              <div className="text-center py-12">
+                <p className="text-chocolate text-lg">Loading products...</p>
+              </div>
+            ) : currentProducts.length > 0 ? (
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
                   {currentProducts.map((product) => (

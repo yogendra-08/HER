@@ -53,31 +53,31 @@ const CartPage: React.FC = () => {
               <div key={item.id} className="bg-white rounded-lg shadow-md p-6">
                 <div className="flex items-center space-x-4">
                   <img
-                    src={item.product_image}
-                    alt={item.product_name}
+                    src={item.image}
+                    alt={item.name}
                     className="w-20 h-20 object-cover rounded-lg"
                   />
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-900">{item.product_name}</h3>
-                    <p className="text-gold font-medium">{formatPrice(item.product_price)}</p>
+                    <h3 className="text-lg font-semibold text-gray-900">{item.name}</h3>
+                    <p className="text-gold font-medium">{formatPrice(item.price)}</p>
                   </div>
                   <div className="flex items-center space-x-2">
                     <button
-                      onClick={() => updateQuantity(item.product_id, item.quantity - 1)}
+                      onClick={() => updateQuantity(item.productId, item.quantity - 1)}
                       className="p-1 rounded-md hover:bg-gray-100"
                     >
                       <Minus className="h-4 w-4" />
                     </button>
                     <span className="w-8 text-center">{item.quantity}</span>
                     <button
-                      onClick={() => updateQuantity(item.product_id, item.quantity + 1)}
+                      onClick={() => updateQuantity(item.productId, item.quantity + 1)}
                       className="p-1 rounded-md hover:bg-gray-100"
                     >
                       <Plus className="h-4 w-4" />
                     </button>
                   </div>
                   <button
-                    onClick={() => removeFromCart(item.product_id)}
+                    onClick={() => removeFromCart(item.productId)}
                     className="p-2 text-red-500 hover:bg-red-50 rounded-md"
                   >
                     <Trash2 className="h-4 w-4" />

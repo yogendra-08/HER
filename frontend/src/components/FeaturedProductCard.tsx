@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { Heart, ShoppingCart } from 'lucide-react';
 import { Product } from '../utils/api';
 import { useCart } from '../hooks/useCart';
+import { useWishlist } from '../hooks/useWishlist';
 import toast from 'react-hot-toast';
 
 interface FeaturedProductCardProps {
@@ -15,8 +16,8 @@ interface FeaturedProductCardProps {
 
 const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ product }) => {
   const { addToCart, isInCart, getItemQuantity } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
   const [isHovered, setIsHovered] = useState(false);
-  const [isWishlisted, setIsWishlisted] = useState(false);
 
   const handleAddToCart = async () => {
     try {
@@ -27,9 +28,16 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ product }) =>
     }
   };
 
-  const handleWishlist = () => {
-    setIsWishlisted(!isWishlisted);
-    toast.success(isWishlisted ? 'Removed from wishlist' : 'Added to wishlist!');
+  const handleToggleWishlist = () => {
+    toggleWishlist({
+      id: product.id,
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      category: product.category,
+      stock: product.stock,
+    });
   };
 
   const formatPrice = (price: number) => {
@@ -44,6 +52,7 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ product }) =>
   const discount = Math.round(((originalPrice - product.price) / originalPrice) * 100);
   const inCart = isInCart(product.id);
   const cartQuantity = getItemQuantity(product.id);
+  const inWishlist = isInWishlist(product.id);
 
   // Generate secondary image (slightly different angle/view)
   const secondaryImage = product.image.replace('w=600', 'w=601');
@@ -92,13 +101,13 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ product }) =>
 
         {/* Wishlist Icon */}
         <button
-          onClick={handleWishlist}
+          onClick={handleToggleWishlist}
           className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-sm hover:shadow-md transition-all duration-200 z-10"
           style={{ border: '1px solid #efefef' }}
         >
           <Heart
             className={`h-4 w-4 transition-colors ${
-              isWishlisted ? 'fill-red-500 text-red-500' : 'text-gray-600'
+              inWishlist ? 'fill-red-500 text-red-500' : 'text-gray-600'
             }`}
             strokeWidth={1.5}
           />
