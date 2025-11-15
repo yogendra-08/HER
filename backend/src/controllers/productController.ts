@@ -138,16 +138,16 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
       return;
     }
 
-    const productId = await ProductModel.create({
+    const product = await ProductModel.create({
       name,
       description,
       price: parseFloat(price),
       category,
       image,
-      stock: parseInt(stock) || 0
+      stock: parseInt(stock) || 0,
+      rating: 0,
+      sizes: []
     });
-
-    const product = await ProductModel.findById(productId);
 
     res.status(201).json({
       success: true,
@@ -205,6 +205,32 @@ export const updateProduct = async (req: Request, res: Response): Promise<void> 
     });
   } catch (error) {
     console.error('Update product error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal server error'
+    });
+  }
+};
+
+// Delete all products (Admin only)
+export const deleteAllProducts = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const deleted = await ProductModel.deleteAll();
+    
+    if (!deleted) {
+      res.status(500).json({
+        success: false,
+        message: 'Failed to delete all products'
+      });
+      return;
+    }
+
+    res.json({
+      success: true,
+      message: 'All products deleted successfully'
+    });
+  } catch (error) {
+    console.error('Delete all products error:', error);
     res.status(500).json({
       success: false,
       message: 'Internal server error'

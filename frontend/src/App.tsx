@@ -19,6 +19,7 @@ import TraditionalCollectionPage from './pages/TraditionalCollectionPage';
 import SummerCollectionPage from './pages/SummerCollectionPage';
 import CollectionPage from './pages/CollectionPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
+import AdminPage from './pages/AdminPage';
 
 const App: React.FC = () => {
   return (
@@ -41,6 +42,7 @@ const App: React.FC = () => {
           <Route path="/products/:category" element={<ProductsPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/admin" element={<AdminPage />} />
           
           {/* Catch all route */}
           <Route 

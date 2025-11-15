@@ -23,9 +23,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     try {
       await addToCart({
         id: product.id,
-        name: product.name || product.title,
+        name: product.name || product.title || 'Product',
         price: product.price,
-        image: product.image || product.thumbnail,
+        image: product.image || product.thumbnail || '',
       });
     } catch (error) {
       console.error('Failed to add to cart:', error);
@@ -36,10 +36,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     toggleWishlist({
       id: product.id,
       productId: product.id,
-      name: product.name || product.title,
+      name: product.name || product.title || 'Product',
       price: product.price,
-      image: product.image || product.thumbnail,
-      category: product.category,
+      image: product.image || product.thumbnail || '',
+      category: product.category || '',
       stock: product.stock,
     });
   };
@@ -179,39 +179,27 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             View Details
           </Link>
           
-          <div className="flex space-x-2">
-            <button
-              onClick={handleAddToCart}
-              disabled={isOutOfStock}
-              className="flex-1 disabled:opacity-50 disabled:cursor-not-allowed text-sm py-2 px-4 rounded-luxury font-medium transition-all duration-300"
-              style={{ background: '#2C1810', color: '#F7F4EF' }}
-              onMouseEnter={(e) => {
-                if (!isOutOfStock) {
-                  e.currentTarget.style.background = '#C49E54';
-                  e.currentTarget.style.color = '#2C1810';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isOutOfStock) {
-                  e.currentTarget.style.background = '#2C1810';
-                  e.currentTarget.style.color = '#F7F4EF';
-                }
-              }}
-            >
-              <ShoppingCart className="h-4 w-4 mr-1 inline" />
-              {inCart ? `In Cart (${cartQuantity})` : 'Add to Cart'}
-            </button>
-            
-            <button
-              onClick={handleToggleWishlist}
-              className="p-2 border rounded-luxury transition-colors"
-              style={{ borderColor: '#C49E54' }}
-            >
-              <Heart className={`h-4 w-4 ${
-                inWishlist ? 'fill-red-500 text-red-500' : 'text-gold'
-              }`} />
-            </button>
-          </div>
+          <button
+            onClick={handleAddToCart}
+            disabled={isOutOfStock}
+            className="w-full disabled:opacity-50 disabled:cursor-not-allowed text-sm py-2 px-4 rounded-luxury font-medium transition-all duration-300"
+            style={{ background: '#2C1810', color: '#F7F4EF' }}
+            onMouseEnter={(e) => {
+              if (!isOutOfStock) {
+                e.currentTarget.style.background = '#C49E54';
+                e.currentTarget.style.color = '#2C1810';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!isOutOfStock) {
+                e.currentTarget.style.background = '#2C1810';
+                e.currentTarget.style.color = '#F7F4EF';
+              }
+            }}
+          >
+            <ShoppingCart className="h-4 w-4 mr-1 inline" />
+            {inCart ? `In Cart (${cartQuantity})` : 'Add to Cart'}
+          </button>
         </div>
       </div>
     </div>

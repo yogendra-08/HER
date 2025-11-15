@@ -23,9 +23,9 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ product }) =>
     try {
       await addToCart({
         id: product.id,
-        name: product.name || product.title,
+        name: product.name || product.title || 'Product',
         price: product.price,
-        image: product.image || product.thumbnail,
+        image: product.image || product.thumbnail || '',
       });
       toast.success('Added to cart!');
     } catch (error) {
@@ -37,10 +37,10 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ product }) =>
     toggleWishlist({
       id: product.id,
       productId: product.id,
-      name: product.name || product.title,
+      name: product.name || product.title || 'Product',
       price: product.price,
-      image: product.image || product.thumbnail,
-      category: product.category,
+      image: product.image || product.thumbnail || '',
+      category: product.category || '',
       stock: product.stock,
     });
   };

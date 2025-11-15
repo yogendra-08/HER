@@ -6,7 +6,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Heart, ShoppingCart, Star, ChevronLeft, ChevronRight, Check } from 'lucide-react';
-import { productsAPI, Product } from '../utils/api';
+import { Product } from '../utils/api';
+import { localProductsAPI } from '../utils/localApi';
 import { useCart } from '../hooks/useCart';
 import toast from 'react-hot-toast';
 
@@ -37,7 +38,7 @@ const ProductDetailsPage: React.FC = () => {
         setLoading(true);
         setError(null);
         console.log('Fetching product with ID:', id);
-        const response = await productsAPI.getByIdJSON(parseInt(id));
+        const response = await localProductsAPI.getByIdJSON(parseInt(id));
         console.log('Product API response:', response);
         
         if (response.success && response.data && response.data.product) {
@@ -56,8 +57,8 @@ const ProductDetailsPage: React.FC = () => {
           // Fetch related products
           if (productData.related && productData.related.length > 0) {
             try {
-              const relatedPromises = productData.related.map(relatedId =>
-                productsAPI.getByIdJSON(relatedId)
+              const relatedPromises = productData.related.map((relatedId: number) =>
+                localProductsAPI.getByIdJSON(relatedId)
               );
               const relatedResponses = await Promise.all(relatedPromises);
               const related = relatedResponses

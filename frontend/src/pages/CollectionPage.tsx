@@ -6,7 +6,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, ShoppingCart } from 'lucide-react';
-import { productsAPI, Product } from '../utils/api';
+import { Product } from '../utils/api';
+import { localProductsAPI } from '../utils/localApi';
 import { useCart } from '../hooks/useCart';
 import toast from 'react-hot-toast';
 
@@ -178,7 +179,7 @@ const CollectionPage: React.FC = () => {
         setLoading(true);
         setError(null);
         console.log('Fetching products from API...');
-        const response = await productsAPI.getAllJSON();
+        const response = await localProductsAPI.getAllJSON();
         console.log('Products API response:', response);
         
         if (response.success && response.data && response.data.products) {

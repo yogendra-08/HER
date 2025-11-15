@@ -21,7 +21,7 @@ export interface Product {
 
 export class ProductModel {
   // Get all products
-  static async getAll(): Promise<Product[]> {
+  static async findAll(): Promise<Product[]> {
     try {
       const { data, error } = await supabase
         .from('products')
@@ -41,7 +41,7 @@ export class ProductModel {
   }
 
   // Get products by category
-  static async getByCategory(category: string): Promise<Product[]> {
+  static async findByCategory(category: string): Promise<Product[]> {
     try {
       const { data, error } = await supabase
         .from('products')
@@ -62,7 +62,7 @@ export class ProductModel {
   }
 
   // Get product by ID
-  static async getById(id: number): Promise<Product | null> {
+  static async findById(id: number): Promise<Product | null> {
     try {
       const { data, error } = await supabase
         .from('products')
@@ -183,7 +183,7 @@ export class ProductModel {
   static async updateStock(id: number, quantity: number): Promise<boolean> {
     try {
       // First check if there's enough stock
-      const product = await ProductModel.getById(id);
+      const product = await ProductModel.findById(id);
       if (!product || product.stock < quantity) {
         return false;
       }
@@ -201,6 +201,26 @@ export class ProductModel {
       return true;
     } catch (error) {
       console.error('Error updating stock:', error);
+      throw error;
+    }
+  }
+
+  // Delete all products
+  static async deleteAll(): Promise<boolean> {
+    try {
+      const { error } = await supabase
+        .from('products')
+        .delete()
+        .neq('id', 0); // Delete all rows (using neq with impossible condition)
+      
+      if (error) {
+        console.error('Error deleting all products:', error);
+        throw error;
+      }
+      
+      return true;
+    } catch (error) {
+      console.error('Error deleting all products:', error);
       throw error;
     }
   }

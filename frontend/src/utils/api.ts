@@ -84,18 +84,21 @@ export interface ProductReview {
 
 export interface Product {
   id: number;
-  title?: string; // For JSON products
+  title?: string; // DummyJSON uses 'title'
   name?: string; // For database products
   brand: string;
   description: string;
   price: number;
   discount?: number;
+  discountPercentage?: number; // DummyJSON field
   category?: string;
-  image: string;
+  image?: string;
+  thumbnail?: string; // DummyJSON field
+  images?: string[]; // DummyJSON field
   imageBack?: string;
   stock: number;
   rating: number;
-  sizes: string[];
+  sizes?: string[];
   colors?: ProductColor[];
   materials?: string;
   careInstructions?: string;
@@ -103,6 +106,8 @@ export interface Product {
   related?: number[];
   created_at?: string;
   updated_at?: string;
+  tags?: string[]; // DummyJSON field
+  gender?: string; // For filtering by gender
 }
 
 export interface CartItem {
@@ -211,6 +216,11 @@ export const productsAPI = {
 
   update: async (id: number, productData: Partial<Omit<Product, 'id' | 'created_at' | 'updated_at'>>): Promise<ApiResponse<{ product: Product }>> => {
     const response = await api.put(`/products/${id}`, productData);
+    return response.data;
+  },
+
+  deleteAll: async (): Promise<ApiResponse> => {
+    const response = await api.delete('/products/all');
     return response.data;
   },
 };

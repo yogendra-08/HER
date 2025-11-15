@@ -10,7 +10,8 @@ import {
   getProduct, 
   searchProducts,
   createProduct,
-  updateProduct
+  updateProduct,
+  deleteAllProducts
 } from '../controllers/productController';
 import { 
   getAllProducts as getAllProductsJSON,
@@ -34,5 +35,6 @@ router.get('/:id', getProduct);
 // Protected routes (Admin only - optional)
 router.post('/', authenticateToken, createProduct);
 router.put('/:id', authenticateToken, updateProduct);
+router.delete('/all', authenticateToken, deleteAllProducts);
 
 export default router;

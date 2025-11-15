@@ -6,7 +6,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, ShoppingBag, Heart, Users, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Product, productsAPI } from '../utils/api';
+import { Product } from '../utils/api';
+import { localProductsAPI } from '../utils/localApi';
 import FeaturedProductCard from '../components/FeaturedProductCard';
 
 // Placeholder products for testing/design purposes
@@ -164,7 +165,7 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
       try {
-        const response = await productsAPI.getAll();
+        const response = await localProductsAPI.getAll();
         if (response.success && response.data && response.data.products && response.data.products.length > 0) {
           // Get first 8 products as featured
           setFeaturedProducts(response.data.products.slice(0, 8));
