@@ -11,10 +11,13 @@ VastraVerse is a full-stack online clothing shopping web application that celebr
 ### Core Functionality
 - **User Authentication**: Secure signup/login with JWT tokens
 - **Product Catalog**: Browse products by categories (Men, Women, Kids, Traditional)
+- **Dynamic Product Loading**: Products loaded from JSON files for each category
 - **Shopping Cart**: Add, update, and remove items with real-time updates
 - **Wishlist**: Save favorite items for later
-- **Search & Filter**: Find products easily with search and category filters
-- **Checkout Process**: Streamlined order placement with payment simulation
+- **Advanced Filters**: Filter by size, price range, and brand
+- **Sorting Options**: Sort products by price, rating, and newest arrivals
+- **Checkout Process**: Streamlined order placement with order tracking
+- **Responsive Design**: Fully responsive layout for all device sizes
 
 ### Technical Features
 - **Responsive Design**: Works perfectly on mobile, tablet, and desktop
@@ -29,54 +32,35 @@ VastraVerse is a full-stack online clothing shopping web application that celebr
 ### Frontend
 - **React 18** with TypeScript
 - **Vite** for fast development and building
-- **TailwindCSS** for styling
-- **React Router** for navigation
+- **TailwindCSS** for styling with custom theming
+- **React Router** for client-side routing
 - **Zustand** for state management
 - **Axios** for API calls
-- **React Hot Toast** for notifications
-- **Lucide React** for icons
+- **React Hot Toast** for user notifications
+- **Lucide React** for beautiful, consistent icons
+- **React Intersection Observer** for infinite scrolling
+- **React Hook Form** for form handling
 
 ### Backend
 - **Node.js** with Express.js
 - **TypeScript** for type safety
-- **Supabase** (PostgreSQL) database
+- **JSON-based data storage** for products
 - **JWT** for authentication
 - **bcryptjs** for password hashing
 - **CORS** for cross-origin requests
 - **Helmet** for security headers
 - **Express Rate Limit** for API protection
+- **Netlify Functions** for serverless backend
 
 ## 📁 Project Structure
 
 ```
 VastraVerse/
-├── backend/
-│   ├── src/
-│   │   ├── config/
-│   │   │   └── db.ts                 # Database configuration
-│   │   ├── controllers/
-│   │   │   ├── authController.ts     # Authentication logic
-│   │   │   ├── productController.ts  # Product management
-│   │   │   ├── cartController.ts     # Cart operations
-│   │   │   └── wishlistController.ts # Wishlist operations
-│   │   ├── models/
-│   │   │   ├── userModel.ts          # User database model
-│   │   │   ├── productModel.ts       # Product database model
-│   │   │   ├── cartModel.ts          # Cart database model
-│   │   │   └── wishlistModel.ts      # Wishlist database model
-│   │   ├── routes/
-│   │   │   ├── authRoutes.ts         # Authentication routes
-│   │   │   ├── productRoutes.ts      # Product routes
-│   │   │   ├── cartRoutes.ts         # Cart routes
-│   │   │   └── wishlistRoutes.ts     # Wishlist routes
-│   │   ├── middleware/
-│   │   │   └── authMiddleware.ts     # JWT verification
-│   │   └── server.ts                 # Main server file
-│   ├── package.json
-│   ├── tsconfig.json
-│   └── .env.example
-│
 ├── frontend/
+│   ├── public/
+│   │   ├── mens_products.json        # Men's product data
+│   │   ├── womens_products.json      # Women's product data
+│   │   └── kids_products.json        # Kids' product data
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── Navbar.tsx            # Navigation component
@@ -89,25 +73,34 @@ VastraVerse/
 │   │   │   ├── LoginPage.tsx         # User login
 │   │   │   ├── SignupPage.tsx        # User registration
 │   │   │   ├── ProductsPage.tsx      # Product catalog
+│   │   │   ├── MensCollectionPage.tsx # Men's collection
+│   │   │   ├── WomensCollectionPage.tsx # Women's collection
+│   │   │   ├── KidsCollectionPage.tsx # Kids' collection
 │   │   │   ├── CartPage.tsx          # Shopping cart
 │   │   │   ├── WishlistPage.tsx      # Wishlist page
 │   │   │   └── CheckoutPage.tsx      # Order checkout
 │   │   ├── hooks/
-│   │   │   └── useCart.tsx           # Cart state management
+│   │   │   ├── useCart.tsx           # Cart state management
+│   │   │   └── useProducts.tsx       # Products data fetching
 │   │   ├── utils/
-│   │   │   └── api.ts                # API utility functions
+│   │   │   ├── api.ts                # API utility functions
+│   │   │   └── productApi.ts         # Product API utilities
 │   │   ├── main.tsx                  # React entry point
-│   │   ├── App.tsx                   # Main app component
-│   │   └── index.css                 # Global styles
-│   ├── public/
-│   │   └── index.html                # HTML template
+│   │   └── App.tsx                   # Main app component
 │   ├── package.json
 │   ├── tsconfig.json
-│   ├── vite.config.ts
-│   ├── tailwind.config.js
-│   └── postcss.config.js
+│   └── vite.config.ts
 │
-└── README.md
+├── netlify/
+│   └── functions/                    # Netlify serverless functions
+│       ├── api.js                   # Main API handler
+│       ├── auth-login.js            # Login function
+│       └── auth-register.js         # Registration function
+│
+├── .gitignore
+├── netlify.toml                      # Netlify configuration
+└── package.json                     # Root package.json
+```
 ```
 
 ## 🚀 Getting Started

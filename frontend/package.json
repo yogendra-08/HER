@@ -12,12 +12,16 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.1",
+    "@supabase/auth-helpers-react": "^0.5.0",
+    "@supabase/auth-ui-react": "^0.4.7",
+    "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/supabase-js": "^2.81.1",
     "axios": "^1.6.2",
     "lucide-react": "^0.294.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.20.1",
     "zustand": "^4.4.7"
   },
   "devDependencies": {
@@ -35,7 +39,13 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   },
-  "keywords": ["ecommerce", "clothing", "indian-fashion", "react", "typescript"],
+  "keywords": [
+    "ecommerce",
+    "clothing",
+    "indian-fashion",
+    "react",
+    "typescript"
+  ],
   "author": "VastraVerse Team",
   "license": "MIT"
 }
