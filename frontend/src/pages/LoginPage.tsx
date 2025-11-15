@@ -40,9 +40,13 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
         setUser(response.data.user);
         toast.success('Login successful!');
         navigate('/');
+      } else {
+        toast.error(response.message || 'Login failed. Please try again.');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Login failed:', error);
+      const errorMessage = error.response?.data?.message || error.message || 'Login failed. Please try again.';
+      toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }

@@ -37,6 +37,12 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Validation
+    if (!formData.name || !formData.email || !formData.password || !formData.phone || !formData.address) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       toast.error('Passwords do not match');
       return;
@@ -44,6 +50,16 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
 
     if (formData.password.length < 6) {
       toast.error('Password must be at least 6 characters long');
+      return;
+    }
+
+    if (!formData.phone.trim()) {
+      toast.error('Phone number is required');
+      return;
+    }
+
+    if (!formData.address.trim()) {
+      toast.error('Address is required');
       return;
     }
 
@@ -58,9 +74,13 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
         setUser(response.data.user);
         toast.success('Account created successfully!');
         navigate('/');
+      } else {
+        toast.error(response.message || 'Signup failed. Please try again.');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Signup failed:', error);
+      const errorMessage = error.response?.data?.message || error.message || 'Signup failed. Please try again.';
+      toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -119,7 +139,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
 
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                Phone Number (Optional)
+                Phone Number <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <Phone className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
@@ -127,6 +147,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
                   id="phone"
                   name="phone"
                   type="tel"
+                  required
                   value={formData.phone}
                   onChange={handleChange}
                   className="input-field pl-10"
@@ -189,7 +210,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
 
             <div>
               <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
-                Address (Optional)
+                Address <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
@@ -197,6 +218,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
                   id="address"
                   name="address"
                   rows={3}
+                  required
                   value={formData.address}
                   onChange={handleChange}
                   className="input-field pl-10 resize-none"

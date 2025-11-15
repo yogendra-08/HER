@@ -13,6 +13,15 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || (
     : '/.netlify/functions'
 );
 
+// Log API configuration in development
+if (import.meta.env.DEV) {
+  console.log('🔧 API Configuration:', {
+    API_BASE_URL,
+    VITE_API_URL: import.meta.env.VITE_API_URL,
+    isDev: import.meta.env.DEV
+  });
+}
+
 // Create axios instance with default config
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -42,6 +51,27 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
+    // Log detailed error information in development
+    if (import.meta.env.DEV) {
+      console.error('❌ API Error:', {
+        message: error.message,
+        url: error.config?.url,
+        baseURL: error.config?.baseURL,
+        fullURL: `${error.config?.baseURL}${error.config?.url}`,
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data,
+        code: error.code,
+      });
+    }
+
+    if (error.code === 'ECONNREFUSED' || error.code === 'ERR_NETWORK') {
+      const message = 'Cannot connect to backend server. Make sure the backend is running on http://localhost:5000';
+      console.error('❌ Connection Error:', message);
+      toast.error(message);
+      return Promise.reject(error);
+    }
+
     if (error.response?.status === 401) {
       // Clear token and redirect to login
       localStorage.removeItem('vastraverse_token');
@@ -50,7 +80,7 @@ api.interceptors.response.use(
     }
     
     // Show error toast
-    const message = error.response?.data?.message || 'Something went wrong';
+    const message = error.response?.data?.message || error.message || 'Something went wrong';
     toast.error(message);
     
     return Promise.reject(error);
@@ -59,13 +89,13 @@ api.interceptors.response.use(
 
 // Types
 export interface User {
-  id: number;
+  id: string;
   name: string;
   email: string;
   phone?: string;
   address?: string;
-  created_at?: string;
-  updated_at?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface ProductColor {
@@ -146,10 +176,12 @@ export const authAPI = {
     name: string;
     email: string;
     password: string;
-    phone?: string;
-    address?: string;
+    phone: string;
+    address: string;
   }): Promise<ApiResponse<{ token: string; user: User }>> => {
-    const response = await api.post('/auth-register', userData);
+    console.log('🔵 Frontend: Registering user...', { url: `${API_BASE_URL}/auth/register`, data: { ...userData, password: '***' } });
+    const response = await api.post('/auth/register', userData);
+    console.log('✅ Frontend: Register response received', response.data);
     return response.data;
   },
 
@@ -157,7 +189,9 @@ export const authAPI = {
     email: string;
     password: string;
   }): Promise<ApiResponse<{ token: string; user: User }>> => {
-    const response = await api.post('/auth-login', credentials);
+    console.log('🔵 Frontend: Logging in...', { url: `${API_BASE_URL}/auth/login`, email: credentials.email });
+    const response = await api.post('/auth/login', credentials);
+    console.log('✅ Frontend: Login response received', response.data);
     return response.data;
   },
 

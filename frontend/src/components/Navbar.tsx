@@ -64,6 +64,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
     { path: '/products/women', label: 'Women' },
     { path: '/products/kids', label: 'Kids' },
     { path: '/products/traditional', label: 'Traditional' },
+    
   ];
 
   return (
@@ -114,6 +115,24 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
 
           {/* Right Side Icons */}
           <div className="flex items-center space-x-3">
+            {/* Login/Signup Buttons (when not logged in) */}
+            {!user && (
+              <>
+                <Link
+                  to="/login"
+                  className="hidden md:block px-4 py-2 text-sm font-medium text-chocolate hover:text-royalBrown transition-colors"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="hidden md:block px-4 py-2 text-sm font-medium bg-gold text-royalBrown rounded-luxury hover:bg-gold/90 transition-colors"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
+
             {/* Wishlist */}
             <Link
               to="/wishlist"
@@ -281,6 +300,27 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
                   {link.label}
                 </Link>
               ))}
+              
+              {/* Mobile Login/Signup (when not logged in) */}
+              {!user && (
+                <>
+                  <div className="border-t border-gold/20 my-2"></div>
+                  <Link
+                    to="/login"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-4 py-2 text-chocolate hover:text-royalBrown hover:bg-sandBeige rounded-luxury transition-colors"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/signup"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-4 py-2 text-center font-medium bg-gold text-royalBrown rounded-luxury hover:bg-gold/90 transition-colors"
+                  >
+                    Sign Up
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         )}

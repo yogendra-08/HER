@@ -3,7 +3,7 @@
  * Works without backend - uses local data
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -20,11 +20,25 @@ import SummerCollectionPage from './pages/SummerCollectionPage';
 import CollectionPage from './pages/CollectionPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import AdminPage from './pages/AdminPage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import { User, getAuthToken } from './utils/api';
 
 const App: React.FC = () => {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    // Check if user is logged in on mount
+    const token = getAuthToken();
+    if (token) {
+      // Optionally fetch user profile here
+      // For now, we'll just check if token exists
+    }
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-cream">
-      <Navbar user={null} setUser={() => {}} />
+      <Navbar user={user} setUser={setUser} />
       
       <main className="flex-1">
         <Routes>
@@ -43,6 +57,8 @@ const App: React.FC = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/login" element={<LoginPage setUser={setUser} />} />
+          <Route path="/signup" element={<SignupPage setUser={setUser} />} />
           
           {/* Catch all route */}
           <Route 
