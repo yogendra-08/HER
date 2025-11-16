@@ -337,15 +337,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 👥 Team
 
 **VastraVerse Development Team**
-- Full-stack development with modern technologies
-- Indian fashion-focused e-commerce solution
-- College project with professional standards
-
-## 🙏 Acknowledgments
-
-- **Indian Fashion Industry** for inspiration
-- **Open Source Community** for amazing tools and libraries
-- **Modern Web Development** practices and patterns
+- Yogendra Bhange 
+- Yash Dudhe
+- Anuj Dudhe
+- Rudresh Vyas
+- Raj kathoute
 
 ---
 
