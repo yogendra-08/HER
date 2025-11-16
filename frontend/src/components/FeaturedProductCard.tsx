@@ -59,8 +59,17 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ product }) =>
   const cartQuantity = getItemQuantity(product.id);
   const inWishlist = isInWishlist(product.id);
 
-  // Generate secondary image (slightly different angle/view)
-  const secondaryImage = product.image.replace('w=600', 'w=601');
+  // Generate secondary image (slightly different angle/view) or use a placeholder
+  const getImageUrl = (url: string | undefined, isThumbnail = false) => {
+    if (!url) return '/placeholder-clothing.jpg'; // Fallback placeholder
+    if (isThumbnail && product.thumbnail) return product.thumbnail;
+    return url;
+  };
+
+  const primaryImage = getImageUrl(product.image || product.thumbnail);
+  const secondaryImage = primaryImage.includes('unsplash.com') 
+    ? primaryImage.replace('w=600', 'w=601') 
+    : primaryImage;
 
   return (
     <div
@@ -78,20 +87,30 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ product }) =>
       <div className="relative aspect-[3/4] overflow-hidden bg-gray-50">
         {/* Primary Image */}
         <img
-          src={product.image}
-          alt={product.name}
+          src={primaryImage}
+          alt={product.name || 'Fashion product'}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
             isHovered ? 'opacity-0' : 'opacity-100'
           }`}
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = 'https://via.placeholder.com/300x400/f5f5f5/999999?text=Product+Image';
+            target.onerror = null; // Prevent infinite loop if placeholder also fails
+          }}
         />
         
         {/* Secondary Image (reveals on hover) */}
         <img
           src={secondaryImage}
-          alt={product.name}
+          alt={product.name || 'Fashion product alternate view'}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = 'https://via.placeholder.com/300x400/f5f5f5/999999?text=Alternate+View';
+            target.onerror = null; // Prevent infinite loop if placeholder also fails
+          }}
         />
 
         {/* Discount Badge */}

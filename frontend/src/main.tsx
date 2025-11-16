@@ -9,6 +9,13 @@ import { BrowserRouter } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import App from './App.tsx'
 import './index.css'
+import './styles/globals.css'
+
+// Add theme class to document element on initial load
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const savedTheme = localStorage.getItem('theme');
+
+document.documentElement.classList.add(savedTheme === 'dark' || (!savedTheme && prefersDark) ? 'dark' : 'light');
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

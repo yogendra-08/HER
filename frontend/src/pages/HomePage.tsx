@@ -20,6 +20,7 @@ const placeholderProducts: Product[] = [
       brand: 'Aria Luxe',
       category: 'Aria Luxe',
       image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop',
+      thumbnail: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=300&h=400&fit=crop',
       stock: 15,
       rating: 4.8,
       sizes: ['Free Size']
@@ -32,6 +33,7 @@ const placeholderProducts: Product[] = [
       brand: 'Urban Threads',
       category: 'Urban Threads',
       image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=800&fit=crop',
+      thumbnail: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300&h=400&fit=crop',
       stock: 20,
       rating: 4.6,
       sizes: ['S', 'M', 'L', 'XL']
@@ -44,6 +46,7 @@ const placeholderProducts: Product[] = [
       brand: 'Ethnic Elegance',
       category: 'Ethnic Elegance',
       image: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=600&h=800&fit=crop',
+      thumbnail: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=300&h=400&fit=crop',
       stock: 12,
       rating: 4.9,
       sizes: ['S', 'M', 'L', 'XL']

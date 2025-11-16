@@ -115,23 +115,6 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
 
           {/* Right Side Icons */}
           <div className="flex items-center space-x-3">
-            {/* Login/Signup Buttons (when not logged in) */}
-            {!user && (
-              <>
-                <Link
-                  to="/login"
-                  className="hidden md:block px-4 py-2 text-sm font-medium text-chocolate hover:text-royalBrown transition-colors"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/signup"
-                  className="hidden md:block px-4 py-2 text-sm font-medium bg-gold text-royalBrown rounded-luxury hover:bg-gold/90 transition-colors"
-                >
-                  Sign Up
-                </Link>
-              </>
-            )}
 
             {/* Wishlist */}
             <Link

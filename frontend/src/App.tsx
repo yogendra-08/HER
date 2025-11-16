@@ -39,7 +39,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-cream">
+    <div className="min-h-screen flex flex-col bg-white text-royalBrown">
       <Navbar user={user} setUser={setUser} />
       
       <main className="flex-1">
@@ -86,7 +86,6 @@ const App: React.FC = () => {
           />
         </Routes>
       </main>
-      
       <Footer />
     </div>
   );

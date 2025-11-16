@@ -121,76 +121,109 @@ const Receipt: React.FC<ReceiptProps> = ({
         <div 
           id="receipt-content"
           ref={receiptRef} 
-          className="bg-white p-8 max-w-md mx-auto"
+          className="bg-white p-8 max-w-md mx-auto relative"
           style={{ visibility: 'hidden' }}
         >
+          {/* Watermark */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
+            <img 
+              src="/VastraVerse.png" 
+              alt="VastraVerse Watermark" 
+              className="h-64 w-auto"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+              }}
+            />
+          </div>
+
           {/* Header */}
-          <div className="text-center mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">VastraVerse</h1>
-            <p className="text-gray-600">Your Fashion Destination</p>
-            <p className="text-sm text-gray-500 mt-1">Order Receipt</p>
-          </div>
-
-          {/* Order Info */}
-          <div className="mb-6">
-            <div className="flex justify-between items-center mb-2">
-              <span className="font-medium">Order ID:</span>
-              <span>{orderId}</span>
+          <div className="relative z-10">
+            <div className="flex flex-col items-center mb-6">
+              <img 
+                src="/VastraVerse.png" 
+                alt="VastraVerse Logo" 
+                className="h-16 mb-4"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
+              />
+              <h1 className="text-2xl font-bold text-gray-900">VastraVerse</h1>
+              <p className="text-gray-600">Your Fashion Destination</p>
+              <p className="text-sm text-gray-500 mt-1">Order Receipt</p>
             </div>
-            <div className="flex justify-between items-center mb-2">
-              <span className="font-medium">Order Date:</span>
-              <span>{orderDate}</span>
-            </div>
-            <div className="flex justify-between items-center mb-2">
-              <span className="font-medium">Expected Delivery:</span>
-              <span>{deliveryDate}</span>
-            </div>
-          </div>
 
-          {/* Customer Info */}
-          <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-            <h2 className="font-semibold text-gray-900 mb-2">Customer Details</h2>
-            <p className="text-gray-800">{customerName}</p>
-            <p className="text-gray-600">{deliveryAddress}</p>
-            <p className="text-gray-600">Phone: {phoneNumber}</p>
-          </div>
+            {/* Order Info */}
+            <div className="mb-6">
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-medium">Order ID:</span>
+                <span className="font-semibold">{orderId}</span>
+              </div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-medium">Customer:</span>
+                <span className="font-medium">{customerName}</span>
+              </div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-medium">Order Date:</span>
+                <span>{orderDate}</span>
+              </div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-medium">Expected Delivery:</span>
+                <span>{deliveryDate}</span>
+              </div>
+            </div>
 
-          {/* Order Items */}
-          <div className="mb-6">
-            <h2 className="font-semibold text-gray-900 mb-3">Order Summary</h2>
-            <div className="space-y-4">
-              {items.map((item) => (
-                <div key={item.id} className="flex justify-between items-start border-b pb-2">
-                  <div className="flex-1">
-                    <p className="font-medium text-gray-900">{item.name}</p>
-                    <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
+            {/* Customer Info */}
+            <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+              <h2 className="font-semibold text-gray-900 mb-2">Delivery Address</h2>
+              <p className="text-gray-800">{customerName}</p>
+              <p className="text-gray-600">{deliveryAddress}</p>
+              <p className="text-gray-600">Phone: {phoneNumber}</p>
+            </div>
+
+            {/* Order Items */}
+            <div className="mb-6">
+              <h2 className="font-semibold text-gray-900 mb-3">Order Summary</h2>
+              <div className="space-y-4">
+                {items.map((item) => (
+                  <div key={item.id} className="flex justify-between items-start border-b pb-2">
+                    <div className="flex-1">
+                      <p className="font-medium text-gray-900">{item.name}</p>
+                      <div className="flex justify-between text-sm text-gray-600">
+                        <span>Qty: {item.quantity}</span>
+                        <span>{formatPrice(item.price)} each</span>
+                      </div>
+                    </div>
+                    <p className="font-medium ml-4 whitespace-nowrap">
+                      {formatPrice(item.price * item.quantity)}
+                    </p>
                   </div>
-                  <p className="font-medium">{formatPrice(item.price * item.quantity)}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Order Total */}
-          <div className="border-t pt-4">
-            <div className="flex justify-between mb-2">
-              <span>Subtotal:</span>
-              <span>{formatPrice(totalPrice)}</span>
+            {/* Order Total */}
+            <div className="border-t pt-4">
+              <div className="flex justify-between mb-2">
+                <span>Subtotal ({items.reduce((acc, item) => acc + item.quantity, 0)} items):</span>
+                <span>{formatPrice(totalPrice)}</span>
+              </div>
+              <div className="flex justify-between mb-2">
+                <span>Shipping:</span>
+                <span className="text-green-600">FREE</span>
+              </div>
+              <div className="flex justify-between font-bold text-lg pt-2 border-t mt-2">
+                <span>Total Amount:</span>
+                <span>{formatPrice(totalPrice)}</span>
+              </div>
             </div>
-            <div className="flex justify-between mb-2">
-              <span>Shipping:</span>
-              <span className="text-green-600">FREE</span>
-            </div>
-            <div className="flex justify-between font-bold text-lg pt-2 border-t mt-2">
-              <span>Total:</span>
-              <span>{formatPrice(totalPrice)}</span>
-            </div>
-          </div>
 
-          {/* Footer */}
-          <div className="mt-8 pt-4 border-t text-center text-sm text-gray-500">
-            <p>Thank you for shopping with VastraVerse!</p>
-            <p className="mt-1">For any queries, contact us at support@vastraverse.com</p>
+            {/* Footer */}
+            <div className="mt-8 pt-4 border-t text-center text-sm text-gray-500">
+              <p>Thank you for shopping with VastraVerse!</p>
+              <p className="mt-1">For any queries, contact us at support@vastraverse.com</p>
+            </div>
           </div>
         </div>
       </div>
