@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { CheckCircle, Truck, Package, CheckCircle2, Clock, MapPin } from 'lucide-react';
 import { useCart } from '../hooks/useCart';
 import toast from 'react-hot-toast';
+import Receipt from '../components/Receipt';
 
 type OrderStatus = 'PLACED' | 'PACKED' | 'SHIPPED' | 'OUT_FOR_DELIVERY' | 'DELIVERED';
 
@@ -129,12 +130,11 @@ const CheckoutPage: React.FC = () => {
       setOrderPlaced(true);
       clearCart();
       toast.success('Order placed successfully!');
-      
-      // Redirect to home after 3 seconds
-      setTimeout(() => {
-        navigate('/');
-      }, 3000);
     }, 2000);
+  };
+
+  const handleContinueShopping = () => {
+    navigate('/');
   };
 
   if (orderPlaced) {
@@ -154,7 +154,7 @@ const CheckoutPage: React.FC = () => {
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Order Status</h2>
               <div className="relative">
                 <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-                {orderStatusSteps.map((step, index) => (
+                {orderStatusSteps.map((step) => (
                   <div key={step.id} className="relative flex items-start mb-6">
                     <div className={`flex items-center justify-center w-8 h-8 rounded-full ${step.completed ? 'bg-green-500' : step.active ? 'bg-blue-500' : 'bg-gray-200'}`}>
                       {step.completed ? (
@@ -216,13 +216,31 @@ const CheckoutPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-8 text-center">
-              <button
-                onClick={() => navigate('/')}
-                className="btn-primary inline-flex items-center"
-              >
-                Continue Shopping
-              </button>
+            <div className="mt-8 space-y-4">
+              <Receipt 
+                orderId={orderId}
+                customerName={customerName}
+                deliveryAddress={deliveryAddress}
+                phoneNumber={phoneNumber}
+                items={items}
+                totalPrice={totalPrice}
+                orderDate={orderDate}
+                deliveryDate={deliveryDate}
+              />
+              <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
+                <button
+                  onClick={handleContinueShopping}
+                  className="btn-primary inline-flex items-center justify-center px-6 py-2"
+                >
+                  Continue Shopping
+                </button>
+                <button
+                  onClick={() => setOrderPlaced(false)}
+                  className="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 inline-flex items-center justify-center px-6 py-2 rounded-md font-medium transition-colors"
+                >
+                  Close Order Details
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -243,14 +261,14 @@ const CheckoutPage: React.FC = () => {
               {items.map((item) => (
                 <div key={item.id} className="flex items-center space-x-4">
                   <img
-                    src={item.product_image}
-                    alt={item.product_name}
+                    src={item.image}
+                    alt={item.name}
                     className="w-16 h-16 object-cover rounded-lg"
                   />
                   <div className="flex-1">
-                    <h3 className="font-medium text-gray-900">{item.product_name}</h3>
+                    <h3 className="font-medium text-gray-900">{item.name}</h3>
                     <p className="text-gray-600">Qty: {item.quantity}</p>
-                    <p className="font-medium">{formatPrice(item.product_price * item.quantity)}</p>
+                    <p className="font-medium">{formatPrice(item.price * item.quantity)}</p>
                   </div>
                 </div>
               ))}
