@@ -664,7 +664,7 @@ const HomePage: React.FC = () => {
             <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
               <div className="w-full h-48 overflow-hidden">
                 <img 
-                  src="/src/feedback/img2.png" 
+                  src="/feedback/img2.png" 
                   alt="Elevate Your Everyday" 
                   className="w-full h-full object-cover"
                 />
@@ -679,7 +679,7 @@ const HomePage: React.FC = () => {
             <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
               <div className="w-full h-48 overflow-hidden">
                 <img 
-                  src="/src/feedback/img1.png" 
+                  src="/feedback/img1.png" 
                   alt="Comfort That Moves With You" 
                   className="w-full h-full object-cover"
                 />
@@ -694,7 +694,7 @@ const HomePage: React.FC = () => {
             <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
               <div className="w-full h-48 overflow-hidden">
                 <img 
-                  src="/src/feedback/img3.png" 
+                  src="/feedback/img3.png" 
                   alt="Timeless Style, Modern Touch" 
                   className="w-full h-full object-cover"
                 />
@@ -709,7 +709,7 @@ const HomePage: React.FC = () => {
             <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
               <div className="w-full h-48 overflow-hidden">
                 <img 
-                  src="/src/feedback/img4.png" 
+                  src="/feedback/img4.png" 
                   alt="Crafted With Purpose" 
                   className="w-full h-full object-cover"
                 />
@@ -724,7 +724,7 @@ const HomePage: React.FC = () => {
             <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
               <div className="w-full h-48 overflow-hidden">
                 <img 
-                  src="/src/feedback/img5.png" 
+                  src="/feedback/img5.png" 
                   alt="Your Style, Your Identity" 
                   className="w-full h-full object-cover"
                 />
@@ -739,7 +739,7 @@ const HomePage: React.FC = () => {
             <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
               <div className="w-full h-48 overflow-hidden">
                 <img 
-                  src="/src/feedback/img6.png" 
+                  src="/feedback/img6.png" 
                   alt="Made for Real Life" 
                   className="w-full h-full object-cover"
                 />
