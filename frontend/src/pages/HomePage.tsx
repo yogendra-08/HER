@@ -3,118 +3,202 @@
  * Landing page with hero section, categories, and featured products
  */
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, ShoppingBag, Heart, Users, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Star, ShoppingBag, Heart, Users, ChevronLeft, ChevronRight, ArrowUp, Eye, ShoppingCart } from 'lucide-react';
 import { Product } from '../utils/api';
 import { localProductsAPI } from '../utils/localApi';
-import FeaturedProductCard from '../components/FeaturedProductCard';
+// Import removed as it's not being used
+
+// Premium products collection
+const premiumProducts: Product[] = [
+  {
+    id: 1001,
+    name: 'Luxury Silk Saree',
+    description: 'Handwoven Banarasi silk saree with pure zari work',
+    price: 12999,
+    brand: 'Royal Weaves',
+    category: 'Premium',
+    image: 'https://images.unsplash.com/photo-1594631252845-29fc4cc8c663?w=600&h=800&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1594631252845-29fc4cc8c663?w=300&h=400&fit=crop',
+    stock: 8,
+    rating: 4.9,
+    sizes: ['Free Size']
+  },
+  {
+    id: 1002,
+    name: 'Designer Tuxedo Suit',
+    description: 'Premium Italian wool tuxedo with satin lapels',
+    price: 34999,
+    brand: 'Elite Tailors',
+    category: 'Premium',
+    image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&h=800&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=300&h=400&fit=crop',
+    stock: 5,
+    rating: 5.0,
+    sizes: ['M', 'L', 'XL']
+  },
+  {
+    id: 1003,
+    name: 'Hand-Embroidered Lehenga',
+    description: 'Bridal lehenga with intricate hand embroidery',
+    price: 45999,
+    brand: 'Heritage Couture',
+    category: 'Premium',
+    image: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&h=800&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=300&h=400&fit=crop',
+    stock: 3,
+    rating: 4.9,
+    sizes: ['S', 'M', 'L']
+  },
+  {
+    id: 1004,
+    name: 'Cashmere Overcoat',
+    description: '100% Pure Cashmere winter overcoat',
+    price: 38999,
+    brand: 'Luxury Wraps',
+    category: 'Premium',
+    image: 'https://images.unsplash.com/photo-1551028719-001e990e9c5d?w=600&h=800&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1551028719-001e990e9c5d?w=300&h=400&fit=crop',
+    stock: 6,
+    rating: 4.8,
+    sizes: ['M', 'L', 'XL']
+  },
+];
 
 // Placeholder products for testing/design purposes
 const placeholderProducts: Product[] = [
-    {
-      id: 101,
-      name: 'Silk Embroidered Saree',
-      description: 'Elegant silk saree with intricate zari work and premium fabric',
-      price: 3499,
-      brand: 'Aria Luxe',
-      category: 'Aria Luxe',
-      image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop',
-      thumbnail: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=300&h=400&fit=crop',
-      stock: 15,
-      rating: 4.8,
-      sizes: ['Free Size']
-    },
-    {
-      id: 102,
-      name: 'Premium Cotton Hoodie',
-      description: 'Comfortable and stylish hoodie perfect for casual wear',
-      price: 2499,
-      brand: 'Urban Threads',
-      category: 'Urban Threads',
-      image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=800&fit=crop',
-      thumbnail: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300&h=400&fit=crop',
-      stock: 20,
-      rating: 4.6,
-      sizes: ['S', 'M', 'L', 'XL']
-    },
-    {
-      id: 103,
-      name: 'Designer Anarkali Suit',
-      description: 'Beautiful floor-length Anarkali with mirror work and embroidery',
-      price: 4299,
-      brand: 'Ethnic Elegance',
-      category: 'Ethnic Elegance',
-      image: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=600&h=800&fit=crop',
-      thumbnail: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=300&h=400&fit=crop',
-      stock: 12,
-      rating: 4.9,
-      sizes: ['S', 'M', 'L', 'XL']
-    },
-    {
-      id: 104,
-      name: 'Classic Denim Jacket',
-      description: 'Trendy indigo denim jacket with modern fit and style',
-      price: 2999,
-      brand: 'Street Style',
-      category: 'Street Style',
-      image: 'https://images.unsplash.com/photo-1593032465171-8f0b7a0b78cd?w=600&h=800&fit=crop',
-      stock: 18,
-      rating: 4.5,
-      sizes: ['S', 'M', 'L', 'XL', 'XXL']
-    },
-    {
-      id: 105,
-      name: 'Handloom Cotton Kurta',
-      description: 'Traditional handloom kurta with contemporary design',
-      price: 1899,
-      brand: 'Heritage Craft',
-      category: 'Heritage Craft',
-      image: 'https://images.unsplash.com/photo-1621786860304-1b1a0a0197a1?w=600&h=800&fit=crop',
-      stock: 25,
-      rating: 4.7,
-      sizes: ['S', 'M', 'L', 'XL']
-    },
-    {
-      id: 106,
-      name: 'Floral Print Maxi Dress',
-      description: 'Elegant maxi dress with beautiful floral patterns',
-      price: 2799,
-      brand: 'Boho Chic',
-      category: 'Boho Chic',
-      image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&h=800&fit=crop',
-      stock: 14,
-      rating: 4.6,
-      sizes: ['S', 'M', 'L']
-    },
-    {
-      id: 107,
-      name: 'Wool Blend Winter Coat',
-      description: 'Warm and stylish winter coat for cold weather',
-      price: 5499,
-      brand: 'Winter Essentials',
-      category: 'Winter Essentials',
-      image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=800&fit=crop',
-      stock: 10,
-      rating: 4.8,
-      sizes: ['S', 'M', 'L', 'XL']
-    },
-    {
-      id: 108,
-      name: 'Chikankari Embroidered Top',
-      description: 'Handcrafted chikankari top with delicate embroidery',
-      price: 2199,
-      brand: 'Artisan Made',
-      category: 'Artisan Made',
-      image: 'https://images.unsplash.com/photo-1617034182210-91e5336b4999?w=600&h=800&fit=crop',
-      stock: 16,
-      rating: 4.7,
-      sizes: ['S', 'M', 'L', 'XL']
-    }
-  ];
+  {
+    id: 101,
+    name: 'Silk Embroidered Saree',
+    description: 'Elegant silk saree with intricate zari work and premium fabric',
+    price: 3499,
+    brand: 'Aria Luxe',
+    category: 'Aria Luxe',
+    image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=300&h=400&fit=crop',
+    stock: 15,
+    rating: 4.8,
+    sizes: ['Free Size']
+  },
+  {
+    id: 102,
+    name: 'Premium Cotton Hoodie',
+    description: 'Comfortable and stylish hoodie perfect for casual wear',
+    price: 2499,
+    brand: 'Urban Threads',
+    category: 'Urban Threads',
+    image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=800&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300&h=400&fit=crop',
+    stock: 20,
+    rating: 4.6,
+    sizes: ['S', 'M', 'L', 'XL']
+  },
+  {
+    id: 103,
+    name: 'Designer Anarkali Suit',
+    description: 'Beautiful floor-length Anarkali with mirror work and embroidery',
+    price: 4299,
+    brand: 'Ethnic Elegance',
+    category: 'Ethnic Elegance',
+    image: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=600&h=800&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=300&h=400&fit=crop',
+    stock: 12,
+    rating: 4.9,
+    sizes: ['S', 'M', 'L', 'XL']
+  },
+  {
+    id: 104,
+    name: 'Classic Denim Jacket',
+    description: 'Trendy indigo denim jacket with modern fit and style',
+    price: 2999,
+    brand: 'Street Style',
+    category: 'Street Style',
+    image: 'https://images.unsplash.com/photo-1593032465171-8f0b7a0b78cd?w=600&h=800&fit=crop',
+    stock: 18,
+    rating: 4.5,
+    sizes: ['S', 'M', 'L', 'XL', 'XXL']
+  },
+  {
+    id: 105,
+    name: 'Handloom Cotton Kurta',
+    description: 'Traditional handloom kurta with contemporary design',
+    price: 1899,
+    brand: 'Heritage Craft',
+    category: 'Heritage Craft',
+    image: 'https://images.unsplash.com/photo-1621786860304-1b1a0a0197a1?w=600&h=800&fit=crop',
+    stock: 25,
+    rating: 4.7,
+    sizes: ['S', 'M', 'L', 'XL']
+  },
+  {
+    id: 106,
+    name: 'Floral Print Maxi Dress',
+    description: 'Elegant maxi dress with beautiful floral patterns',
+    price: 2799,
+    brand: 'Boho Chic',
+    category: 'Boho Chic',
+    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&h=800&fit=crop',
+    stock: 14,
+    rating: 4.6,
+    sizes: ['S', 'M', 'L']
+  },
+  {
+    id: 107,
+    name: 'Wool Blend Winter Coat',
+    description: 'Warm and stylish winter coat for cold weather',
+    price: 5499,
+    brand: 'Winter Essentials',
+    category: 'Winter Essentials',
+    image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=800&fit=crop',
+    stock: 10,
+    rating: 4.8,
+    sizes: ['S', 'M', 'L', 'XL']
+  },
+  {
+    id: 108,
+    name: 'Chikankari Embroidered Top',
+    description: 'Handcrafted chikankari top with delicate embroidery',
+    price: 2199,
+    brand: 'Artisan Made',
+    category: 'Artisan Made',
+    image: 'https://images.unsplash.com/photo-1617034182210-91e5336b4999?w=600&h=800&fit=crop',
+    stock: 16,
+    rating: 4.7,
+    sizes: ['S', 'M', 'L', 'XL']
+  }
+];
 
 const HomePage: React.FC = () => {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const [showScroll, setShowScroll] = useState(false);
+  const [, setHoveredProduct] = useState<number | null>(null);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
+
+  const checkScrollTop = useCallback(() => {
+    if (!showScroll && window.pageYOffset > 400) {
+      setShowScroll(true);
+    } else if (showScroll && window.pageYOffset <= 400) {
+      setShowScroll(false);
+    }
+  }, [showScroll]);
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', checkScrollTop);
+    return () => window.removeEventListener('scroll', checkScrollTop);
+  }, [checkScrollTop]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setParallaxOffset(window.pageYOffset * 0.3);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const [isLoading, setIsLoading] = useState(true);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [visibleProducts, setVisibleProducts] = useState<Set<number>>(new Set());
@@ -321,10 +405,35 @@ const HomePage: React.FC = () => {
     }
   };
 
+  // Back to Top Button
+  const BackToTop = () => (
+    <button
+      onClick={scrollTop}
+      className={`fixed bottom-8 right-8 z-50 p-3 rounded-full bg-gold text-royalBrown shadow-lg hover:shadow-xl transition-all duration-300 transform ${
+        showScroll ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}
+      aria-label="Back to top"
+    >
+      <ArrowUp className="h-6 w-6" />
+    </button>
+  );
+
   return (
-    <div className="min-h-screen">
-      {/* Hero Banner Section with Luxury Animations */}
+    <div className="min-h-screen relative">
+      <BackToTop />
+      {/* Hero Banner Section with Parallax Effect */}
       <section className="relative h-[600px] md:h-[700px] overflow-hidden">
+        {/* Parallax Background */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-out"
+          style={{
+            backgroundImage: `url(${bannerImages[currentBannerIndex].image})`,
+            transform: `translateY(${parallaxOffset * 0.3}px)`,
+            willChange: 'transform'
+          }}
+        >
+          <div className="absolute inset-0 backdrop-blur-sm bg-black/30"></div>
+        </div>
         {/* Banner Images Carousel */}
         <div className="relative w-full h-full">
           {bannerImages.map((banner, index) => (
@@ -338,17 +447,6 @@ const HomePage: React.FC = () => {
                   : 'opacity-0 scale-95 translate-x-full'
               }`}
             >
-              <div 
-                className="absolute inset-0 bg-cover bg-center banner-zoom"
-                style={{ 
-                  backgroundImage: `url(${banner.image})`,
-                  backgroundPosition: 'center',
-                  backgroundSize: 'cover'
-                }}
-              >
-                {/* Blur effect with dark overlay */}
-                <div className="absolute inset-0 backdrop-blur-sm bg-black/30"></div>
-              </div>
               
               {/* Content */}
               {index === currentBannerIndex && (
@@ -372,7 +470,7 @@ const HomePage: React.FC = () => {
                       Explore the Universe of Indian Fashion - From traditional ethnic wear to modern contemporary styles, 
                       discover clothing that celebrates your unique style and heritage.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center banner-slide-up animation-delay-600">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center banner-slide-up animation-delay-600 relative z-10">
                       <Link 
                         to="/summer-collection" 
                         className="inline-flex items-center px-8 py-4 rounded-luxury font-medium transition-all duration-300 shadow-gold hover:shadow-gold-lg transform hover:scale-[1.02] tracking-elegant"
@@ -566,12 +664,6 @@ const HomePage: React.FC = () => {
             >
               Featured
             </h2>
-            <p 
-              className="text-base text-gray-600 max-w-2xl mx-auto mb-6"
-              style={{ letterSpacing: '0.02em' }}
-            >
-              Premium handpicked styles for you
-            </p>
             <Link
               to="/collection"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300"
@@ -605,18 +697,72 @@ const HomePage: React.FC = () => {
             <div 
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             >
-              {featuredProducts.map((product, index) => (
-                <div
+              {featuredProducts.map((product) => (
+                <Link 
+                  to={`/product/${product.id}`}
                   key={product.id}
-                  data-product-id={product.id}
-                  className={`fade-in-up ${visibleProducts.has(product.id) ? 'visible' : ''}`}
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                    animationFillMode: 'both'
-                  }}
+                  className={`product-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 ease-out block ${
+                    visibleProducts.has(product.id) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  onMouseEnter={() => setHoveredProduct(product.id)}
+                  onMouseLeave={() => setHoveredProduct(null)}
                 >
-                  <FeaturedProductCard product={product} />
-                </div>
+                  {/* Product Badge */}
+                  {product.id % 3 === 0 && <span className="product-badge">Bestseller</span>}
+                  {product.id % 5 === 0 && <span className="product-badge" style={{background: '#EF4444'}}>Sale</span>}
+                  
+                  {/* Product Image */}
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                    
+                    {/* Quick Actions */}
+                    <div className="product-actions absolute bottom-0 left-0 right-0 bg-white/90 p-3 flex justify-center space-x-2">
+                      <button className="p-2 rounded-full bg-white hover:bg-gray-100 text-gray-700 hover:text-gold transition-colors">
+                        <Heart className="h-5 w-5" />
+                      </button>
+                      <button className="p-2 rounded-full bg-white hover:bg-gray-100 text-gray-700 hover:text-gold transition-colors">
+                        <Eye className="h-5 w-5" />
+                      </button>
+                      <button className="p-2 rounded-full bg-royalBrown text-white hover:bg-gold transition-colors flex items-center">
+                        <ShoppingCart className="h-5 w-5 mr-1" />
+                        <span className="text-sm">Add to Cart</span>
+                      </button>
+                    </div>
+                  </div>
+                  
+                  {/* Product Info */}
+                  <div className="p-4">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="font-medium text-gray-900">{product.name}</h3>
+                        <p className="text-sm text-gray-500">{product.brand}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-semibold text-gray-900">₹{product.price.toLocaleString()}</p>
+                        <div className="flex items-center justify-end mt-1">
+                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                          <span className="ml-1 text-sm text-gray-600">{product.rating}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Color Swatches */}
+                    <div className="mt-3 flex space-x-2">
+                      {['#000000', '#3B82F6', '#EF4444', '#F59E0B'].map((color, i) => (
+                        <button
+                          key={i}
+                          className="w-5 h-5 rounded-full border border-gray-200"
+                          style={{ backgroundColor: color }}
+                          aria-label={`Color ${i + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </Link>
               ))}
             </div>
           )}
@@ -628,6 +774,67 @@ const HomePage: React.FC = () => {
               style={{ letterSpacing: '0.05em' }}
             >
               View All Products
+              <ArrowRight className="ml-2 h-4 w-4" strokeWidth={2} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Premium Collection Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-royalBrown mb-4">Our Premium Collection</h2>
+            <div className="w-24 h-1 bg-gold mx-auto"></div>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+              Exquisite craftsmanship meets timeless elegance in our premium collection. Each piece is meticulously designed for those who appreciate the finer things in life.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {premiumProducts.map((product) => (
+              <Link 
+                to={`/product/${product.id}`}
+                key={product.id}
+                className="product-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 ease-out block"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-80 object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                  <div className="absolute top-2 right-2 bg-royalBrown text-white text-xs font-semibold px-2 py-1 rounded">
+                    Premium
+                  </div>
+                </div>
+                
+                <div className="p-4">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="font-medium text-gray-900">{product.name}</h3>
+                      <p className="text-sm text-gray-500">{product.brand}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-semibold text-gray-900">₹{product.price.toLocaleString()}</p>
+                      <div className="flex items-center justify-end mt-1">
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="ml-1 text-sm text-gray-600">{product.rating}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <Link 
+              to="/products?category=premium" 
+              className="inline-flex items-center px-8 py-3 text-sm font-medium text-royalBrown transition-all duration-300 border-b-2 border-transparent hover:border-royalBrown"
+              style={{ letterSpacing: '0.05em' }}
+            >
+              View All Premium Products
               <ArrowRight className="ml-2 h-4 w-4" strokeWidth={2} />
             </Link>
           </div>
