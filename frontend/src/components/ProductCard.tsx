@@ -70,7 +70,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const productPrice = Number(product.price) || 0;
 
   return (
-    <div className="card-product group bg-white border" style={{ borderColor: '#C49E54', borderWidth: '1px' }}>
+    <div className="card-product group">
       <div className="relative">
         <img
           src={product.image || product.thumbnail}
