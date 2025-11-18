@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 const API_BASE_URL = import.meta.env.VITE_API_URL || '/.netlify/functions';
 
 // In development, you can still use a local backend if needed
-const DEV_API_URL = 'https://vastraverse.onrender.com/ap';
+const DEV_API_URL = 'https://vastraverse.onrender.com';
 
 // Function to determine the base URL
 const getBaseUrl = () => {
