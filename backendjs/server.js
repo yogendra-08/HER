@@ -32,7 +32,7 @@ app.use(cors({
       'http://127.0.0.1:3000',
       'http://127.0.0.1:5173',
       // Deployed frontend origin (Render) - add here as a safe fallback
-      'https://vastraverse-online-clothing-shopping-ye1e.onrender.com',
+      
       process.env.FRONTEND_URL
     ].filter(Boolean);
     
