@@ -3,7 +3,7 @@
  * Modern, trendy page showcasing Gen Z fashion products
  */
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Heart, ShoppingCart, Filter, X, Eye, Star } from 'lucide-react';
 import { Product } from '../utils/api';
 import { useCart } from '../hooks/useCart';
@@ -636,7 +636,6 @@ const GenZPage: React.FC = () => {
       setAllProducts(fetchedProducts);
     }
   }, [fetchedProducts]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState('newest');
@@ -645,7 +644,6 @@ const GenZPage: React.FC = () => {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const [currentPage, setCurrentPage] = useState(0);
   const observerTarget = useRef<HTMLDivElement>(null);
   
   const PRODUCTS_PER_PAGE = 8;
@@ -655,50 +653,38 @@ const GenZPage: React.FC = () => {
   const brands = Array.from(new Set(allProducts.map(p => p.category)));
   const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
 
-  // Filter and sort products
-  useEffect(() => {
+  // Filter and sort products (memoized to avoid unnecessary loops)
+  const filteredProducts = useMemo(() => {
     let filtered = [...allProducts];
 
-    // Filter by size
     if (selectedSizes.length > 0) {
-      filtered = filtered.filter(p => 
-        p.sizes.some(size => selectedSizes.includes(size))
-      );
+      filtered = filtered.filter(p => p.sizes.some(size => selectedSizes.includes(size)));
     }
 
-    // Filter by price
-    filtered = filtered.filter(p => 
-      p.price >= priceRange.min && p.price <= priceRange.max
-    );
+    filtered = filtered.filter(p => p.price >= priceRange.min && p.price <= priceRange.max);
 
-    // Filter by brand
     if (selectedBrands.length > 0) {
       filtered = filtered.filter(p => selectedBrands.includes(p.category));
     }
 
-    // Sort products
     switch (sortBy) {
       case 'price-low':
-        filtered.sort((a, b) => a.price - b.price);
-        break;
+        return filtered.sort((a, b) => a.price - b.price);
       case 'price-high':
-        filtered.sort((a, b) => b.price - a.price);
-        break;
+        return filtered.sort((a, b) => b.price - a.price);
       case 'popular':
-        filtered.sort((a, b) => b.rating - a.rating);
-        break;
+        return filtered.sort((a, b) => b.rating - a.rating);
       case 'newest':
       default:
-        filtered.sort((a, b) => b.id - a.id);
-        break;
+        return filtered.sort((a, b) => b.id - a.id);
     }
-
-    setFilteredProducts(filtered);
-    // Show initial products (16) or all if less than 16
-    const initialCount = Math.min(INITIAL_PRODUCTS, filtered.length);
-    setDisplayedProducts(filtered.slice(0, initialCount));
-    setHasMore(filtered.length > initialCount);
   }, [selectedSizes, priceRange, selectedBrands, sortBy, allProducts]);
+
+  useEffect(() => {
+    const initialCount = Math.min(INITIAL_PRODUCTS, filteredProducts.length);
+    setDisplayedProducts(filteredProducts.slice(0, initialCount));
+    setHasMore(filteredProducts.length > initialCount);
+  }, [filteredProducts]);
 
   // Load more products function
   const loadMoreProducts = useCallback(() => {
@@ -708,20 +694,23 @@ const GenZPage: React.FC = () => {
     
     // Simulate loading delay for better UX
     setTimeout(() => {
-      const currentCount = displayedProducts.length;
-      const startIndex = currentCount;
-      const endIndex = startIndex + PRODUCTS_PER_PAGE;
-      const nextProducts = filteredProducts.slice(startIndex, endIndex);
+      setDisplayedProducts(prev => {
+        const startIndex = prev.length;
+        const endIndex = startIndex + PRODUCTS_PER_PAGE;
+        const nextProducts = filteredProducts.slice(startIndex, endIndex);
 
-      if (nextProducts.length > 0) {
-        setDisplayedProducts(prev => [...prev, ...nextProducts]);
-        setHasMore(endIndex < filteredProducts.length);
-      } else {
-        setHasMore(false);
-      }
+        if (nextProducts.length === 0) {
+          setHasMore(false);
+          return prev;
+        }
+
+        const updated = [...prev, ...nextProducts];
+        setHasMore(updated.length < filteredProducts.length);
+        return updated;
+      });
       setIsLoading(false);
     }, 500);
-  }, [displayedProducts.length, filteredProducts, isLoading, hasMore]);
+  }, [filteredProducts, hasMore, isLoading]);
 
   // Intersection Observer for infinite scroll
   useEffect(() => {
@@ -765,7 +754,12 @@ const GenZPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: '#f3eee7' }}>
+    <div
+      className="min-h-screen"
+      style={{
+        background: 'linear-gradient(180deg, #f9f4ee 0%, #e8d7c5 45%, #cdb8a0 100%)'
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Page Header */}
         <div className="text-center mb-12">

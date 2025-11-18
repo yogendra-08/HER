@@ -8,29 +8,26 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Premium Luxury Indian Fashion Palette
-        royalBrown: {
-          DEFAULT: '#2C1810',
-          light: '#3D2418',
-          dark: '#1A0E08',
-        },
-        chocolate: {
-          DEFAULT: '#4A2E29',
-          light: '#5A3E39',
-          dark: '#3A1E19',
-        },
-        maroon: {
-          DEFAULT: '#8B3A3A',
-          light: '#9B4A4A',
-          dark: '#7B2A2A',
-        },
-        gold: {
-          DEFAULT: '#C49E54',
-          light: '#D4AE64',
-          dark: '#B48E44',
-        },
-        sandBeige: '#E9E4D4',
-        cream: '#F7F4EF',
+        // Modern Premium Minimal Palette
+        'light-bg': '#FBFBFA',
+        'soft-beige': '#C4C1B8',
+        'warm-taupe': '#C7BDAA',
+        'earthy-brown': '#817461',
+        'neutral-grey': '#A09C92',
+        'warm-grey': '#A59986',
+        'muted-natural': '#817C70',
+        'deep-brown': '#3B332B',
+        'medium-brown': '#685846',
+        'muted-dark': '#595147',
+        'darkest-accent': '#3C301F',
+        
+        // Legacy aliases for compatibility
+        royalBrown: '#3B332B',
+        chocolate: '#685846',
+        maroon: '#817461',
+        gold: '#C7BDAA',
+        sandBeige: '#C4C1B8',
+        cream: '#FBFBFA',
       },
       fontFamily: {
         'heading': ['Playfair Display', 'Cormorant Garamond', 'serif'],
@@ -43,12 +40,12 @@ export default {
       },
       borderRadius: {
         'luxury': '12px',
-        'luxury-lg': '14px',
+        'luxury-lg': '16px',
       },
       boxShadow: {
-        'gold': '0 4px 6px -1px rgba(196, 158, 84, 0.2), 0 2px 4px -1px rgba(196, 158, 84, 0.1)',
-        'gold-lg': '0 10px 15px -3px rgba(196, 158, 84, 0.2), 0 4px 6px -2px rgba(196, 158, 84, 0.1)',
-        'luxury': '0 20px 25px -5px rgba(44, 24, 16, 0.1), 0 10px 10px -5px rgba(44, 24, 16, 0.04)',
+        'luxury': '0 8px 16px rgba(60, 48, 31, 0.08), 0 2px 4px rgba(60, 48, 31, 0.04)',
+        'luxury-sm': '0 2px 8px rgba(60, 48, 31, 0.06)',
+        'luxury-lg': '0 12px 24px rgba(60, 48, 31, 0.12)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

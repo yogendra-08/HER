@@ -13,6 +13,7 @@ import CartPage from './pages/CartPage';
 import WishlistPage from './pages/WishlistPage';
 import GenZPage from './pages/GenZPage';
 import MensCollectionPage from './pages/MensCollectionPage';
+import MensPantsPage from './pages/MensPantsPage';
 import WomensCollectionPage from './pages/WomensCollectionPage';
 import KidsCollectionPage from './pages/KidsCollectionPage';
 import TraditionalCollectionPage from './pages/TraditionalCollectionPage';
@@ -59,6 +60,7 @@ const App: React.FC = () => {
           <Route path="/collection" element={<CollectionPage />} />
           <Route path="/product/:id" element={<ProductDetailsPage />} />
           <Route path="/products/men" element={<MensCollectionPage />} />
+          <Route path="/products/men/pants" element={<MensPantsPage />} />
           <Route path="/products/women" element={<WomensCollectionPage />} />
           <Route path="/products/kids" element={<KidsCollectionPage />} />
           <Route path="/products/traditional" element={<TraditionalCollectionPage />} />

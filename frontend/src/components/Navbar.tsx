@@ -3,7 +3,7 @@
  * Main navigation with authentication and cart/wishlist indicators
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
   ShoppingCart, 
@@ -29,10 +29,22 @@ interface NavbarProps {
   setUser: (user: UserType | null) => void;
 }
 
+type NavLink =
+  | {
+      path: string;
+      label: string;
+    }
+  | {
+      label: string;
+      dropdown: { path: string; label: string }[];
+    };
+
 const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { totalItems } = useCart();
@@ -57,17 +69,72 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
 
   const isActiveLink = (path: string) => location.pathname === path;
 
-  const navLinks = [
+  const navLinks: NavLink[] = [
     { path: '/', label: 'Home' },
-    { path: '/genz', label: 'Genz' },
-    { path: '/products/men', label: 'Men' },
-    { path: '/products/women', label: 'Women' },
-    { path: '/products/kids', label: 'Kids' },
-    { path: '/products/traditional', label: 'Traditional' },
+    { 
+      label: 'Genz',
+      dropdown: [
+        { path: '/genz', label: 'Genz Collection' },
+        { path: '/products/men', label: 'Men\'s Genz' },
+        { path: '/products/women', label: 'Women\'s Genz' },
+      ]
+    },
+    { 
+      label: 'Men',
+      dropdown: [
+        { path: '/products/men', label: 'Men\'s Collection' },
+        { path: '/products/men?category=shirts', label: 'Shirts' },
+        { path: '/products/men/pants', label: 'Pants' },
+        { path: '/products/men?category=traditional', label: 'Traditional' },
+      ]
+    },
+    { 
+      label: 'Women',
+      dropdown: [
+        { path: '/products/women', label: 'Women\'s Collection' },
+        { path: '/products/women?category=sarees', label: 'Sarees' },
+        { path: '/products/women?category=kurtis', label: 'Kurtis' },
+        { path: '/products/women?category=dresses', label: 'Dresses' },
+      ]
+    },
+    { 
+      label: 'Kids',
+      dropdown: [
+        { path: '/products/kids', label: 'Kids\' Collection' },
+        { path: '/products/kids?category=boys', label: 'Boys' },
+        { path: '/products/kids?category=girls', label: 'Girls' },
+        { path: '/products/kids?category=traditional', label: 'Traditional' },
+      ]
+    },
+    { 
+      label: 'Traditional',
+      dropdown: [
+        { path: '/products/traditional', label: 'Traditional Collection' },
+        { path: '/products/traditional?category=sarees', label: 'Sarees' },
+        { path: '/products/traditional?category=sherwanis', label: 'Sherwanis' },
+        { path: '/products/traditional?category=lehengas', label: 'Lehengas' },
+      ]
+    },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50">
+    <nav
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-[rgba(251,251,250,0.01)] shadow-luxury border-b border-[rgba(196,193,184,0.6)] backdrop-blur-xl'
+          : 'bg-light-bg shadow-luxury-sm border-b border-soft-beige'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
@@ -81,7 +148,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
               />
               <div className="hidden sm:block">
                 <h1 className="text-2xl font-bold gradient-text">VastraVerse</h1>
-                <p className="text-xs text-gray-500 -mt-1">Your Fashion, Your Way</p>
+                <p className="text-xs text-neutral-grey -mt-1">Your Fashion, Your Way</p>
               </div>
             </Link>
           </div>
@@ -89,13 +156,47 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`nav-link ${isActiveLink(link.path) ? 'active' : ''}`}
-              >
-                {link.label}
-              </Link>
+              'dropdown' in link ? (
+                <div
+                  key={link.label}
+                  className="relative group"
+                  onMouseEnter={() => setActiveDropdown(link.label)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <button className={`nav-link ${activeDropdown === link.label ? 'active' : ''}`}>
+                    {link.label}
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  <div className="absolute top-full left-0 mt-3 w-56 bg-light-bg rounded-luxury-lg shadow-[0_18px_45px_rgba(196,193,184,0.45)] border border-[rgba(196,193,184,0.6)] py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out transform origin-top group-hover:translate-y-0 translate-y-2 z-50">
+                    {link.dropdown.map((item, index) => (
+                      <Link
+                        key={item.path}
+                        to={item.path}
+                        onClick={() => {
+                          setActiveDropdown(null);
+                          setIsMenuOpen(false);
+                        }}
+                        className={`block px-4 py-2.5 text-sm text-darkest-accent hover:text-warm-grey hover:bg-[rgba(199,189,170,0.18)] transition-all duration-200 ${
+                          index === 0 ? 'border-t border-warm-taupe' : ''
+                        } ${
+                          index === link.dropdown.length - 1 ? 'border-b border-warm-taupe' : ''
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`nav-link ${isActiveLink(link.path) ? 'active' : ''}`}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </div>
 
@@ -107,9 +208,9 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
                 placeholder="Search for products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gold/30 rounded-luxury focus:ring-2 focus:ring-gold focus:border-gold bg-cream text-royalBrown"
+                className="w-full pl-10 pr-4 py-2 border border-soft-beige rounded-luxury focus:ring-2 focus:ring-warm-taupe focus:border-warm-taupe bg-light-bg text-deep-brown placeholder-neutral-grey"
               />
-              <Search className="absolute left-3 top-2.5 h-4 w-4" strokeWidth={1.5} />
+              <Search className="absolute left-3 top-2.5 h-4 w-4 text-neutral-grey" strokeWidth={1.5} />
             </form>
           </div>
 
@@ -119,11 +220,11 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
             {/* Wishlist */}
             <Link
               to="/wishlist"
-              className="p-2 text-chocolate hover:text-royalBrown transition-colors relative group"
+              className="p-2 text-deep-brown hover:text-warm-grey transition-colors relative group"
             >
               <Heart className="h-5 w-5" strokeWidth={1.5} />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-gold text-royalBrown text-xs rounded-full h-4 w-4 flex items-center justify-center font-medium text-[10px]">
+                <span className="absolute -top-1 -right-1 bg-warm-taupe text-light-bg text-xs rounded-full h-4 w-4 flex items-center justify-center font-medium text-[10px]">
                   {wishlistCount}
                 </span>
               )}
@@ -132,11 +233,11 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
             {/* Cart */}
             <Link
               to="/cart"
-              className="p-2 text-chocolate hover:text-royalBrown transition-colors relative group"
+              className="p-2 text-deep-brown hover:text-warm-grey transition-colors relative group"
             >
               <ShoppingCart className="h-5 w-5" strokeWidth={1.5} />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-gold text-royalBrown text-xs rounded-full h-4 w-4 flex items-center justify-center font-medium text-[10px]">
+                <span className="absolute -top-1 -right-1 bg-warm-taupe text-light-bg text-xs rounded-full h-4 w-4 flex items-center justify-center font-medium text-[10px]">
                   {totalItems}
                 </span>
               )}
@@ -146,7 +247,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
             <div className="relative">
               <button
                 onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-                className="flex items-center space-x-1 p-2 text-chocolate hover:text-royalBrown"
+                className="flex items-center space-x-1 p-2 text-deep-brown hover:text-warm-grey"
               >
                 <UserIcon className="h-5 w-5" strokeWidth={1.5} />
                 <ChevronDown
@@ -159,17 +260,17 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
 
               {/* Dropdown */}
               {isProfileMenuOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-white rounded-luxury-lg shadow-luxury border border-gold/20 py-2 z-50">
+                <div className="absolute right-0 mt-2 w-56 bg-light-bg rounded-luxury-lg shadow-[0_18px_45px_rgba(196,193,184,0.35)] border border-[rgba(196,193,184,0.6)] py-2 z-50">
                   {user ? (
                     <>
-                      <div className="px-4 py-3 border-b border-gold/20">
-                        <p className="text-sm font-semibold text-royalBrown">{user.name}</p>
-                        <p className="text-xs text-chocolate mt-1">{user.email}</p>
+                      <div className="px-4 py-3 border-b border-[rgba(196,193,184,0.6)]">
+                        <p className="text-sm font-semibold text-deep-brown">{user.name}</p>
+                        <p className="text-xs text-neutral-grey mt-1">{user.email}</p>
                       </div>
 
                       <Link
                         to="/orders"
-                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige"
+                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-darkest-accent hover:text-warm-grey hover:bg-[rgba(199,189,170,0.15)] transition-colors"
                       >
                         <Package className="h-4 w-4" />
                         <span>Orders</span>
@@ -177,17 +278,17 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
 
                       <Link
                         to="/contact"
-                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige"
+                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-darkest-accent hover:text-warm-grey hover:bg-[rgba(199,189,170,0.15)] transition-colors"
                       >
                         <Phone className="h-4 w-4" />
                         <span>Contact Us</span>
                       </Link>
 
-                      <div className="border-t border-gold/20 my-1"></div>
+                      <div className="border-t border-[rgba(196,193,184,0.6)] my-1"></div>
 
                       <button
                         onClick={handleLogout}
-                        className="w-full text-left flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige"
+                        className="w-full text-left flex items-center space-x-3 px-4 py-2.5 text-sm text-darkest-accent hover:text-warm-grey hover:bg-[rgba(199,189,170,0.15)] transition-colors"
                       >
                         <LogOut className="h-4 w-4" />
                         <span>Logout</span>
@@ -197,7 +298,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
                     <>
                       <Link
                         to="/login"
-                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige"
+                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-darkest-accent hover:text-warm-grey hover:bg-[rgba(199,189,170,0.15)] transition-colors"
                       >
                         <UserIcon className="h-4 w-4" />
                         <span>Login</span>
@@ -205,7 +306,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
 
                       <Link
                         to="/signup"
-                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige"
+                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-darkest-accent hover:text-warm-grey hover:bg-[rgba(199,189,170,0.15)] transition-colors"
                       >
                         <UserIcon className="h-4 w-4" />
                         <span>Sign Up</span>
@@ -219,7 +320,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
             {/* Menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 text-chocolate hover:text-royalBrown"
+              className="lg:hidden p-2 text-deep-brown hover:text-warm-grey"
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -228,7 +329,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200 py-4">
+          <div className="lg:hidden border-t border-soft-beige py-4">
             <div className="mb-4">
               <form onSubmit={handleSearch} className="relative">
                 <input
@@ -236,31 +337,49 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
                   placeholder="Search for products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gold/30 rounded-luxury"
+                  className="w-full pl-10 pr-4 py-2 border border-soft-beige rounded-luxury bg-light-bg text-deep-brown"
                 />
-                <Search className="absolute left-3 top-2.5 h-4 w-4" />
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-neutral-grey" />
               </form>
             </div>
 
             <div className="space-y-2">
               {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-2 text-chocolate hover:text-royalBrown hover:bg-sandBeige"
-                >
-                  {link.label}
-                </Link>
+                'dropdown' in link ? (
+                  <div key={link.label} className="space-y-1">
+                    <div className="px-4 py-2 text-deep-brown font-medium tracking-elegant">
+                      {link.label}
+                    </div>
+                    {link.dropdown.map((item) => (
+                      <Link
+                        key={item.path}
+                        to={item.path}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="block px-8 py-2 text-sm text-deep-brown hover:text-warm-grey hover:bg-soft-beige transition-colors duration-200"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-4 py-2 text-deep-brown hover:text-warm-grey hover:bg-soft-beige"
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
 
               {!user && (
                 <>
-                  <div className="border-t border-gold/20 my-2"></div>
+                  <div className="border-t border-soft-beige my-2"></div>
                   <Link
                     to="/login"
                     onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-2"
+                    className="block px-4 py-2 text-deep-brown"
                   >
                     Login
                   </Link>
@@ -268,7 +387,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
                   <Link
                     to="/signup"
                     onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-2 text-center font-medium bg-gold text-royalBrown rounded-luxury"
+                    className="block px-4 py-2 text-center font-medium bg-warm-taupe text-light-bg rounded-luxury"
                   >
                     Sign Up
                   </Link>

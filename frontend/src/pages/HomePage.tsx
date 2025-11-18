@@ -9,10 +9,15 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Star, ShoppingBag, Heart, Users, ChevronLeft, ChevronRight, ArrowUp } from 'lucide-react';
 import { Product } from '../utils/api';
 
+type PremiumProduct = Product & {
+  fallbackImage: string;
+  customPlaceholder: string;
+};
+
 const HomePage: React.FC = () => {
   const [showScroll, setShowScroll] = useState(false);
   const [parallaxOffset, setParallaxOffset] = useState(0);
-  const [premiumProducts, setPremiumProducts] = useState<Product[]>([]);
+  const [premiumProducts, setPremiumProducts] = useState<PremiumProduct[]>([]);
   const [premiumLoading, setPremiumLoading] = useState(true);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const bannerRef = useRef<HTMLDivElement>(null);
@@ -70,6 +75,17 @@ const HomePage: React.FC = () => {
     }
   ];
 
+  const luxuryFallbackImages = [
+    'https://waliajones.com/cdn/shop/files/DSC03062.webp?v=1699471091 w=900&h=1200&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=900&h=1200&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=900&h=1200&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900&h=1200&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=900&h=1200&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=900&h=1200&fit=crop&q=80'
+  ];
+
+  const PREMIUM_IMAGE_BASE_PATH = '/custom-premium-images';
+
   // Auto-rotate banner with pause on hover
   useEffect(() => {
     const bannerElement = bannerRef.current;
@@ -118,21 +134,26 @@ const HomePage: React.FC = () => {
         }
         const data = await response.json();
         if (data?.products?.length) {
-          const normalized: Product[] = data.products.slice(0, 8).map((item: any, index: number) => {
-            const imageSource = item.image || item.images?.[0] || '/placeholder-clothing.jpg';
+          const normalized: PremiumProduct[] = data.products.slice(0, 8).map((item: any, index: number) => {
+            const customPlaceholder = `${PREMIUM_IMAGE_BASE_PATH}/premium-${index + 1}.jpg`;
+            const fallbackImage = item.image || item.images?.[0] || luxuryFallbackImages[index % luxuryFallbackImages.length];
+            const imageSource = customPlaceholder;
+            const descriptionText = item.description || item.display_categories || 'Premium curated piece';
             const price = Number(item.price ?? item.discounted_price ?? 0);
             return {
               id: item.id ?? index,
               name: item.name ?? item.display_categories ?? 'Premium Product',
-              description: item.description ?? item.display_categories ?? 'Premium curated piece',
+              description: descriptionText,
               price,
               brand: item.brand ?? 'Luxury Label',
               category: item.category ?? item.display_categories ?? 'Premium',
               image: imageSource,
               thumbnail: imageSource,
+              fallbackImage,
+              customPlaceholder,
               stock: item.stock ?? 0,
               rating: Number(item.rating) || 4.5,
-            } as Product;
+            } as PremiumProduct;
           });
           setPremiumProducts(normalized);
         } else {
@@ -149,53 +170,69 @@ const HomePage: React.FC = () => {
     fetchPremiumProducts();
   }, []);
 
-  const categories = [
+  const CATEGORY_IMAGE_BASE_PATH = '/custom-category-images';
+
+  const categoryConfigs = [
     {
       name: 'Men',
-      image: 'https://cdn.thecoolist.com/wp-content/uploads/2017/08/How-to-dress-for-your-body-type.jpg',
+      slug: 'men',
+      fallback: 'https://cdn.thecoolist.com/wp-content/uploads/2017/08/How-to-dress-for-your-body-type.jpg',
       link: '/products/men'
     },
     {
       name: 'Women',
-      image: 'https://cdn.shopify.com/s/files/1/1746/5485/files/1_7a6c4c07-a4d7-4299-b90a-c4a8825bf8d9_540x.jpg?v=1742403363',
+      slug: 'women',
+      fallback: 'https://cdn.shopify.com/s/files/1/1746/5485/files/1_7a6c4c07-a4d7-4299-b90a-c4a8825bf8d9_540x.jpg?v=1742403363',
       link: '/products/women'
     },
     {
       name: 'Kids',
-      image: 'https://img.lazcdn.com/g/ff/kf/Sb04d45722db141e0acc9942985210aa1v.jpg_720x720q80.jpg',
+      slug: 'kids',
+      fallback: 'https://img.lazcdn.com/g/ff/kf/Sb04d45722db141e0acc9942985210aa1v.jpg_720x720q80.jpg',
       link: '/products/kids'
     },
     {
       name: 'Sarees',
-      image: 'https://rimzimfashion.com/cdn/shop/files/30.webp?v=1726117571',
+      slug: 'sarees',
+      fallback: 'https://rimzimfashion.com/cdn/shop/files/30.webp?v=1726117571',
       link: '/products/sarees'
     },
     {
       name: 'Kurtas',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScCUUUXIFZNoWRlUsdhFgZSkGRCVhmgeQq96QFuKi47wVj1fokXY3ycScm3nD2Zl5E4NI&usqp=CAU',
+      slug: 'kurtas',
+      fallback: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScCUUUXIFZNoWRlUsdhFgZSkGRCVhmgeQq96QFuKi47wVj1fokXY3ycScm3nD2Zl5E4NI&usqp=CAU',
       link: '/products/kurtas'
     },
     {
       name: 'Ethnic Sets',
-      image: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&h=1000&fit=crop&q=80',
+      slug: 'ethnic-sets',
+      fallback: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&h=1000&fit=crop&q=80',
       link: '/products/ethnic-sets'
     },
     {
       name: 'T-Shirts',
-      image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=1000&fit=crop&q=80',
+      slug: 't-shirts',
+      fallback: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=1000&fit=crop&q=80',
       link: '/products/t-shirts'
     },
     {
       name: 'Winterwear',
-      image: 'https://www.instyle.com/thmb/LnlUK5oZbdqPqvcAgRQ7Jc1Axw4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-2117544782-a48b916b48854f3a8e459745b34fbf4e.jpg',
+      slug: 'winterwear',
+      fallback: 'https://www.instyle.com/thmb/LnlUK5oZbdqPqvcAgRQ7Jc1Axw4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-2117544782-a48b916b48854f3a8e459745b34fbf4e.jpg',
       link: '/products/winterwear'
     },
     {
       name: 'Hoodies',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGKJWudmmKe5m6QzdZELR0Ti0u0KiNjrRbUQ&',
+      slug: 'hoodies',
+      fallback: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGKJWudmmKe5m6QzdZELR0Ti0u0KiNjrRbUQ&',
       link: '/products/hoodies'
     }
   ];
+
+  const categories = categoryConfigs.map((category) => ({
+    ...category,
+    image: `${CATEGORY_IMAGE_BASE_PATH}/${category.slug}.jpg`,
+  }));
 
   const stats = [
     { icon: Users, value: '50K+', label: 'Happy Customers' },
@@ -248,17 +285,7 @@ const HomePage: React.FC = () => {
     }
   ];
 
-  const brandsScrollRef = useRef<HTMLDivElement>(null);
-
-  const scrollBrands = (direction: 'left' | 'right') => {
-    if (brandsScrollRef.current) {
-      const scrollAmount = 200;
-      brandsScrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const marqueeBrands = [...trendingBrands, ...trendingBrands];
 
   // Back to Top Button
   const BackToTop = () => (
@@ -415,8 +442,12 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Categories Section - Modern Minimal Style */}
-      <section className="py-20 bg-gradient-to-b from-cream to-white">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-[#FBFBFA] via-[#C4C1B8] to-[#C7BDAA]">
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute -top-32 -right-20 w-72 h-72 bg-white/50 blur-3xl rounded-full"></div>
+          <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#C7BDAA]/40 blur-[120px] rounded-full"></div>
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -433,18 +464,28 @@ const HomePage: React.FC = () => {
           </motion.div>
           
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-6 px-4 sm:px-6">
-            {categories.map((category, index) => (
+            {categories.map((category, index) => {
+              const midpoint = Math.ceil(categories.length / 2);
+              const isTopRow = index < midpoint;
+              const hoverShiftClass = isTopRow ? 'lg:hover:translate-x-3' : 'lg:hover:-translate-x-3';
+              const initialMotion = {
+                opacity: 0,
+                x: isTopRow ? -40 : 40,
+                y: 10,
+              };
+
+              return (
               <motion.div 
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={initialMotion}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
+                transition={{ duration: 0.6, delay: index * 0.05, ease: 'easeOut' }}
                 className="h-full"
               >
                 <Link
                   to={category.link}
-                  className="category-tile group relative block h-full overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className={`category-tile group relative block h-full overflow-hidden rounded-[18px] shadow-[0_20px_40px_rgba(60,48,31,0.12)] hover:shadow-[0_30px_60px_rgba(60,48,31,0.2)] transition-all duration-500 hover:scale-[1.03] ${hoverShiftClass}`}
                 >
                   <div className="relative h-64 md:h-80 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10"></div>
@@ -453,6 +494,12 @@ const HomePage: React.FC = () => {
                       alt={category.name}
                       className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                       loading="lazy"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (target.src !== category.fallback) {
+                          target.src = category.fallback;
+                        }
+                      }}
                     />
                     
                     {/* Text overlay */}
@@ -473,116 +520,81 @@ const HomePage: React.FC = () => {
                   </div>
                 </Link>
               </motion.div>
-            ))}
+            );
+            })}
           </div>
         </div>
       </section>
 
       {/* Trending Brands Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-cream/30">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="relative py-28 lg:py-32 bg-gradient-to-b from-[#FBFBFA] via-[#C7BDAA] to-[#3B332B] overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-40 bg-white/30 blur-[120px]"></div>
+          <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#3B332B]/40 blur-[140px]"></div>
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-4">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center max-w-3xl mx-auto"
           >
-            <span className="inline-block text-gold font-medium mb-3 tracking-wider">TRUSTED BRANDS</span>
-            <h2 className="text-4xl font-bold font-heading text-royalBrown mb-4">Trending Brands</h2>
-            <div className="w-20 h-1 bg-gold mx-auto mb-6"></div>
-            <p className="text-lg text-chocolate/90 max-w-2xl mx-auto leading-relaxed">
-              Shop from the most trusted and trending fashion brands in the industry. We partner with the best to bring you quality and style.
+            <span className="inline-block text-[#F8F5EE] font-semibold tracking-[0.35em] mb-4 text-sm uppercase">Prestige Partners</span>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-[#1F150D] mb-4">Trending Luxury Brands</h2>
+            <p className="text-lg text-[#2C1810]/90 leading-relaxed">
+              Hand-picked global houses and Indian couture labels that define contemporary opulence. Experience a seamless blend of heritage and innovation.
             </p>
           </motion.div>
 
-          {/* Brands Slider Container */}
-          <div className="relative">
-            {/* Left Arrow */}
-            <button
-              onClick={() => scrollBrands('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm border border-gray-100 shadow-lg hover:shadow-xl hover:border-gold/50 transition-all duration-200 flex items-center justify-center group hover:bg-white"
-              aria-label="Scroll brands left"
-            >
-              <ChevronLeft className="h-5 w-5 text-royalBrown/70 group-hover:text-gold transition-colors" strokeWidth={2.5} />
-            </button>
-
-            {/* Brands Scroll Container */}
-            <div
-              ref={brandsScrollRef}
-              className="flex gap-6 overflow-x-auto scrollbar-hide px-10 py-4 pb-8"
-              style={{
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none',
-                scrollBehavior: 'smooth',
-                scrollSnapType: 'x mandatory',
-                WebkitOverflowScrolling: 'touch'
-              }}
-            >
-              {trendingBrands.map((brand, index) => (
-                <div
-                  key={index}
-                  className="brand-card group flex-shrink-0 flex items-center justify-center cursor-pointer transition-all duration-200 group-hover:shadow-lg group-hover:border-gold/30 group-hover:scale-105"
-                  style={{
-                    width: '160px',
-                    height: '100px',
-                    borderRadius: '12px',
-                    border: '1px solid rgba(0, 0, 0, 0.05)',
-                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)',
-                    background: '#FFFFFF',
-                    scrollSnapAlign: 'center',
-                    backdropFilter: 'blur(4px)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.12)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.06)';
-                  }}
-                >
-                  <img
-                    src={brand.logo}
-                    alt={brand.name}
-                    className="max-w-[100px] max-h-[60px] object-contain filter grayscale-0 opacity-90 group-hover:opacity-100 transition-opacity duration-200"
-                    onError={(e) => {
-                      // Fallback to text if image fails to load
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      const parent = target.parentElement;
-                      if (parent && !parent.querySelector('.brand-fallback')) {
-                        const fallback = document.createElement('div');
-                        fallback.className = 'brand-fallback text-chocolate font-semibold text-sm text-center px-2';
-                        fallback.textContent = brand.name;
-                        parent.appendChild(fallback);
-                      }
-                    }}
-                  />
-                </div>
-              ))}
+          <div className="relative mt-16">
+            <div className="brands-marquee-mask">
+              <div className="brands-marquee-track">
+                {marqueeBrands.map((brand, index) => (
+                  <div
+                    key={`${brand.name}-${index}`}
+                    className="brand-marquee-card shadow-[0_18px_45px_rgba(59,51,43,0.18)]"
+                  >
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="max-w-[120px] max-h-[60px] object-contain opacity-90"
+                      loading="lazy"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.style.display = 'none';
+                        const parent = target.parentElement;
+                        if (parent && !parent.querySelector('.brand-fallback')) {
+                          const fallback = document.createElement('div');
+                          fallback.className = 'brand-fallback text-[#3B332B] font-semibold text-sm text-center px-4';
+                          fallback.textContent = brand.name;
+                          parent.appendChild(fallback);
+                        }
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-
-            {/* Right Arrow */}
-            <button
-              onClick={() => scrollBrands('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm border border-gray-100 shadow-lg hover:shadow-xl hover:border-gold/50 transition-all duration-200 flex items-center justify-center group hover:bg-white"
-              aria-label="Scroll brands right"
-            >
-              <ChevronRight className="h-5 w-5 text-royalBrown/70 group-hover:text-gold transition-colors" strokeWidth={2.5} />
-            </button>
           </div>
         </div>
       </section>
 
       {/* Premium Collection Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-royalBrown mb-4">Our Premium Collection</h2>
-            <div className="w-24 h-1 bg-gold mx-auto"></div>
-            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-              Exquisite craftsmanship meets timeless elegance in our premium collection. Each piece is meticulously designed for those who appreciate the finer things in life.
+      <section className="relative py-20 lg:py-24 premium-gradient-bg overflow-hidden">
+        <div className="premium-noise-overlay"></div>
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-10 right-10 w-56 h-56 bg-white/20 blur-[140px]"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#3A332C]/30 blur-[160px]"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4">
+          <div className="text-center mb-14">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-[#271C14] mb-4">Our Premium Collection</h2>
+            <div className="w-24 h-1 mx-auto bg-gradient-to-r from-[#D6C7A1] via-[#C4B285] to-[#B08B5B]"></div>
+            <p className="text-[#4A3F37] mt-5 max-w-2xl mx-auto text-lg leading-relaxed">
+              Exquisite craftsmanship meets timeless elegance. Discover curated pieces finished with couture-level detailing for those who appreciate the finer things in life.
             </p>
           </div>
           
@@ -591,45 +603,49 @@ const HomePage: React.FC = () => {
               <div className="loading-spinner"></div>
             </div>
           ) : premiumProducts.length === 0 ? (
-            <div className="text-center text-gray-600 py-16">
+            <div className="text-center text-[#4A3F37] py-16">
               Premium collection is being curated. Please check back soon.
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {premiumProducts.map((product) => (
+              {premiumProducts.map((product, index) => {
+                return (
                 <Link 
                   to={`/product/${product.id}`}
                   key={product.id}
-                  className="product-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 ease-out block"
+                  className="product-card premium-card bg-white/95 border border-[#F1E5D0]/70 rounded-2xl overflow-hidden shadow-[0_25px_65px_rgba(58,51,44,0.18)] block"
+                  style={{ animationDelay: `${index * 0.2}s` }}
                 >
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={product.image}
+                  <div className="relative h-72 overflow-hidden">
+                    <img 
+                      src={product.image || product.customPlaceholder}
                       alt={product.name}
-                      className="w-full h-80 object-cover transition-transform duration-500 hover:scale-105"
+                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (product.fallbackImage && target.src !== product.fallbackImage) {
+                          target.src = product.fallbackImage;
+                        }
+                      }}
                     />
-                    <div className="absolute top-2 right-2 bg-royalBrown text-white text-xs font-semibold px-2 py-1 rounded">
-                      Premium
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1F160F]/35 to-transparent"></div>
                   </div>
-                  
-                  <div className="p-4">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="font-medium text-gray-900">{product.name}</h3>
-                        <p className="text-sm text-gray-500">{product.brand}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-semibold text-gray-900">₹{product.price.toLocaleString()}</p>
-                        <div className="flex items-center justify-end mt-1">
-                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                          <span className="ml-1 text-sm text-gray-600">{product.rating}</span>
-                        </div>
-                      </div>
+                  <div className="p-6">
+                    <p className="uppercase tracking-[0.35em] text-xs text-[#B08B5B] mb-3">{product.brand || 'Signature'}</p>
+                    <h3 className="text-2xl font-semibold text-[#2C1810] mb-2">{product.name}</h3>
+                    <p className="text-[#5C4A3E] text-sm mb-5 line-clamp-2">{product.description}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-2xl font-bold text-[#B08B5B]">
+                        ₹{product.price}
+                      </span>
+                      <button className="px-4 py-2 rounded-full text-sm font-medium text-[#2C1810] border border-[#D6C7A1] bg-white/80 backdrop-blur-sm hover:bg-[#D6C7A1] hover:text-[#2C1810] transition-colors">
+                        View Details
+                      </button>
                     </div>
                   </div>
                 </Link>
-              ))}
+              );
+              })}
             </div>
           )}
           
@@ -647,16 +663,16 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-cream">
+      <section className="py-20 bg-gradient-to-b from-[#F7F3ED] via-[#E5D8C3] to-[#D1BFA3]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center bg-white rounded-luxury-lg p-6 shadow-gold border border-gold/20">
-                <div className="inline-flex items-center justify-center w-16 h-16 mb-4">
-                  <stat.icon className="h-8 w-8" style={{ color: '#C49E54' }} />
+              <div key={index} className="text-center bg-white/90 rounded-luxury-lg p-6 shadow-[0_20px_45px_rgba(58,51,44,0.12)] border border-white/60 backdrop-blur-sm">
+                <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-[#F6E7D3]">
+                  <stat.icon className="h-8 w-8" style={{ color: '#B88A58' }} />
                 </div>
-                <div className="text-3xl font-bold mb-2" style={{ color: '#8B3A3A' }}>{stat.value}</div>
-                <div className="text-chocolate">{stat.label}</div>
+                <div className="text-3xl font-bold mb-2 text-[#3C2C22]">{stat.value}</div>
+                <div className="text-[#6B5A4C]">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -664,21 +680,22 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Why Choose VastraVerse Section */}
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-gradient-to-br from-[#F8F1E6] via-[#E0D2C0] to-[#C3B099]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose VastraVerse?</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Experience the perfect blend of style, comfort, and quality in every piece we create.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2F2118] mb-4">Why Choose VastraVerse?</h2>
+            <p className="text-lg text-[#5A4B3F] max-w-2xl mx-auto">Experience the perfect blend of style, comfort, and quality in every piece we create.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Feature Card 1 */}
-            <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
+            <div className="bg-white/95 rounded-2xl shadow-[0_25px_55px_rgba(60,48,31,0.12)] hover:shadow-[0_35px_65px_rgba(60,48,31,0.16)] transition-all duration-300 border border-[#E9DAC4] overflow-hidden backdrop-blur-sm">
               <div className="w-full h-48 overflow-hidden">
                 <img 
-                  src="/feedback/img2.png" 
+                  src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=1200&h=800&fit=crop&q=80" 
                   alt="Elevate Your Everyday" 
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-6">
@@ -688,12 +705,13 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Feature Card 2 */}
-            <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
+            <div className="bg-white/95 rounded-2xl shadow-[0_25px_55px_rgba(60,48,31,0.12)] hover:shadow-[0_35px_65px_rgba(60,48,31,0.16)] transition-all duration-300 border border-[#E9DAC4] overflow-hidden backdrop-blur-sm">
               <div className="w-full h-48 overflow-hidden">
                 <img 
-                  src="/feedback/img1.png" 
+                  src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&h=800&fit=crop&q=80" 
                   alt="Comfort That Moves With You" 
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-6">
@@ -703,12 +721,13 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Feature Card 3 */}
-            <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
+            <div className="bg-white/95 rounded-2xl shadow-[0_25px_55px_rgba(60,48,31,0.12)] hover:shadow-[0_35px_65px_rgba(60,48,31,0.16)] transition-all duration-300 border border-[#E9DAC4] overflow-hidden backdrop-blur-sm">
               <div className="w-full h-48 overflow-hidden">
                 <img 
-                  src="/feedback/img3.png" 
+                  src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=1200&h=800&fit=crop&q=80" 
                   alt="Timeless Style, Modern Touch" 
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-6">
@@ -718,12 +737,13 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Feature Card 4 */}
-            <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
+            <div className="bg-white/95 rounded-2xl shadow-[0_25px_55px_rgba(60,48,31,0.12)] hover:shadow-[0_35px_65px_rgba(60,48,31,0.16)] transition-all duration-300 border border-[#E9DAC4] overflow-hidden backdrop-blur-sm">
               <div className="w-full h-48 overflow-hidden">
                 <img 
-                  src="/feedback/img4.png" 
+                  src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&h=800&fit=crop&q=80" 
                   alt="Crafted With Purpose" 
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-6">
@@ -733,12 +753,13 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Feature Card 5 */}
-            <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
+            <div className="bg-white/95 rounded-2xl shadow-[0_25px_55px_rgba(60,48,31,0.12)] hover:shadow-[0_35px_65px_rgba(60,48,31,0.16)] transition-all duration-300 border border-[#E9DAC4] overflow-hidden backdrop-blur-sm">
               <div className="w-full h-48 overflow-hidden">
                 <img 
-                  src="/feedback/img5.png" 
+                  src="https://images.unsplash.com/photo-1542060748-10c28b62716f?w=1200&h=800&fit=crop&q=80" 
                   alt="Your Style, Your Identity" 
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-6">
@@ -748,12 +769,13 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Feature Card 6 */}
-            <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden">
+            <div className="bg-white/95 rounded-2xl shadow-[0_25px_55px_rgba(60,48,31,0.12)] hover:shadow-[0_35px_65px_rgba(60,48,31,0.16)] transition-all duration-300 border border-[#E9DAC4] overflow-hidden backdrop-blur-sm">
               <div className="w-full h-48 overflow-hidden">
                 <img 
-                  src="/feedback/img6.png" 
+                  src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&h=800&fit=crop&q=80" 
                   alt="Made for Real Life" 
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-6">
