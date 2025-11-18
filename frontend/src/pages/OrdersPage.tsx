@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingBag, Clock, Package, Truck, CheckCircle, XCircle } from 'lucide-react';
+import { orderAPI, type Order as ApiOrder } from '../utils/api';
+import toast from 'react-hot-toast';
 
 type OrderStatus = 'PLACED' | 'PACKED' | 'SHIPPED' | 'OUT_FOR_DELIVERY' | 'DELIVERED' | 'CANCELLED';
 
@@ -13,7 +15,7 @@ interface OrderItem {
   image: string;
 }
 
-interface Order {
+interface DisplayOrder {
   id: string;
   orderNumber: string;
   date: string;
@@ -31,92 +33,115 @@ interface Order {
 }
 
 const OrdersPage: React.FC = () => {
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [orders, setOrders] = useState<DisplayOrder[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // In a real app, this would be an API call to fetch orders
     const fetchOrders = async () => {
       try {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        setLoading(true);
+        setError(null);
         
-        // Mock data - replace with actual API call
-        const mockOrders: Order[] = [
-          {
-            id: '1',
-            orderNumber: 'ORD-2023-001',
-            date: '2023-11-10',
-            status: 'DELIVERED',
-            total: 2499,
-            items: [
-              {
-                id: '1',
-                productId: '101',
-                name: 'Classic White Shirt',
-                price: 1299,
-                quantity: 1,
-                image: '/images/shirt.jpg'
-              },
-              {
-                id: '2',
-                productId: '102',
-                name: 'Slim Fit Jeans',
-                price: 1200,
-                quantity: 1,
-                image: '/images/jeans.jpg'
-              }
-            ],
-            shippingAddress: {
-              name: 'John Doe',
-              address: '123 Main St',
-              city: 'Mumbai',
-              state: 'Maharashtra',
-              pincode: '400001',
-              phone: '9876543210'
-            }
-          },
-          {
-            id: '2',
-            orderNumber: 'ORD-2023-002',
-            date: '2023-11-15',
-            status: 'SHIPPED',
-            total: 3499,
-            items: [
-              {
-                id: '3',
-                productId: '103',
-                name: 'Casual T-Shirt',
-                price: 599,
-                quantity: 2,
-                image: '/images/tshirt.jpg'
-              },
-              {
-                id: '4',
-                productId: '104',
-                name: 'Cotton Chinos',
-                price: 2300,
-                quantity: 1,
-                image: '/images/chinos.jpg'
-              }
-            ],
-            shippingAddress: {
-              name: 'John Doe',
-              address: '123 Main St',
-              city: 'Mumbai',
-              state: 'Maharashtra',
-              pincode: '400001',
-              phone: '9876543210'
-            }
+        // Get logged-in user's email from localStorage
+        const userJson = localStorage.getItem('vastraverse_user');
+        let userEmail: string | null = null;
+        
+        if (userJson) {
+          try {
+            const user = JSON.parse(userJson);
+            userEmail = user.email || null;
+          } catch (e) {
+            console.error('Error parsing user data:', e);
           }
-        ];
-
-        setOrders(mockOrders);
-        setLoading(false);
-      } catch (err) {
+        }
+        
+        let response;
+        if (userEmail) {
+          // Normalize email (trim and lowercase)
+          const normalizedEmail = userEmail.trim().toLowerCase();
+          console.log(`📦 Fetching orders for user: ${normalizedEmail}`);
+          
+          try {
+            response = await orderAPI.getByUser(normalizedEmail);
+          } catch (apiError: any) {
+            console.error('API Error:', apiError);
+            throw apiError;
+          }
+        } else {
+          // If no user is logged in, show empty state
+          console.log('⚠️ No user logged in, showing empty orders');
+          setOrders([]);
+          setLoading(false);
+          return;
+        }
+        
+        if (response && response.success && response.data && response.data.orders) {
+          // Transform database orders to match the component's expected format
+          const transformedOrders: DisplayOrder[] = response.data.orders.map((order: ApiOrder, index: number) => {
+            // Handle MongoDB ObjectId format - it might be a string, object with _id, or _id property
+            let orderId = '';
+            if (order.id) {
+              orderId = typeof order.id === 'string' ? order.id : (order.id.toString() || '');
+            } else if ((order as any)._id) {
+              orderId = typeof (order as any)._id === 'string' ? (order as any)._id : ((order as any)._id.toString() || '');
+            } else {
+              // Fallback: generate a temporary ID
+              orderId = `temp-${Date.now()}-${index}`;
+            }
+            
+            // Ensure orderId is a valid string before slicing
+            const orderIdSuffix = orderId && orderId.length >= 6 
+              ? orderId.slice(-6) 
+              : (orderId || '000000').padStart(6, '0').slice(-6);
+            
+            return {
+              id: orderId,
+              orderNumber: `ORD-${orderIdSuffix.toUpperCase()}`,
+              date: order.createdAt ? new Date(order.createdAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+              status: (order.order_status || 'pending').toUpperCase().replace(/\s+/g, '_') as any,
+              total: Number(order.total_amount) || 0,
+              items: (order.products || []).map((product: any, idx: number) => ({
+                id: `${orderId}-${idx}`,
+                productId: (product.product_id || '').toString(),
+                name: product.product_name || 'Product',
+                price: Number(product.product_price) || 0,
+                quantity: Number(product.quantity) || 1,
+                image: product.product_image || '/api/placeholder/300/400',
+              })),
+              shippingAddress: {
+                name: order.user_name || 'N/A',
+                address: order.location || 'N/A',
+                city: '',
+                state: '',
+                pincode: '',
+                phone: order.user_phone || 'N/A',
+              },
+            };
+          });
+          
+          setOrders(transformedOrders);
+          console.log(`✅ Loaded ${transformedOrders.length} orders for user from database`);
+        } else {
+          const errorMsg = response?.message || 'Failed to fetch orders';
+          console.error('Response error:', response);
+          throw new Error(errorMsg);
+        }
+      } catch (err: any) {
         console.error('Error fetching orders:', err);
-        setError('Failed to load orders. Please try again later.');
+        const errorMessage = err.response?.data?.message || err.message || 'Failed to load orders';
+        console.error('Error details:', {
+          message: errorMessage,
+          status: err.response?.status,
+          data: err.response?.data,
+          userEmail: userJson ? JSON.parse(userJson).email : 'No user'
+        });
+        setError(errorMessage);
+        toast.error(`Failed to load orders: ${errorMessage}`);
+        
+        // Fallback to empty array
+        setOrders([]);
+      } finally {
         setLoading(false);
       }
     };
@@ -168,16 +193,19 @@ const OrdersPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gradient-to-br from-cream via-sandBeige/50 to-cream py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">My Orders</h1>
+          <div className="flex items-center space-x-3 mb-8">
+            <Package className="h-8 w-8 text-gold" />
+            <h1 className="text-4xl font-heading font-bold text-royalBrown">My Orders</h1>
+          </div>
           <div className="animate-pulse space-y-8">
             {[1, 2].map((i) => (
-              <div key={i} className="bg-white shadow rounded-lg p-6">
-                <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
-                <div className="h-4 bg-gray-200 rounded w-1/3 mb-6"></div>
-                <div className="h-32 bg-gray-200 rounded mb-4"></div>
-                <div className="h-10 bg-gray-200 rounded w-1/4"></div>
+              <div key={i} className="bg-white rounded-luxury-lg shadow-luxury p-6 border border-gold/20">
+                <div className="h-6 bg-sandBeige rounded w-1/4 mb-4"></div>
+                <div className="h-4 bg-sandBeige rounded w-1/3 mb-6"></div>
+                <div className="h-32 bg-sandBeige rounded mb-4"></div>
+                <div className="h-10 bg-sandBeige rounded w-1/4"></div>
               </div>
             ))}
           </div>
@@ -188,22 +216,25 @@ const OrdersPage: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gradient-to-br from-cream via-sandBeige/50 to-cream py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">My Orders</h1>
-          <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
-            <div className="flex">
+          <div className="flex items-center justify-center space-x-3 mb-4">
+            <Package className="h-8 w-8 text-gold" />
+            <h1 className="text-4xl font-heading font-bold text-royalBrown">My Orders</h1>
+          </div>
+          <div className="bg-red-50 border-l-4 border-red-400 p-6 mb-6 rounded-luxury max-w-2xl mx-auto">
+            <div className="flex items-start">
               <div className="flex-shrink-0">
-                <XCircle className="h-5 w-5 text-red-400" />
+                <XCircle className="h-6 w-6 text-red-500" />
               </div>
               <div className="ml-3">
-                <p className="text-sm text-red-700">{error}</p>
+                <p className="text-sm text-red-700 font-medium">{error}</p>
               </div>
             </div>
           </div>
           <button
             onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="btn-primary px-6 py-3"
           >
             Retry
           </button>
@@ -214,38 +245,48 @@ const OrdersPage: React.FC = () => {
 
   if (orders.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gradient-to-br from-cream via-sandBeige/50 to-cream py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
-          <ShoppingBag className="mx-auto h-16 w-16 text-gray-400" />
-          <h1 className="mt-2 text-3xl font-bold text-gray-900">No Orders Yet</h1>
-          <p className="mt-2 text-gray-600">You haven't placed any orders yet.</p>
-          <div className="mt-6">
-            <Link
-              to="/"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Continue Shopping
-            </Link>
+          <div className="relative inline-block mb-8">
+            <div className="absolute inset-0 bg-gold/20 rounded-full blur-3xl animate-pulse"></div>
+            <ShoppingBag className="h-32 w-32 mx-auto relative z-10 text-gold animate-bounce-gentle" />
           </div>
+          <h1 className="text-4xl font-heading font-bold text-royalBrown mb-4">No Orders Yet</h1>
+          <p className="text-chocolate text-lg mb-8">You haven't placed any orders yet. Start shopping to see your orders here!</p>
+          <Link
+            to="/products"
+            className="btn-primary inline-flex items-center space-x-2 group"
+          >
+            <span>Continue Shopping</span>
+            <ShoppingBag className="h-5 w-5 group-hover:scale-110 transition-transform" />
+          </Link>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-cream via-sandBeige/50 to-cream py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">My Orders</h1>
+        <div className="flex items-center space-x-3 mb-8 animate-slide-up">
+          <Package className="h-8 w-8 text-gold" />
+          <h1 className="text-4xl font-heading font-bold text-royalBrown">My Orders</h1>
+          <span className="text-chocolate text-lg">({orders.length} {orders.length === 1 ? 'order' : 'orders'})</span>
+        </div>
         
-        <div className="space-y-8">
-          {orders.map((order) => (
-            <div key={order.id} className="bg-white shadow overflow-hidden sm:rounded-lg">
-              <div className="px-4 py-5 sm:px-6 flex justify-between items-center border-b border-gray-200">
+        <div className="space-y-6">
+          {orders.map((order, index) => (
+            <div 
+              key={order.id} 
+              className="bg-white rounded-luxury-lg shadow-luxury overflow-hidden border border-gold/20 hover:shadow-gold-lg transition-all duration-300 animate-slide-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="px-6 py-5 flex justify-between items-center border-b border-gold/20 bg-gradient-to-r from-white to-sandBeige/20">
                 <div>
-                  <h3 className="text-lg leading-6 font-medium text-gray-900">
+                  <h3 className="text-xl leading-6 font-heading font-bold text-royalBrown">
                     Order #{order.orderNumber}
                   </h3>
-                  <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                  <p className="mt-1 text-sm text-chocolate">
                     Placed on {new Date(order.date).toLocaleDateString('en-IN', {
                       day: 'numeric',
                       month: 'long',
@@ -253,30 +294,37 @@ const OrdersPage: React.FC = () => {
                     })}
                   </p>
                 </div>
-                <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(order.status)}`}>
+                <div className={`inline-flex items-center px-4 py-2 rounded-luxury text-sm font-semibold ${getStatusColor(order.status)}`}>
                   {getStatusIcon(order.status)}
-                  <span className="ml-1">{getStatusText(order.status)}</span>
+                  <span className="ml-2">{getStatusText(order.status)}</span>
                 </div>
               </div>
               
-              <div className="border-b border-gray-200">
-                <ul className="divide-y divide-gray-200">
+              <div className="border-b border-gold/20">
+                <ul className="divide-y divide-gold/10">
                   {order.items.map((item) => (
-                    <li key={item.id} className="p-4 flex">
-                      <div className="flex-shrink-0 h-20 w-20 rounded-md overflow-hidden bg-gray-200">
+                    <li key={item.id} className="p-5 flex hover:bg-sandBeige/20 transition-colors">
+                      <div className="flex-shrink-0 h-24 w-24 rounded-luxury overflow-hidden bg-sandBeige/30 border border-gold/20 shadow-md">
                         <img
                           src={item.image}
                           alt={item.name}
                           className="h-full w-full object-cover object-center"
                         />
                       </div>
-                      <div className="ml-4 flex-1 flex flex-col">
+                      <div className="ml-5 flex-1 flex flex-col justify-center">
                         <div>
-                          <div className="flex justify-between text-base font-medium text-gray-900">
-                            <h3>{item.name}</h3>
-                            <p className="ml-4">₹{item.price.toLocaleString('en-IN')}</p>
+                          <div className="flex justify-between items-start">
+                            <h3 className="text-lg font-heading font-semibold text-royalBrown">{item.name}</h3>
+                            <p className="ml-4 text-xl font-bold text-gold">₹{Number(item.price).toLocaleString('en-IN')}</p>
                           </div>
-                          <p className="mt-1 text-sm text-gray-500">Qty: {item.quantity}</p>
+                          <div className="flex items-center space-x-4 mt-2">
+                            <p className="text-sm text-chocolate bg-sandBeige/50 px-3 py-1 rounded-luxury">
+                              Qty: <span className="font-semibold text-royalBrown">{item.quantity}</span>
+                            </p>
+                            <p className="text-sm text-chocolate">
+                              Amount: <span className="font-bold text-gold">₹{(Number(item.price) * Number(item.quantity)).toLocaleString('en-IN')}</span>
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </li>
@@ -284,21 +332,21 @@ const OrdersPage: React.FC = () => {
                 </ul>
               </div>
               
-              <div className="px-4 py-4 sm:px-6 flex justify-between items-center">
-                <div className="text-sm text-gray-500">
-                  <p className="font-medium text-gray-900">Total Amount:</p>
-                  <p className="text-lg font-bold">₹{order.total.toLocaleString('en-IN')}</p>
+              <div className="px-6 py-5 flex justify-between items-center bg-gradient-to-r from-sandBeige/20 to-white">
+                <div>
+                  <p className="text-sm text-chocolate font-medium">Total Amount:</p>
+                  <p className="text-2xl font-heading font-bold text-gold">₹{Number(order.total).toLocaleString('en-IN')}</p>
                 </div>
                 <div className="space-x-3">
                   <button
                     type="button"
-                    className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="btn-outline px-5 py-2.5 text-sm"
                   >
                     Track Order
                   </button>
                   <button
                     type="button"
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="btn-primary px-5 py-2.5 text-sm"
                   >
                     View Details
                   </button>

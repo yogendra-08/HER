@@ -325,6 +325,67 @@ export const wishlistAPI = {
   },
 };
 
+// Order API
+export interface OrderItem {
+  product_id: number;
+  product_name: string;
+  product_price: number;
+  product_image?: string;
+  quantity: number;
+  collection?: 'men' | 'women';
+}
+
+export interface Order {
+  id: string;
+  user_name: string;
+  user_email: string;
+  user_phone: string;
+  location: string;
+  products: OrderItem[];
+  total_amount: number;
+  order_status: string;
+  payment_status?: string;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export const orderAPI = {
+  create: async (orderData: {
+    user_name: string;
+    user_email: string;
+    user_phone: string;
+    location: string;
+    products: OrderItem[];
+  }): Promise<ApiResponse<{ order: Order }>> => {
+    const response = await api.post('/orders', orderData);
+    return response.data;
+  },
+
+  getAll: async (): Promise<ApiResponse<{ orders: Order[] }>> => {
+    const response = await api.get('/orders');
+    return response.data;
+  },
+
+  getByUser: async (email: string): Promise<ApiResponse<{ orders: Order[] }>> => {
+    try {
+      // Ensure email is properly encoded
+      const encodedEmail = encodeURIComponent(email.trim().toLowerCase());
+      console.log(`🔍 Fetching orders for email: ${email} (encoded: ${encodedEmail})`);
+      const response = await api.get(`/orders/user/${encodedEmail}`);
+      console.log('📦 Orders API response:', response.data);
+      return response.data;
+    } catch (error: any) {
+      console.error('❌ Error in getByUser API call:', error);
+      throw error;
+    }
+  },
+
+  getById: async (id: string): Promise<ApiResponse<{ order: Order }>> => {
+    const response = await api.get(`/orders/${id}`);
+    return response.data;
+  },
+};
+
 // Utility functions
 export const setAuthToken = (token: string) => {
   localStorage.setItem('vastraverse_token', token);

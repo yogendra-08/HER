@@ -9,12 +9,14 @@ import { Heart, ShoppingCart, Star, ChevronLeft, ChevronRight, Check } from 'luc
 import { Product } from '../utils/api';
 import { getProductById, getAllProducts } from '../services/localJsonService';
 import { useCart } from '../hooks/useCart';
+import { useWishlist } from '../hooks/useWishlist';
 import toast from 'react-hot-toast';
 
 const ProductDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { addToCart, isInCart, getItemQuantity } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
   
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -23,7 +25,6 @@ const ProductDetailsPage: React.FC = () => {
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [quantity, setQuantity] = useState(1);
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -86,22 +87,34 @@ const ProductDetailsPage: React.FC = () => {
   }, [id]);
 
   const handleAddToCart = async () => {
-    if (!product) return;
+    if (!product) {
+      toast.error('Product not available');
+      return;
+    }
 
-    if (!selectedSize && product.sizes.length > 0) {
+    const productPrice = Number(product.price) || 0;
+    if (!product.id || productPrice <= 0) {
+      toast.error('Invalid product data. Cannot add to cart.');
+      return;
+    }
+
+    if (!selectedSize && product.sizes && product.sizes.length > 0) {
       toast.error('Please select a size');
       return;
     }
 
+    if (quantity <= 0 || quantity > 10) {
+      toast.error('Please select a valid quantity (1-10)');
+      return;
+    }
+
     try {
-      for (let i = 0; i < quantity; i++) {
-        await addToCart({
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          image: product.image,
-        });
-      }
+      await addToCart({
+        id: product.id,
+        name: product.name || product.title || 'Product',
+        price: productPrice,
+        image: product.image || product.thumbnail || '',
+      }, quantity);
       toast.success(`Added ${quantity} item(s) to cart!`);
     } catch (error) {
       console.error('Failed to add to cart:', error);
@@ -110,24 +123,38 @@ const ProductDetailsPage: React.FC = () => {
   };
 
   const handleWishlist = () => {
-    setIsWishlisted(!isWishlisted);
-    toast.success(isWishlisted ? 'Removed from wishlist' : 'Added to wishlist!');
+    if (!product) return;
+    toggleWishlist({
+      id: product.id,
+      productId: product.id,
+      name: product.name || product.title || 'Product',
+      price: product.price,
+      image: product.image || product.thumbnail || '',
+      category: product.category || '',
+      stock: product.stock,
+    });
   };
 
-  const formatPrice = (price: number) => {
+  const formatPrice = (price: number | undefined | null) => {
+    const validPrice = Number(price) || 0;
+    if (isNaN(validPrice) || validPrice <= 0) return '₹0';
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
       currency: 'INR',
       maximumFractionDigits: 0,
-    }).format(price);
+    }).format(validPrice);
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: '#f3eee7' }}>
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading product...</p>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cream via-sandBeige/50 to-cream">
+        <div className="text-center animate-fade-in">
+          <div className="relative mb-6">
+            <div className="absolute inset-0 bg-gold/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-4 border-gold border-t-transparent mx-auto relative z-10"></div>
+          </div>
+          <p className="text-chocolate text-lg font-medium">Loading product details...</p>
+          <p className="text-chocolate/70 text-sm mt-2">Please wait</p>
         </div>
       </div>
     );
@@ -135,24 +162,29 @@ const ProductDetailsPage: React.FC = () => {
 
   if (error || (!loading && !product)) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: '#f3eee7' }}>
-        <div className="text-center max-w-md px-4">
-          <p className="text-red-600 mb-2 font-semibold">{error || 'Product not found'}</p>
-          <p className="text-gray-600 mb-6 text-sm">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cream via-sandBeige/50 to-cream">
+        <div className="text-center max-w-md px-4 animate-fade-in">
+          <div className="relative mb-6">
+            <div className="absolute inset-0 bg-red-500/10 rounded-full blur-3xl"></div>
+            <div className="text-6xl mb-4 relative z-10">😕</div>
+          </div>
+          <h2 className="text-2xl font-heading font-bold text-royalBrown mb-2">Product Not Found</h2>
+          <p className="text-chocolate mb-6">{error || 'The product you are looking for does not exist or has been removed.'}</p>
+          <p className="text-chocolate/70 text-sm mb-8">
             Make sure the backend server is running on port 5000 and the product ID is correct.
           </p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex gap-4 justify-center flex-wrap">
             <button
-              onClick={() => navigate('/collection')}
-              className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gold transition-colors"
+              onClick={() => navigate('/products')}
+              className="btn-primary px-6 py-3"
             >
-              Back to Collection
+              Browse Products
             </button>
             <button
-              onClick={() => window.location.reload()}
-              className="px-6 py-2 border-2 border-black text-black rounded-lg hover:bg-black hover:text-white transition-colors"
+              onClick={() => navigate(-1)}
+              className="btn-outline px-6 py-3"
             >
-              Retry
+              Go Back
             </button>
           </div>
         </div>
@@ -161,9 +193,11 @@ const ProductDetailsPage: React.FC = () => {
   }
 
   const productName = product.title || product.name || 'Product';
-  const originalPrice = product.discount 
-    ? Math.round(product.price / (1 - product.discount / 100))
-    : product.price;
+  const productPrice = Number(product?.price) || 0;
+  const discount = Number(product?.discount) || 0;
+  const originalPrice = discount > 0 && productPrice > 0
+    ? Math.round(productPrice / (1 - discount / 100))
+    : productPrice;
   const images = [
     product.image,
     product.imageBack || product.image,
@@ -206,12 +240,13 @@ const ProductDetailsPage: React.FC = () => {
 
               <button
                 onClick={handleWishlist}
-                className="absolute top-4 right-4 p-3 bg-white rounded-full shadow-md hover:shadow-lg transition-all duration-200"
+                className="absolute top-4 right-4 p-3 bg-white rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
                 style={{ border: '1px solid #efefef' }}
+                title={product && isInWishlist(product.id) ? 'Remove from wishlist' : 'Add to wishlist'}
               >
                 <Heart
                   className={`h-5 w-5 transition-colors ${
-                    isWishlisted ? 'fill-red-500 text-red-500' : 'text-gray-600'
+                    product && isInWishlist(product.id) ? 'fill-red-500 text-red-500' : 'text-gray-600 hover:text-red-500'
                   }`}
                   strokeWidth={1.5}
                 />
@@ -288,26 +323,26 @@ const ProductDetailsPage: React.FC = () => {
 
             {/* Price */}
             <div className="mb-6">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-3xl font-bold" style={{ color: '#000000' }}>
-                  {formatPrice(product.price)}
+              <div className="flex items-center gap-3 mb-2 flex-wrap">
+                <span className="text-3xl font-bold text-gold">
+                  {formatPrice(productPrice)}
                 </span>
-                {product.discount && product.discount > 0 && (
+                {discount > 0 && originalPrice > productPrice && (
                   <>
-                    <span className="text-lg text-gray-400 line-through">
+                    <span className="text-lg text-chocolate line-through opacity-70">
                       {formatPrice(originalPrice)}
                     </span>
-                    <span
-                      className="text-sm font-medium px-2 py-1 rounded"
-                      style={{ background: '#efefef', color: '#000000' }}
-                    >
-                      Save {formatPrice(originalPrice - product.price)}
+                    <span className="text-sm font-semibold px-3 py-1 rounded-luxury bg-gold/20 text-gold">
+                      {discount}% OFF
+                    </span>
+                    <span className="text-sm font-medium px-3 py-1 rounded-luxury bg-sandBeige/50 text-chocolate">
+                      Save {formatPrice(originalPrice - productPrice)}
                     </span>
                   </>
                 )}
               </div>
-              <p className="text-sm text-gray-600">
-                {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
+              <p className="text-sm text-chocolate bg-sandBeige/30 px-3 py-1 rounded-luxury inline-block">
+                {(product.stock || 0) > 0 ? `${product.stock || 0} in stock` : 'Out of stock'}
               </p>
             </div>
 
@@ -511,13 +546,13 @@ const ProductDetailsPage: React.FC = () => {
                         {relatedName}
                       </h3>
                       <div className="flex items-center gap-2">
-                        <span className="text-base font-semibold" style={{ color: '#000000' }}>
-                          {formatPrice(relatedProduct.price)}
+                        <span className="text-base font-semibold text-gold">
+                          {formatPrice(Number(relatedProduct.price) || 0)}
                         </span>
                         {relatedProduct.discount && relatedProduct.discount > 0 && (
-                          <span className="text-xs text-gray-400 line-through">
+                          <span className="text-xs text-chocolate line-through opacity-70">
                             {formatPrice(
-                              Math.round(relatedProduct.price / (1 - relatedProduct.discount / 100))
+                              Math.round((Number(relatedProduct.price) || 0) / (1 - (Number(relatedProduct.discount) || 0) / 100))
                             )}
                           </span>
                         )}

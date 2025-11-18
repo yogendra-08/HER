@@ -25,16 +25,24 @@ import SignupPage from './pages/SignupPage';
 import CheckoutPage from './pages/CheckoutPage';
 import OrdersPage from './pages/OrdersPage';
 import ContactPage from './pages/ContactPage';
-import { getCurrentUser, type LocalUser } from './utils/localStorageAuth';
+import { type User, getAuthToken } from './utils/api';
 
 const App: React.FC = () => {
-  const [user, setUser] = useState<Omit<LocalUser, 'password'> | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     // Check if user is logged in on mount from localStorage
-    const currentUser = getCurrentUser();
-    if (currentUser) {
-      setUser(currentUser);
+    const token = getAuthToken();
+    const userJson = localStorage.getItem('vastraverse_user');
+    if (token && userJson) {
+      try {
+        const currentUser = JSON.parse(userJson);
+        setUser(currentUser);
+      } catch (error) {
+        console.error('Error parsing user from localStorage:', error);
+        localStorage.removeItem('vastraverse_user');
+        localStorage.removeItem('vastraverse_token');
+      }
     }
   }, []);
 

@@ -45,18 +45,21 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ product }) =>
     });
   };
 
-  const formatPrice = (price: number) => {
+  const formatPrice = (price: number | undefined | null) => {
+    const validPrice = Number(price) || 0;
+    if (isNaN(validPrice) || validPrice <= 0) return '₹0';
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
       currency: 'INR',
       maximumFractionDigits: 0,
-    }).format(price);
+    }).format(validPrice);
   };
 
-  const originalPrice = Math.round(product.price * 1.3);
-  const discount = Math.round(((originalPrice - product.price) / originalPrice) * 100);
+  const productPrice = Number(product.price) || 0;
+  const originalPrice = productPrice > 0 ? Math.round(productPrice * 1.3) : 0;
+  const discount = originalPrice > 0 ? Math.round(((originalPrice - productPrice) / originalPrice) * 100) : 0;
   const inCart = isInCart(product.id);
-  const cartQuantity = getItemQuantity(product.id);
+  const cartQuantity = getItemQuantity(product.id) || 0;
   const inWishlist = isInWishlist(product.id);
 
   // Generate secondary image (slightly different angle/view) or use a placeholder

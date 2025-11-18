@@ -20,15 +20,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { toggleWishlist, isInWishlist } = useWishlist();
 
   const handleAddToCart = async () => {
+    if (!product.id || !product.price || product.price <= 0) {
+      toast.error('Invalid product data. Cannot add to cart.');
+      return;
+    }
+    
     try {
       await addToCart({
         id: product.id,
         name: product.name || product.title || 'Product',
-        price: product.price,
+        price: Number(product.price) || 0,
         image: product.image || product.thumbnail || '',
       });
     } catch (error) {
       console.error('Failed to add to cart:', error);
+      toast.error('Failed to add product to cart');
     }
   };
 
@@ -44,17 +50,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     });
   };
 
-  const formatPrice = (price: number) => {
+  const formatPrice = (price: number | undefined | null) => {
+    const validPrice = Number(price) || 0;
+    if (isNaN(validPrice) || validPrice <= 0) return '₹0';
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
       currency: 'INR',
-    }).format(price);
+      maximumFractionDigits: 0,
+    }).format(validPrice);
   };
 
   const isOutOfStock = (product.stock || 0) === 0;
   const inCart = isInCart(product.id);
-  const cartQuantity = getItemQuantity(product.id);
+  const cartQuantity = getItemQuantity(product.id) || 0;
   const inWishlist = isInWishlist(product.id);
+  const productPrice = Number(product.price) || 0;
 
   return (
     <div className="card-product group bg-white border" style={{ borderColor: '#C49E54', borderWidth: '1px' }}>
@@ -103,7 +113,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             }}
           >
             <ShoppingCart className="h-4 w-4 mr-2" />
-            {inCart ? `In Cart (${cartQuantity})` : 'Add to Cart'}
+            {inCart && cartQuantity > 0 ? `In Cart (${cartQuantity})` : 'Add to Cart'}
           </button>
         </div>
       </div>
@@ -142,63 +152,41 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
-            <span className="text-xl font-bold font-heading" style={{ color: '#8B3A3A' }}>
-              {formatPrice(product.price)}
+            <span className="text-xl font-bold font-heading text-gold">
+              {formatPrice(productPrice)}
             </span>
-            {/* Placeholder for original price */}
-            <span className="text-sm text-chocolate line-through">
-              {formatPrice(product.price * 1.2)}
-            </span>
+            {productPrice > 0 && (
+              <span className="text-sm text-chocolate line-through opacity-70">
+                {formatPrice(productPrice * 1.2)}
+              </span>
+            )}
           </div>
           
-          <div className="text-sm text-chocolate">
-            {(product.stock || 0) > 0 ? `${product.stock} left` : 'Out of stock'}
+          <div className="text-sm text-chocolate bg-sandBeige/50 px-2 py-1 rounded-luxury">
+            {(product.stock || 0) > 0 ? `${product.stock || 0} left` : 'Out of stock'}
           </div>
         </div>
 
         {/* Action buttons */}
         <div className="mt-4 flex flex-col space-y-2">
           <Link
-            to={`/products/${product.id}`}
-            className="w-full py-2 px-4 rounded-luxury font-medium transition-all duration-300 text-center border-2 flex items-center justify-center"
-            style={{ 
-              borderColor: '#C49E54',
-              color: '#8B3A3A',
-              background: 'transparent'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#C49E54';
-              e.currentTarget.style.color = '#2C1810';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.color = '#8B3A3A';
-            }}
+            to={`/product/${product.id}`}
+            className="w-full btn-outline py-2.5 px-4 flex items-center justify-center space-x-2 group"
           >
-            <Eye className="h-4 w-4 mr-2" />
-            View Details
+            <Eye className="h-4 w-4 group-hover:scale-110 transition-transform" />
+            <span>View Details</span>
           </Link>
           
           <button
             onClick={handleAddToCart}
-            disabled={isOutOfStock}
-            className="w-full disabled:opacity-50 disabled:cursor-not-allowed text-sm py-2 px-4 rounded-luxury font-medium transition-all duration-300"
-            style={{ background: '#2C1810', color: '#F7F4EF' }}
-            onMouseEnter={(e) => {
-              if (!isOutOfStock) {
-                e.currentTarget.style.background = '#C49E54';
-                e.currentTarget.style.color = '#2C1810';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!isOutOfStock) {
-                e.currentTarget.style.background = '#2C1810';
-                e.currentTarget.style.color = '#F7F4EF';
-              }
-            }}
+            disabled={isOutOfStock || !product.id || productPrice <= 0}
+            className="w-full btn-primary py-2.5 px-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 group relative overflow-hidden"
           >
-            <ShoppingCart className="h-4 w-4 mr-1 inline" />
-            {inCart ? `In Cart (${cartQuantity})` : 'Add to Cart'}
+            <span className="relative z-10 flex items-center space-x-2">
+              <ShoppingCart className="h-4 w-4" />
+              <span>{inCart && cartQuantity > 0 ? `In Cart (${cartQuantity})` : 'Add to Cart'}</span>
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-chocolate to-royalBrown opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </button>
         </div>
       </div>

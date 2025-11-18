@@ -8,7 +8,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
   ShoppingCart, 
   Heart, 
-  User, 
+  User as UserIcon,
   Menu, 
   X, 
   LogOut,
@@ -17,14 +17,16 @@ import {
   Package,
   Phone
 } from 'lucide-react';
-import { logoutUser, type LocalUser } from '../utils/localStorageAuth';
+
+import { removeAuthToken } from '../utils/api';
+import type { User as UserType } from '../utils/api';
 import { useCart } from '../hooks/useCart';
 import { useWishlist } from '../hooks/useWishlist';
 import toast from 'react-hot-toast';
 
 interface NavbarProps {
-  user: Omit<LocalUser, 'password'> | null;
-  setUser: (user: Omit<LocalUser, 'password'> | null) => void;
+  user: UserType | null;
+  setUser: (user: UserType | null) => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
@@ -37,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
   const { totalItems: wishlistCount } = useWishlist();
 
   const handleLogout = () => {
-    logoutUser();
+    removeAuthToken();
     setUser(null);
     setIsProfileMenuOpen(false);
     toast.success('Logged out successfully!');
@@ -53,9 +55,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
     }
   };
 
-  const isActiveLink = (path: string) => {
-    return location.pathname === path;
-  };
+  const isActiveLink = (path: string) => location.pathname === path;
 
   const navLinks = [
     { path: '/', label: 'Home' },
@@ -64,13 +64,13 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
     { path: '/products/women', label: 'Women' },
     { path: '/products/kids', label: 'Kids' },
     { path: '/products/traditional', label: 'Traditional' },
-    
   ];
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
+
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-4 mr-8">
@@ -109,7 +109,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 border border-gold/30 rounded-luxury focus:ring-2 focus:ring-gold focus:border-gold bg-cream text-royalBrown"
               />
-              <Search className="absolute left-3 top-2.5 h-4 w-4" style={{ color: '#8B3A3A' }} strokeWidth={1.5} />
+              <Search className="absolute left-3 top-2.5 h-4 w-4" strokeWidth={1.5} />
             </form>
           </div>
 
@@ -120,7 +120,6 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
             <Link
               to="/wishlist"
               className="p-2 text-chocolate hover:text-royalBrown transition-colors relative group"
-              title="Wishlist"
             >
               <Heart className="h-5 w-5" strokeWidth={1.5} />
               {wishlistCount > 0 && (
@@ -134,7 +133,6 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
             <Link
               to="/cart"
               className="p-2 text-chocolate hover:text-royalBrown transition-colors relative group"
-              title="Cart"
             >
               <ShoppingCart className="h-5 w-5" strokeWidth={1.5} />
               {totalItems > 0 && (
@@ -144,51 +142,54 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
               )}
             </Link>
 
-            {/* Profile with Dropdown */}
+            {/* Profile */}
             <div className="relative">
               <button
                 onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-                className="flex items-center space-x-1 p-2 text-chocolate hover:text-royalBrown transition-colors group"
-                title="Profile"
+                className="flex items-center space-x-1 p-2 text-chocolate hover:text-royalBrown"
               >
-                <User className="h-5 w-5" strokeWidth={1.5} />
-                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isProfileMenuOpen ? 'rotate-180' : ''}`} strokeWidth={1.5} />
+                <UserIcon className="h-5 w-5" strokeWidth={1.5} />
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${
+                    isProfileMenuOpen ? 'rotate-180' : ''
+                  }`}
+                  strokeWidth={1.5}
+                />
               </button>
 
-              {/* Profile Dropdown Menu */}
+              {/* Dropdown */}
               {isProfileMenuOpen && (
                 <div className="absolute right-0 mt-2 w-56 bg-white rounded-luxury-lg shadow-luxury border border-gold/20 py-2 z-50">
                   {user ? (
                     <>
                       <div className="px-4 py-3 border-b border-gold/20">
-                        <p className="text-sm font-semibold font-heading text-royalBrown">{user.name}</p>
+                        <p className="text-sm font-semibold text-royalBrown">{user.name}</p>
                         <p className="text-xs text-chocolate mt-1">{user.email}</p>
                       </div>
+
                       <Link
                         to="/orders"
-                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige transition-colors"
-                        onClick={() => setIsProfileMenuOpen(false)}
+                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige"
                       >
-                        <Package className="h-4 w-4" strokeWidth={1.5} />
+                        <Package className="h-4 w-4" />
                         <span>Orders</span>
                       </Link>
+
                       <Link
                         to="/contact"
-                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige transition-colors"
-                        onClick={() => setIsProfileMenuOpen(false)}
+                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige"
                       >
-                        <Phone className="h-4 w-4" strokeWidth={1.5} />
+                        <Phone className="h-4 w-4" />
                         <span>Contact Us</span>
                       </Link>
+
                       <div className="border-t border-gold/20 my-1"></div>
+
                       <button
-                        onClick={() => {
-                          handleLogout();
-                          setIsProfileMenuOpen(false);
-                        }}
-                        className="w-full text-left flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige transition-colors"
+                        onClick={handleLogout}
+                        className="w-full text-left flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige"
                       >
-                        <LogOut className="h-4 w-4" strokeWidth={1.5} />
+                        <LogOut className="h-4 w-4" />
                         <span>Logout</span>
                       </button>
                     </>
@@ -196,36 +197,18 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
                     <>
                       <Link
                         to="/login"
-                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige transition-colors"
-                        onClick={() => setIsProfileMenuOpen(false)}
+                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige"
                       >
-                        <User className="h-4 w-4" strokeWidth={1.5} />
+                        <UserIcon className="h-4 w-4" />
                         <span>Login</span>
                       </Link>
+
                       <Link
                         to="/signup"
-                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige transition-colors"
-                        onClick={() => setIsProfileMenuOpen(false)}
+                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige"
                       >
-                        <User className="h-4 w-4" strokeWidth={1.5} />
+                        <UserIcon className="h-4 w-4" />
                         <span>Sign Up</span>
-                      </Link>
-                      <div className="border-t border-gold/20 my-1"></div>
-                      <Link
-                        to="/orders"
-                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige transition-colors"
-                        onClick={() => setIsProfileMenuOpen(false)}
-                      >
-                        <Package className="h-4 w-4" strokeWidth={1.5} />
-                        <span>Orders</span>
-                      </Link>
-                      <Link
-                        to="/contact"
-                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-chocolate hover:bg-sandBeige transition-colors"
-                        onClick={() => setIsProfileMenuOpen(false)}
-                      >
-                        <Phone className="h-4 w-4" strokeWidth={1.5} />
-                        <span>Contact Us</span>
                       </Link>
                     </>
                   )}
@@ -233,21 +216,12 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
               )}
             </div>
 
-            {/* Overlay to close profile menu when clicking outside */}
-            {isProfileMenuOpen && (
-              <div
-                className="fixed inset-0 z-40"
-                onClick={() => setIsProfileMenuOpen(false)}
-              />
-            )}
-
-            {/* Mobile Menu Button */}
+            {/* Menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 text-chocolate hover:text-royalBrown transition-colors"
-              aria-label="Toggle menu"
+              className="lg:hidden p-2 text-chocolate hover:text-royalBrown"
             >
-              {isMenuOpen ? <X className="h-5 w-5" strokeWidth={1.5} /> : <Menu className="h-5 w-5" strokeWidth={1.5} />}
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
@@ -255,7 +229,6 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 py-4">
-            {/* Mobile Search */}
             <div className="mb-4">
               <form onSubmit={handleSearch} className="relative">
                 <input
@@ -263,42 +236,39 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
                   placeholder="Search for products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gold/30 rounded-luxury focus:ring-2 focus:ring-gold focus:border-gold bg-cream text-royalBrown"
+                  className="w-full pl-10 pr-4 py-2 border border-gold/30 rounded-luxury"
                 />
-                <Search className="absolute left-3 top-2.5 h-4 w-4" style={{ color: '#8B3A3A' }} strokeWidth={1.5} />
+                <Search className="absolute left-3 top-2.5 h-4 w-4" />
               </form>
             </div>
 
-            {/* Mobile Navigation Links */}
             <div className="space-y-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`block px-4 py-2 text-chocolate hover:text-royalBrown hover:bg-sandBeige rounded-luxury transition-colors ${
-                    isActiveLink(link.path) ? 'text-royalBrown bg-sandBeige' : ''
-                  }`}
+                  className="block px-4 py-2 text-chocolate hover:text-royalBrown hover:bg-sandBeige"
                 >
                   {link.label}
                 </Link>
               ))}
-              
-              {/* Mobile Login/Signup (when not logged in) */}
+
               {!user && (
                 <>
                   <div className="border-t border-gold/20 my-2"></div>
                   <Link
                     to="/login"
                     onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-2 text-chocolate hover:text-royalBrown hover:bg-sandBeige rounded-luxury transition-colors"
+                    className="block px-4 py-2"
                   >
                     Login
                   </Link>
+
                   <Link
                     to="/signup"
                     onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-2 text-center font-medium bg-gold text-royalBrown rounded-luxury hover:bg-gold/90 transition-colors"
+                    className="block px-4 py-2 text-center font-medium bg-gold text-royalBrown rounded-luxury"
                   >
                     Sign Up
                   </Link>
@@ -308,7 +278,6 @@ const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
           </div>
         )}
       </div>
-
     </nav>
   );
 };

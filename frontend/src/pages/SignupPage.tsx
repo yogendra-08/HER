@@ -5,12 +5,13 @@
 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, User, Phone, MapPin } from 'lucide-react';
-import { registerUser, type LocalUser } from '../utils/localStorageAuth';
+import { Eye, EyeOff, Mail, Lock, User as UserIcon, Phone, MapPin } from 'lucide-react';
+import { authAPI, setAuthToken } from '../utils/api';
+import type { User as UserType } from '../utils/api';
 import toast from 'react-hot-toast';
 
 interface SignupPageProps {
-  setUser: (user: Omit<LocalUser, 'password'>) => void;
+  setUser: (user: UserType) => void;
 }
 
 const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
@@ -22,6 +23,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
     phone: '',
     address: '',
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +39,6 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validation
     if (!formData.name || !formData.email || !formData.password || !formData.phone || !formData.address) {
       toast.error('Please fill in all required fields');
       return;
@@ -53,34 +54,34 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
       return;
     }
 
-    if (!formData.phone.trim()) {
-      toast.error('Phone number is required');
-      return;
-    }
-
-    if (!formData.address.trim()) {
-      toast.error('Address is required');
-      return;
-    }
-
     setIsLoading(true);
 
     try {
       const { confirmPassword, ...signupData } = formData;
-      const { user, token } = registerUser({
+
+      const response = await authAPI.register({
         name: signupData.name,
         email: signupData.email,
         password: signupData.password,
         phone: signupData.phone,
         address: signupData.address,
       });
-      
-      setUser(user);
-      toast.success('Account created successfully!');
-      navigate('/');
+
+      if (response.success && response.data) {
+        const { token, user } = response.data;
+
+        setAuthToken(token);
+        localStorage.setItem('vastraverse_user', JSON.stringify(user));
+
+        setUser(user);
+        toast.success('Account created successfully!');
+        navigate('/');
+      } else {
+        throw new Error(response.message || 'Signup failed');
+      }
     } catch (error: any) {
       console.error('Signup failed:', error);
-      const errorMessage = error.message || 'Signup failed. Please try again.';
+      const errorMessage = error.response?.data?.message || error.message || 'Signup failed. Please try again.';
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
@@ -100,12 +101,13 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
+            {/* NAME */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                 Full Name
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                <UserIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                 <input
                   id="name"
                   name="name"
@@ -119,6 +121,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
               </div>
             </div>
 
+            {/* EMAIL */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                 Email Address
@@ -138,6 +141,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
               </div>
             </div>
 
+            {/* PHONE */}
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
                 Phone Number <span className="text-red-500">*</span>
@@ -157,6 +161,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
               </div>
             </div>
 
+            {/* PASSWORD */}
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                 Password
@@ -183,6 +188,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
               </div>
             </div>
 
+            {/* CONFIRM PASSWORD */}
             <div>
               <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
                 Confirm Password
@@ -209,6 +215,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
               </div>
             </div>
 
+            {/* ADDRESS */}
             <div>
               <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
                 Address <span className="text-red-500">*</span>
@@ -229,6 +236,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
             </div>
           </div>
 
+          {/* TERMS */}
           <div className="flex items-center">
             <input
               id="agree-terms"
@@ -249,6 +257,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
             </label>
           </div>
 
+          {/* SUBMIT */}
           <button
             type="submit"
             disabled={isLoading}
@@ -257,6 +266,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setUser }) => {
             {isLoading ? 'Creating Account...' : 'Create Account'}
           </button>
 
+          {/* SIGNIN LINK */}
           <div className="text-center">
             <p className="text-gray-600">
               Already have an account?{' '}

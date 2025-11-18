@@ -6,11 +6,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
-import { loginUser, type LocalUser } from '../utils/localStorageAuth';
+import { authAPI, setAuthToken } from '../utils/api';
+import type { User } from '../utils/api';
 import toast from 'react-hot-toast';
 
 interface LoginPageProps {
-  setUser: (user: Omit<LocalUser, 'password'>) => void;
+  setUser: (user: User) => void;
 }
 
 const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
@@ -34,13 +35,28 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
     setIsLoading(true);
 
     try {
-      const { user, token } = loginUser(formData.email, formData.password);
-      setUser(user);
-      toast.success('Login successful!');
-      navigate('/');
+      const response = await authAPI.login({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (response.success && response.data) {
+        const { token, user } = response.data;
+        
+        // Store token and user
+        setAuthToken(token);
+        localStorage.setItem('vastraverse_user', JSON.stringify(user));
+        
+        // Update user state
+        setUser(user);
+        toast.success('Login successful!');
+        navigate('/');
+      } else {
+        throw new Error(response.message || 'Login failed');
+      }
     } catch (error: any) {
       console.error('Login failed:', error);
-      const errorMessage = error.message || 'Login failed. Please try again.';
+      const errorMessage = error.response?.data?.message || error.message || 'Login failed. Please try again.';
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);

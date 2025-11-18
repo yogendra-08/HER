@@ -61,32 +61,52 @@ export const useCart = create<CartState>()(
       },
 
       addToCart: (productDetails: ProductDetails, quantity = 1) => {
+        // Validate input
+        const validQuantity = Number(quantity) || 1;
+        const validPrice = Number(productDetails.price) || 0;
+        const validId = Number(productDetails.id);
+        
+        if (!validId || validId <= 0) {
+          toast.error('Invalid product ID');
+          return;
+        }
+        
+        if (validPrice <= 0) {
+          toast.error('Invalid product price');
+          return;
+        }
+        
+        if (validQuantity <= 0 || validQuantity > 10) {
+          toast.error('Invalid quantity (1-10 allowed)');
+          return;
+        }
+
         const { items } = get();
-        const existingItem = items.find(item => item.productId === productDetails.id);
+        const existingItem = items.find(item => item.productId === validId);
 
         let newItems;
         if (existingItem) {
           // Update existing item
           newItems = items.map(item =>
-            item.productId === productDetails.id
-              ? { ...item, quantity: item.quantity + quantity }
+            item.productId === validId
+              ? { ...item, quantity: (item.quantity || 0) + validQuantity }
               : item
           );
         } else {
           // Add new item
           const newItem: CartItem = {
             id: Date.now(), // Simple ID generation
-            productId: productDetails.id,
-            quantity,
-            price: productDetails.price,
-            name: productDetails.name,
-            image: productDetails.image,
+            productId: validId,
+            quantity: validQuantity,
+            price: validPrice,
+            name: productDetails.name || 'Product',
+            image: productDetails.image || '',
           };
           newItems = [...items, newItem];
         }
 
-        const totalItems = newItems.reduce((sum, item) => sum + item.quantity, 0);
-        const totalPrice = newItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const totalItems = newItems.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        const totalPrice = newItems.reduce((sum, item) => sum + ((item.price || 0) * (item.quantity || 0)), 0);
 
         set({ 
           items: newItems, 
@@ -94,7 +114,7 @@ export const useCart = create<CartState>()(
           totalPrice 
         });
 
-        toast.success(`${productDetails.name} added to cart!`);
+        toast.success(`${productDetails.name || 'Product'} added to cart!`);
       },
 
       updateQuantity: (productId: number, quantity: number) => {
