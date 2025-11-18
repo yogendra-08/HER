@@ -182,7 +182,7 @@ const WomensProductCard: React.FC<WomensProductCardProps> = ({ product }) => {
         </div>
         <div className="flex flex-col space-y-2">
           <Link
-            to={`/products/${product.id}`}
+            to={`/product/${product.id}`}
             className="w-full py-2 px-4 rounded-luxury font-medium transition-all duration-300 text-center border-2 flex items-center justify-center"
             style={{ 
               borderColor: '#C49E54',
