@@ -1,10 +1,15 @@
 [build]
   publish = "frontend/dist"
-  command = "cd frontend && npm install && npm run build"
+  command = "npm run build:all"
 
 [build.environment]
   NODE_VERSION = "18"
   NPM_VERSION = "9"
+  NODE_ENV = "production"
+  
+[functions]
+  node_bundler = "esbuild"
+  directory = "netlify/functions"
 
 # Redirect all API calls to Netlify Functions
 [[redirects]]

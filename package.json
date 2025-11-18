@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "VastraVerse - Indian Fashion E-commerce Platform",
   "scripts": {
-    "build": "echo 'Build handled by netlify.toml'",
-    "build:frontend": "cd frontend && npm install && npm run build",
-    "build:backend": "cd backend && npm install && npm run build",
+    "build": "npm run build:all",
+    "build:all": "npm run install:all && npm run build:frontend && npm run build:functions",
+    "build:frontend": "cd frontend && npm run build",
+    "build:functions": "cd netlify/functions && npm install",
     "dev": "netlify dev",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run dev",
-    "start": "cd backend && npm start",
+    "start": "netlify dev",
     "install:all": "cd frontend && npm install && cd ../backend && npm install"
   },
   "keywords": [

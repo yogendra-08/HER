@@ -5,10 +5,10 @@
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, ShoppingBag, Heart, Users, ChevronLeft, ChevronRight, ArrowUp, Eye, ShoppingCart } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Star, ShoppingBag, Heart, ChevronLeft, ChevronRight, ArrowUp, Eye, ShoppingCart, Loader2, Users } from 'lucide-react';
 import { Product } from '../utils/api';
 import { localProductsAPI } from '../utils/localApi';
-// Import removed as it's not being used
 
 // Premium products collection
 const premiumProducts: Product[] = [
@@ -172,8 +172,12 @@ const placeholderProducts: Product[] = [
 const HomePage: React.FC = () => {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [showScroll, setShowScroll] = useState(false);
-  const [, setHoveredProduct] = useState<number | null>(null);
+  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
+  const [visibleProducts, setVisibleProducts] = useState<Set<number>>(new Set());
+  const bannerRef = useRef<HTMLDivElement>(null);
 
   const checkScrollTop = useCallback(() => {
     if (!showScroll && window.pageYOffset > 400) {
@@ -199,10 +203,6 @@ const HomePage: React.FC = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  const [isLoading, setIsLoading] = useState(true);
-  const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
-  const [visibleProducts, setVisibleProducts] = useState<Set<number>>(new Set());
-
   // Luxury clothing brand banner images
   const bannerImages = [
     {
@@ -232,13 +232,35 @@ const HomePage: React.FC = () => {
     }
   ];
 
-  // Auto-rotate banner
+  // Auto-rotate banner with pause on hover
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentBannerIndex((prev) => (prev + 1) % bannerImages.length);
-    }, 5000); // Change image every 5 seconds
+    const bannerElement = bannerRef.current;
+    let interval: NodeJS.Timeout;
 
-    return () => clearInterval(interval);
+    const startInterval = () => {
+      interval = setInterval(() => {
+        setCurrentBannerIndex((prev) => (prev + 1) % bannerImages.length);
+      }, 5000);
+    };
+
+    const pauseInterval = () => {
+      clearInterval(interval);
+    };
+
+    startInterval();
+
+    if (bannerElement) {
+      bannerElement.addEventListener('mouseenter', pauseInterval);
+      bannerElement.addEventListener('mouseleave', startInterval);
+    }
+
+    return () => {
+      clearInterval(interval);
+      if (bannerElement) {
+        bannerElement.removeEventListener('mouseenter', pauseInterval);
+        bannerElement.removeEventListener('mouseleave', startInterval);
+      }
+    };
   }, [bannerImages.length]);
 
   const goToNextBanner = () => {
@@ -419,10 +441,10 @@ const HomePage: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative bg-gradient-to-b from-royalBrown/5 to-cream/30">
       <BackToTop />
       {/* Hero Banner Section with Parallax Effect */}
-      <section className="relative h-[600px] md:h-[700px] overflow-hidden">
+      <section className="relative h-[600px] md:h-[80vh] min-h-[600px] max-h-[900px] overflow-hidden">
         {/* Parallax Background */}
         <div 
           className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-out"
@@ -450,43 +472,75 @@ const HomePage: React.FC = () => {
               
               {/* Content */}
               {index === currentBannerIndex && (
-                <div className="relative h-full flex items-center justify-center">
-                  <div className="text-center px-4 max-w-4xl mx-auto banner-content">
-                    <h1 
-                      className="text-5xl md:text-7xl font-bold font-heading mb-6 banner-fade-in"
-                      style={{ color: '#C49E54' }}
+                <div className="relative h-full flex items-center justify-center px-4">
+                  <div className="text-center max-w-5xl mx-auto banner-content">
+                    <motion.h1 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-heading mb-6"
+                      style={{ 
+                        color: '#C49E54',
+                        textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+                      }}
                     >
                       {banner.title}
-                    </h1>
-                    <p 
-                      className="text-xl md:text-2xl mb-4 font-heading banner-slide-up animation-delay-200" 
-                      style={{ color: '#E9E4D4' }}
+                    </motion.h1>
+                    <motion.p 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                      className="text-xl md:text-2xl mb-6 font-medium font-heading" 
+                      style={{ 
+                        color: '#F8F5EE',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+                      }}
                     >
                       {banner.subtitle}
-                    </p>
-                    <p 
-                      className="text-lg mb-8 opacity-90 max-w-2xl mx-auto banner-fade-in animation-delay-400 text-sandBeige"
+                    </motion.p>
+                    <motion.p 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                      className="text-lg mb-8 opacity-95 max-w-2xl mx-auto text-sandBeige/90 leading-relaxed"
+                      style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}
                     >
                       Explore the Universe of Indian Fashion - From traditional ethnic wear to modern contemporary styles, 
                       discover clothing that celebrates your unique style and heritage.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center banner-slide-up animation-delay-600 relative z-10">
+                    </motion.p>
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                      className="flex flex-col sm:flex-row gap-4 justify-center relative z-10"
+                    >
                       <Link 
                         to="/summer-collection" 
-                        className="inline-flex items-center px-8 py-4 rounded-luxury font-medium transition-all duration-300 shadow-gold hover:shadow-gold-lg transform hover:scale-[1.02] tracking-elegant"
-                        style={{ background: '#C49E54', color: '#2C1810' }}
+                        className="group inline-flex items-center px-8 py-4 rounded-luxury font-medium transition-all duration-300 hover:shadow-gold-lg transform hover:scale-[1.02] tracking-wider"
+                        style={{ 
+                          background: '#C49E54', 
+                          color: '#2C1810',
+                          boxShadow: '0 4px 20px -5px rgba(196, 158, 84, 0.4)'
+                        }}
                       >
-                        Shop Now
-                        <ArrowRight className="ml-2 h-5 w-5" />
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">
+                          Shop Now
+                        </span>
+                        <ArrowRight className="ml-2 h-5 w-5 transform transition-transform duration-300 group-hover:translate-x-1" />
                       </Link>
                       <Link 
                         to="/products/traditional" 
-                        className="inline-flex items-center px-8 py-4 rounded-luxury font-medium transition-all duration-300 border-2 tracking-elegant"
-                        style={{ borderColor: '#C49E54', color: '#C49E54', background: 'transparent' }}
+                        className="group inline-flex items-center px-8 py-4 rounded-luxury font-medium transition-all duration-300 border-2 tracking-wider hover:bg-gold/10"
+                        style={{ 
+                          borderColor: '#C49E54', 
+                          color: '#F8F5EE',
+                          backdropFilter: 'blur(4px)'
+                        }}
                       >
-                        Explore Traditional
+                        <span>Explore Traditional</span>
+                        <ArrowRight className="ml-2 h-5 w-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
                       </Link>
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               )}
@@ -528,89 +582,123 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Categories Section - Modern Minimal Style */}
-      <section className="py-16 bg-cream">
+      <section className="py-20 bg-gradient-to-b from-cream to-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <span className="inline-block text-gold font-medium mb-3 tracking-wider">OUR COLLECTIONS</span>
             <h2 className="text-4xl font-bold font-heading text-royalBrown mb-4">Shop by Category</h2>
-            <p className="text-lg text-chocolate max-w-2xl mx-auto">
-              Discover our curated collections designed for every style and occasion
+            <div className="w-20 h-1 bg-gold mx-auto mb-6"></div>
+            <p className="text-lg text-chocolate/90 max-w-2xl mx-auto leading-relaxed">
+              Discover our curated collections designed for every style and occasion. Find the perfect outfit that matches your unique personality.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-6 px-4 sm:px-6">
             {categories.map((category, index) => (
-              <Link
+              <motion.div 
                 key={index}
-                to={category.link}
-                className="category-tile group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-500"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="h-full"
               >
-                <div className="relative h-64 md:h-72">
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                  />
-                  
-                  {/* Black transparent overlay on hover */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500"></div>
-                  
-                  {/* Text overlay at bottom */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 via-black/30 to-transparent">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-white text-lg font-medium group-hover:font-bold transition-all duration-300">
-                        {category.name}
-                      </h3>
-                      <ArrowRight className="h-5 w-5 text-white opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300" strokeWidth={2} />
+                <Link
+                  to={category.link}
+                  className="category-tile group relative block h-full overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                >
+                  <div className="relative h-64 md:h-80 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10"></div>
+                    <img
+                      src={category.image}
+                      alt={category.name}
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    
+                    {/* Text overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 z-20 p-5">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-xl font-semibold text-white group-hover:text-gold transition-colors duration-300">
+                          {category.name}
+                        </h3>
+                        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gold/90 text-royalBrown transform -translate-y-1 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                          <ArrowRight className="h-4 w-4" strokeWidth={3} />
+                        </div>
+                      </div>
+                      <div className="h-0.5 w-8 bg-gold mt-2 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"></div>
                     </div>
+                    
+                    {/* Shine effect on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Trending Brands Section */}
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-gradient-to-b from-white to-cream/30">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-semibold font-heading mb-4" style={{ fontWeight: 600, color: '#2C1810' }}>
-              Trending Brands
-            </h2>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <span className="inline-block text-gold font-medium mb-3 tracking-wider">TRUSTED BRANDS</span>
+            <h2 className="text-4xl font-bold font-heading text-royalBrown mb-4">Trending Brands</h2>
+            <div className="w-20 h-1 bg-gold mx-auto mb-6"></div>
+            <p className="text-lg text-chocolate/90 max-w-2xl mx-auto leading-relaxed">
+              Shop from the most trusted and trending fashion brands in the industry. We partner with the best to bring you quality and style.
+            </p>
+          </motion.div>
 
           {/* Brands Slider Container */}
           <div className="relative">
             {/* Left Arrow */}
             <button
               onClick={() => scrollBrands('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-lg hover:shadow-xl hover:border-gold/50 transition-all duration-200 flex items-center justify-center group"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm border border-gray-100 shadow-lg hover:shadow-xl hover:border-gold/50 transition-all duration-200 flex items-center justify-center group hover:bg-white"
               aria-label="Scroll brands left"
             >
-              <ChevronLeft className="h-5 w-5 text-chocolate group-hover:text-gold transition-colors" strokeWidth={2} />
+              <ChevronLeft className="h-5 w-5 text-royalBrown/70 group-hover:text-gold transition-colors" strokeWidth={2.5} />
             </button>
 
             {/* Brands Scroll Container */}
             <div
               ref={brandsScrollRef}
-              className="flex gap-5 overflow-x-auto scrollbar-hide px-10 py-4"
+              className="flex gap-6 overflow-x-auto scrollbar-hide px-10 py-4 pb-8"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
-                scrollBehavior: 'smooth'
+                scrollBehavior: 'smooth',
+                scrollSnapType: 'x mandatory',
+                WebkitOverflowScrolling: 'touch'
               }}
             >
               {trendingBrands.map((brand, index) => (
                 <div
                   key={index}
-                  className="brand-card group flex-shrink-0 flex items-center justify-center cursor-pointer transition-all duration-200"
+                  className="brand-card group flex-shrink-0 flex items-center justify-center cursor-pointer transition-all duration-200 group-hover:shadow-lg group-hover:border-gold/30 group-hover:scale-105"
                   style={{
-                    width: '140px',
-                    height: '90px',
-                    borderRadius: '20px',
-                    border: '1px solid #eaeaea',
-                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
-                    background: '#FFFFFF'
+                    width: '160px',
+                    height: '100px',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(0, 0, 0, 0.05)',
+                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)',
+                    background: '#FFFFFF',
+                    scrollSnapAlign: 'center',
+                    backdropFilter: 'blur(4px)'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'scale(1.05)';
@@ -645,10 +733,10 @@ const HomePage: React.FC = () => {
             {/* Right Arrow */}
             <button
               onClick={() => scrollBrands('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-lg hover:shadow-xl hover:border-gold/50 transition-all duration-200 flex items-center justify-center group"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm border border-gray-100 shadow-lg hover:shadow-xl hover:border-gold/50 transition-all duration-200 flex items-center justify-center group hover:bg-white"
               aria-label="Scroll brands right"
             >
-              <ChevronRight className="h-5 w-5 text-chocolate group-hover:text-gold transition-colors" strokeWidth={2} />
+              <ChevronRight className="h-5 w-5 text-royalBrown/70 group-hover:text-gold transition-colors" strokeWidth={2.5} />
             </button>
           </div>
         </div>
