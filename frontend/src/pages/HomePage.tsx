@@ -5,189 +5,17 @@
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
+import { motion } from 'framer-motion';
 import { ArrowRight, Star, ShoppingBag, Heart, Users, ChevronLeft, ChevronRight, ArrowUp } from 'lucide-react';
 import { Product } from '../utils/api';
-=======
-import { motion } from 'framer-motion';
-import { ArrowRight, Star, ShoppingBag, Heart, ChevronLeft, ChevronRight, ArrowUp, Eye, ShoppingCart, Loader2, Users } from 'lucide-react';
-import { Product } from '../utils/api';
-import { localProductsAPI } from '../utils/localApi';
-
-// Premium products collection
-const premiumProducts: Product[] = [
-  {
-    id: 1001,
-    name: 'Luxury Silk Saree',
-    description: 'Handwoven Banarasi silk saree with pure zari work',
-    price: 12999,
-    brand: 'Royal Weaves',
-    category: 'Premium',
-    image: 'https://images.unsplash.com/photo-1594631252845-29fc4cc8c663?w=600&h=800&fit=crop',
-    thumbnail: 'https://images.unsplash.com/photo-1594631252845-29fc4cc8c663?w=300&h=400&fit=crop',
-    stock: 8,
-    rating: 4.9,
-    sizes: ['Free Size']
-  },
-  {
-    id: 1002,
-    name: 'Designer Tuxedo Suit',
-    description: 'Premium Italian wool tuxedo with satin lapels',
-    price: 34999,
-    brand: 'Elite Tailors',
-    category: 'Premium',
-    image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&h=800&fit=crop',
-    thumbnail: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=300&h=400&fit=crop',
-    stock: 5,
-    rating: 5.0,
-    sizes: ['M', 'L', 'XL']
-  },
-  {
-    id: 1003,
-    name: 'Hand-Embroidered Lehenga',
-    description: 'Bridal lehenga with intricate hand embroidery',
-    price: 45999,
-    brand: 'Heritage Couture',
-    category: 'Premium',
-    image: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&h=800&fit=crop',
-    thumbnail: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=300&h=400&fit=crop',
-    stock: 3,
-    rating: 4.9,
-    sizes: ['S', 'M', 'L']
-  },
-  {
-    id: 1004,
-    name: 'Cashmere Overcoat',
-    description: '100% Pure Cashmere winter overcoat',
-    price: 38999,
-    brand: 'Luxury Wraps',
-    category: 'Premium',
-    image: 'https://images.unsplash.com/photo-1551028719-001e990e9c5d?w=600&h=800&fit=crop',
-    thumbnail: 'https://images.unsplash.com/photo-1551028719-001e990e9c5d?w=300&h=400&fit=crop',
-    stock: 6,
-    rating: 4.8,
-    sizes: ['M', 'L', 'XL']
-  },
-];
-
-// Placeholder products for testing/design purposes
-const placeholderProducts: Product[] = [
-  {
-    id: 101,
-    name: 'Silk Embroidered Saree',
-    description: 'Elegant silk saree with intricate zari work and premium fabric',
-    price: 3499,
-    brand: 'Aria Luxe',
-    category: 'Aria Luxe',
-    image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop',
-    thumbnail: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=300&h=400&fit=crop',
-    stock: 15,
-    rating: 4.8,
-    sizes: ['Free Size']
-  },
-  {
-    id: 102,
-    name: 'Premium Cotton Hoodie',
-    description: 'Comfortable and stylish hoodie perfect for casual wear',
-    price: 2499,
-    brand: 'Urban Threads',
-    category: 'Urban Threads',
-    image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=800&fit=crop',
-    thumbnail: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300&h=400&fit=crop',
-    stock: 20,
-    rating: 4.6,
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 103,
-    name: 'Designer Anarkali Suit',
-    description: 'Beautiful floor-length Anarkali with mirror work and embroidery',
-    price: 4299,
-    brand: 'Ethnic Elegance',
-    category: 'Ethnic Elegance',
-    image: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=600&h=800&fit=crop',
-    thumbnail: 'https://images.unsplash.com/photo-1616469829960-18aef209d661?w=300&h=400&fit=crop',
-    stock: 12,
-    rating: 4.9,
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 104,
-    name: 'Classic Denim Jacket',
-    description: 'Trendy indigo denim jacket with modern fit and style',
-    price: 2999,
-    brand: 'Street Style',
-    category: 'Street Style',
-    image: 'https://images.unsplash.com/photo-1593032465171-8f0b7a0b78cd?w=600&h=800&fit=crop',
-    stock: 18,
-    rating: 4.5,
-    sizes: ['S', 'M', 'L', 'XL', 'XXL']
-  },
-  {
-    id: 105,
-    name: 'Handloom Cotton Kurta',
-    description: 'Traditional handloom kurta with contemporary design',
-    price: 1899,
-    brand: 'Heritage Craft',
-    category: 'Heritage Craft',
-    image: 'https://images.unsplash.com/photo-1621786860304-1b1a0a0197a1?w=600&h=800&fit=crop',
-    stock: 25,
-    rating: 4.7,
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 106,
-    name: 'Floral Print Maxi Dress',
-    description: 'Elegant maxi dress with beautiful floral patterns',
-    price: 2799,
-    brand: 'Boho Chic',
-    category: 'Boho Chic',
-    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&h=800&fit=crop',
-    stock: 14,
-    rating: 4.6,
-    sizes: ['S', 'M', 'L']
-  },
-  {
-    id: 107,
-    name: 'Wool Blend Winter Coat',
-    description: 'Warm and stylish winter coat for cold weather',
-    price: 5499,
-    brand: 'Winter Essentials',
-    category: 'Winter Essentials',
-    image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=800&fit=crop',
-    stock: 10,
-    rating: 4.8,
-    sizes: ['S', 'M', 'L', 'XL']
-  },
-  {
-    id: 108,
-    name: 'Chikankari Embroidered Top',
-    description: 'Handcrafted chikankari top with delicate embroidery',
-    price: 2199,
-    brand: 'Artisan Made',
-    category: 'Artisan Made',
-    image: 'https://images.unsplash.com/photo-1617034182210-91e5336b4999?w=600&h=800&fit=crop',
-    stock: 16,
-    rating: 4.7,
-    sizes: ['S', 'M', 'L', 'XL']
-  }
-];
->>>>>>> 2b03908e377d061b82245f0d5b2db846ea92a12f
 
 const HomePage: React.FC = () => {
   const [showScroll, setShowScroll] = useState(false);
-<<<<<<< HEAD
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [premiumProducts, setPremiumProducts] = useState<Product[]>([]);
   const [premiumLoading, setPremiumLoading] = useState(true);
-=======
-  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
-  const [parallaxOffset, setParallaxOffset] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
-  const [visibleProducts, setVisibleProducts] = useState<Set<number>>(new Set());
   const bannerRef = useRef<HTMLDivElement>(null);
->>>>>>> 2b03908e377d061b82245f0d5b2db846ea92a12f
 
   const checkScrollTop = useCallback(() => {
     if (!showScroll && window.pageYOffset > 400) {
@@ -213,11 +41,6 @@ const HomePage: React.FC = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-<<<<<<< HEAD
-  const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
-
-=======
->>>>>>> 2b03908e377d061b82245f0d5b2db846ea92a12f
   // Luxury clothing brand banner images
   const bannerImages = [
     {

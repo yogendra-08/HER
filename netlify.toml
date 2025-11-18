@@ -1,12 +1,13 @@
 [build]
   base = "frontend"
   publish = "dist"
-  command = "npm install && npm run build"
+  command = "npm install --no-audit --no-fund && npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
   NPM_VERSION = "9"
   NODE_ENV = "production"
+  NPM_FLAGS = "--production=false"  # Ensure devDependencies are installed
   
 [functions]
   directory = "netlify/functions"
