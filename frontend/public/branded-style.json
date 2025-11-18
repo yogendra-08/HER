@@ -1,0 +1,4604 @@
+{
+  "products": [
+    {
+      "id": 6000,
+      "name": "Sabyasachi Red Handcrafted Ethnic Wear",
+      "brand": "Sabyasachi",
+      "price": 160813,
+      "discounted_price": 220819,
+      "discount_percentage": 7,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Red",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/red/fff&text=Sabyasachi",
+      "images": [
+        "https://dummyimage.com/600x800/red/fff&text=Sabyasachi"
+      ],
+      "rating": 3.9,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Red",
+      "color2": "Gold",
+      "article_number": "SAB-0",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/Sabyasachi/6000/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:Sabyasachi"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.8"
+    },
+    {
+      "id": 6001,
+      "name": "Soch Red Handcrafted Groom Wear",
+      "brand": "Soch",
+      "price": 81137,
+      "discounted_price": 210865,
+      "discount_percentage": 40,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Red",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/red/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/red/fff&text=Soch"
+      ],
+      "rating": 3.7,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Red",
+      "color2": "Gold",
+      "article_number": "SOC-1",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/Soch/6001/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.0"
+    },
+    {
+      "id": 6002,
+      "name": "Libas Maroon Handcrafted Kurta Set",
+      "brand": "Libas",
+      "price": 231197,
+      "discounted_price": 205741,
+      "discount_percentage": 39,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Kurta Set",
+      "category": "Kurta Set",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Cotton",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=Libas",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=Libas"
+      ],
+      "rating": 3.7,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Kurta Set",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "LIB-2",
+      "navigation_id": 0,
+      "landing_page_url": "Kurta Set/Libas/6002/buy",
+      "cross_links": [
+        {
+          "key": "More Kurta Set",
+          "value": "kurta set?f=brand:Libas"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.6"
+    },
+    {
+      "id": 6003,
+      "name": "Utsav Fashion Blue Embroidered Saree",
+      "brand": "Utsav Fashion",
+      "price": 133211,
+      "discounted_price": 209772,
+      "discount_percentage": 40,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Blue",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Saree",
+      "category": "Saree",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/blu/fff&text=Utsav+Fashion",
+      "images": [
+        "https://dummyimage.com/600x800/blu/fff&text=Utsav+Fashion"
+      ],
+      "rating": 3.7,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Saree",
+      "color1": "Blue",
+      "color2": "Gold",
+      "article_number": "UTS-3",
+      "navigation_id": 0,
+      "landing_page_url": "Saree/Utsav Fashion/6003/buy",
+      "cross_links": [
+        {
+          "key": "More Saree",
+          "value": "saree?f=brand:Utsav Fashion"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.1"
+    },
+    {
+      "id": 6004,
+      "name": "Manyavar Navy Zari Work Ethnic Wear",
+      "brand": "Manyavar",
+      "price": 103287,
+      "discounted_price": 70034,
+      "discount_percentage": 35,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Navy",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Zari Work",
+      "image": "https://dummyimage.com/600x800/nav/fff&text=Manyavar",
+      "images": [
+        "https://dummyimage.com/600x800/nav/fff&text=Manyavar"
+      ],
+      "rating": 3.9,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Navy",
+      "color2": "Gold",
+      "article_number": "MAN-4",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/Manyavar/6004/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:Manyavar"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.9"
+    },
+    {
+      "id": 6005,
+      "name": "W Blue Handcrafted Lehenga",
+      "brand": "W",
+      "price": 8264,
+      "discounted_price": 15503,
+      "discount_percentage": 31,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Blue",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/blu/fff&text=W",
+      "images": [
+        "https://dummyimage.com/600x800/blu/fff&text=W"
+      ],
+      "rating": 3.9,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Blue",
+      "color2": "Gold",
+      "article_number": "W-5",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/W/6005/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:W"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.8"
+    },
+    {
+      "id": 6006,
+      "name": "Libas Blue Printed Saree",
+      "brand": "Libas",
+      "price": 177710,
+      "discounted_price": 113836,
+      "discount_percentage": 25,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Blue",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Saree",
+      "category": "Saree",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/blu/fff&text=Libas",
+      "images": [
+        "https://dummyimage.com/600x800/blu/fff&text=Libas"
+      ],
+      "rating": 4.6,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Saree",
+      "color1": "Blue",
+      "color2": "Gold",
+      "article_number": "LIB-6",
+      "navigation_id": 0,
+      "landing_page_url": "Saree/Libas/6006/buy",
+      "cross_links": [
+        {
+          "key": "More Saree",
+          "value": "saree?f=brand:Libas"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "3.0"
+    },
+    {
+      "id": 6007,
+      "name": "Soch Black Handcrafted Kurta Set",
+      "brand": "Soch",
+      "price": 131275,
+      "discounted_price": 25285,
+      "discount_percentage": 25,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Black",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Kurta Set",
+      "category": "Kurta Set",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/bla/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/bla/fff&text=Soch"
+      ],
+      "rating": 4.0,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Kurta Set",
+      "color1": "Black",
+      "color2": "Gold",
+      "article_number": "SOC-7",
+      "navigation_id": 0,
+      "landing_page_url": "Kurta Set/Soch/6007/buy",
+      "cross_links": [
+        {
+          "key": "More Kurta Set",
+          "value": "kurta set?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.0"
+    },
+    {
+      "id": 6008,
+      "name": "Libas Maroon Printed Lehenga",
+      "brand": "Libas",
+      "price": 191611,
+      "discounted_price": 48831,
+      "discount_percentage": 8,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=Libas",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=Libas"
+      ],
+      "rating": 4.4,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "LIB-8",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Libas/6008/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Libas"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.2"
+    },
+    {
+      "id": 6009,
+      "name": "Anita Dongre Ivory Handcrafted Ethnic Wear",
+      "brand": "Anita Dongre",
+      "price": 14714,
+      "discounted_price": 27999,
+      "discount_percentage": 35,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Ivory",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/ivo/fff&text=Anita+Dongre",
+      "images": [
+        "https://dummyimage.com/600x800/ivo/fff&text=Anita+Dongre"
+      ],
+      "rating": 4.2,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Ivory",
+      "color2": "Gold",
+      "article_number": "ANI-9",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/Anita Dongre/6009/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:Anita Dongre"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.8"
+    },
+    {
+      "id": 6010,
+      "name": "Utsav Fashion Gold Printed Saree",
+      "brand": "Utsav Fashion",
+      "price": 246585,
+      "discounted_price": 127337,
+      "discount_percentage": 17,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Gold",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Saree",
+      "category": "Saree",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/gol/fff&text=Utsav+Fashion",
+      "images": [
+        "https://dummyimage.com/600x800/gol/fff&text=Utsav+Fashion"
+      ],
+      "rating": 3.8,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Saree",
+      "color1": "Gold",
+      "color2": "Gold",
+      "article_number": "UTS-10",
+      "navigation_id": 0,
+      "landing_page_url": "Saree/Utsav Fashion/6010/buy",
+      "cross_links": [
+        {
+          "key": "More Saree",
+          "value": "saree?f=brand:Utsav Fashion"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.2"
+    },
+    {
+      "id": 6011,
+      "name": "W Maroon Embroidered Groom Wear",
+      "brand": "W",
+      "price": 162298,
+      "discounted_price": 22634,
+      "discount_percentage": 23,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=W",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=W"
+      ],
+      "rating": 4.7,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "W-11",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/W/6011/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:W"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.8"
+    },
+    {
+      "id": 6012,
+      "name": "Tarun Tahiliani Pink Zardozi Work Ethnic Wear",
+      "brand": "Tarun Tahiliani",
+      "price": 156486,
+      "discounted_price": 99144,
+      "discount_percentage": 31,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 4.7,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "TAR-12",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/Tarun Tahiliani/6012/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.2"
+    },
+    {
+      "id": 6013,
+      "name": "Tarun Tahiliani Red Embroidered Kurta Set",
+      "brand": "Tarun Tahiliani",
+      "price": 69883,
+      "discounted_price": 128852,
+      "discount_percentage": 39,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Red",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Kurta Set",
+      "category": "Kurta Set",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/red/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/red/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 4.2,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Kurta Set",
+      "color1": "Red",
+      "color2": "Gold",
+      "article_number": "TAR-13",
+      "navigation_id": 0,
+      "landing_page_url": "Kurta Set/Tarun Tahiliani/6013/buy",
+      "cross_links": [
+        {
+          "key": "More Kurta Set",
+          "value": "kurta set?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.1"
+    },
+    {
+      "id": 6014,
+      "name": "Soch Gold Embroidered Sherwani",
+      "brand": "Soch",
+      "price": 138881,
+      "discounted_price": 61253,
+      "discount_percentage": 36,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Gold",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/gol/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/gol/fff&text=Soch"
+      ],
+      "rating": 3.7,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Gold",
+      "color2": "Gold",
+      "article_number": "SOC-14",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Soch/6014/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.0"
+    },
+    {
+      "id": 6015,
+      "name": "FabIndia Black Embroidered Ethnic Wear",
+      "brand": "FabIndia",
+      "price": 30374,
+      "discounted_price": 28634,
+      "discount_percentage": 40,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Black",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/bla/fff&text=FabIndia",
+      "images": [
+        "https://dummyimage.com/600x800/bla/fff&text=FabIndia"
+      ],
+      "rating": 4.6,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Black",
+      "color2": "Gold",
+      "article_number": "FAB-15",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/FabIndia/6015/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:FabIndia"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.8"
+    },
+    {
+      "id": 6016,
+      "name": "Soch Navy Handcrafted Kurta Set",
+      "brand": "Soch",
+      "price": 25768,
+      "discounted_price": 233546,
+      "discount_percentage": 6,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Navy",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Kurta Set",
+      "category": "Kurta Set",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/nav/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/nav/fff&text=Soch"
+      ],
+      "rating": 4.1,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Kurta Set",
+      "color1": "Navy",
+      "color2": "Gold",
+      "article_number": "SOC-16",
+      "navigation_id": 0,
+      "landing_page_url": "Kurta Set/Soch/6016/buy",
+      "cross_links": [
+        {
+          "key": "More Kurta Set",
+          "value": "kurta set?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.7"
+    },
+    {
+      "id": 6017,
+      "name": "Soch Green Printed Sherwani",
+      "brand": "Soch",
+      "price": 53226,
+      "discounted_price": 65745,
+      "discount_percentage": 22,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Green",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/gre/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/gre/fff&text=Soch"
+      ],
+      "rating": 3.9,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Green",
+      "color2": "Gold",
+      "article_number": "SOC-17",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Soch/6017/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.7"
+    },
+    {
+      "id": 6018,
+      "name": "Sabyasachi Green Embroidered Saree",
+      "brand": "Sabyasachi",
+      "price": 184440,
+      "discounted_price": 190676,
+      "discount_percentage": 30,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Green",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Saree",
+      "category": "Saree",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/gre/fff&text=Sabyasachi",
+      "images": [
+        "https://dummyimage.com/600x800/gre/fff&text=Sabyasachi"
+      ],
+      "rating": 4.1,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Saree",
+      "color1": "Green",
+      "color2": "Gold",
+      "article_number": "SAB-18",
+      "navigation_id": 0,
+      "landing_page_url": "Saree/Sabyasachi/6018/buy",
+      "cross_links": [
+        {
+          "key": "More Saree",
+          "value": "saree?f=brand:Sabyasachi"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.9"
+    },
+    {
+      "id": 6019,
+      "name": "W Navy Solid Ethnic Wear",
+      "brand": "W",
+      "price": 194609,
+      "discounted_price": 126913,
+      "discount_percentage": 24,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Navy",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/nav/fff&text=W",
+      "images": [
+        "https://dummyimage.com/600x800/nav/fff&text=W"
+      ],
+      "rating": 3.8,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Navy",
+      "color2": "Gold",
+      "article_number": "W-19",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/W/6019/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:W"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.2"
+    },
+    {
+      "id": 6020,
+      "name": "Tarun Tahiliani Blue Handcrafted Sherwani",
+      "brand": "Tarun Tahiliani",
+      "price": 265510,
+      "discounted_price": 135341,
+      "discount_percentage": 6,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Blue",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/blu/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/blu/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 3.6,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Blue",
+      "color2": "Gold",
+      "article_number": "TAR-20",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Tarun Tahiliani/6020/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.7"
+    },
+    {
+      "id": 6021,
+      "name": "W Gold Solid Groom Wear",
+      "brand": "W",
+      "price": 163039,
+      "discounted_price": 179922,
+      "discount_percentage": 37,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Gold",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/gol/fff&text=W",
+      "images": [
+        "https://dummyimage.com/600x800/gol/fff&text=W"
+      ],
+      "rating": 4.1,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Gold",
+      "color2": "Gold",
+      "article_number": "W-21",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/W/6021/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:W"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.2"
+    },
+    {
+      "id": 6022,
+      "name": "Biba Ivory Embroidered Bridal Wear",
+      "brand": "Biba",
+      "price": 111970,
+      "discounted_price": 247278,
+      "discount_percentage": 39,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Ivory",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/ivo/fff&text=Biba",
+      "images": [
+        "https://dummyimage.com/600x800/ivo/fff&text=Biba"
+      ],
+      "rating": 3.9,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Ivory",
+      "color2": "Gold",
+      "article_number": "BIB-22",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/Biba/6022/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:Biba"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "3.0"
+    },
+    {
+      "id": 6023,
+      "name": "Biba Blue Zari Work Groom Wear",
+      "brand": "Biba",
+      "price": 56401,
+      "discounted_price": 167366,
+      "discount_percentage": 31,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Blue",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Zari Work",
+      "image": "https://dummyimage.com/600x800/blu/fff&text=Biba",
+      "images": [
+        "https://dummyimage.com/600x800/blu/fff&text=Biba"
+      ],
+      "rating": 3.9,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Blue",
+      "color2": "Gold",
+      "article_number": "BIB-23",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/Biba/6023/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:Biba"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.7"
+    },
+    {
+      "id": 6024,
+      "name": "Manyavar Maroon Zardozi Work Sherwani",
+      "brand": "Manyavar",
+      "price": 35722,
+      "discounted_price": 28825,
+      "discount_percentage": 18,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=Manyavar",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=Manyavar"
+      ],
+      "rating": 4.3,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "MAN-24",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Manyavar/6024/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Manyavar"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.7"
+    },
+    {
+      "id": 6025,
+      "name": "FabIndia Green Handcrafted Kurta Set",
+      "brand": "FabIndia",
+      "price": 107191,
+      "discounted_price": 17936,
+      "discount_percentage": 37,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Green",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Kurta Set",
+      "category": "Kurta Set",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/gre/fff&text=FabIndia",
+      "images": [
+        "https://dummyimage.com/600x800/gre/fff&text=FabIndia"
+      ],
+      "rating": 3.8,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Kurta Set",
+      "color1": "Green",
+      "color2": "Gold",
+      "article_number": "FAB-25",
+      "navigation_id": 0,
+      "landing_page_url": "Kurta Set/FabIndia/6025/buy",
+      "cross_links": [
+        {
+          "key": "More Kurta Set",
+          "value": "kurta set?f=brand:FabIndia"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.6"
+    },
+    {
+      "id": 6026,
+      "name": "Anita Dongre Maroon Solid Lehenga",
+      "brand": "Anita Dongre",
+      "price": 105787,
+      "discounted_price": 30538,
+      "discount_percentage": 5,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=Anita+Dongre",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=Anita+Dongre"
+      ],
+      "rating": 3.7,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "ANI-26",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Anita Dongre/6026/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Anita Dongre"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.0"
+    },
+    {
+      "id": 6027,
+      "name": "Manyavar Gold Solid Sherwani",
+      "brand": "Manyavar",
+      "price": 127785,
+      "discounted_price": 67518,
+      "discount_percentage": 17,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Gold",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/gol/fff&text=Manyavar",
+      "images": [
+        "https://dummyimage.com/600x800/gol/fff&text=Manyavar"
+      ],
+      "rating": 3.7,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Gold",
+      "color2": "Gold",
+      "article_number": "MAN-27",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Manyavar/6027/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Manyavar"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.8"
+    },
+    {
+      "id": 6028,
+      "name": "Soch Black Embroidered Groom Wear",
+      "brand": "Soch",
+      "price": 185682,
+      "discounted_price": 32054,
+      "discount_percentage": 19,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Black",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/bla/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/bla/fff&text=Soch"
+      ],
+      "rating": 4.7,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Black",
+      "color2": "Gold",
+      "article_number": "SOC-28",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/Soch/6028/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.4"
+    },
+    {
+      "id": 6029,
+      "name": "Tarun Tahiliani Maroon Solid Bridal Wear",
+      "brand": "Tarun Tahiliani",
+      "price": 17512,
+      "discounted_price": 197901,
+      "discount_percentage": 38,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 4.3,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "TAR-29",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/Tarun Tahiliani/6029/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.1"
+    },
+    {
+      "id": 6030,
+      "name": "Sabyasachi Pink Zardozi Work Saree",
+      "brand": "Sabyasachi",
+      "price": 219988,
+      "discounted_price": 47483,
+      "discount_percentage": 10,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Saree",
+      "category": "Saree",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=Sabyasachi",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=Sabyasachi"
+      ],
+      "rating": 3.6,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Saree",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "SAB-30",
+      "navigation_id": 0,
+      "landing_page_url": "Saree/Sabyasachi/6030/buy",
+      "cross_links": [
+        {
+          "key": "More Saree",
+          "value": "saree?f=brand:Sabyasachi"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.4"
+    },
+    {
+      "id": 6031,
+      "name": "Libas Blue Solid Sherwani",
+      "brand": "Libas",
+      "price": 75002,
+      "discounted_price": 108562,
+      "discount_percentage": 28,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Blue",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/blu/fff&text=Libas",
+      "images": [
+        "https://dummyimage.com/600x800/blu/fff&text=Libas"
+      ],
+      "rating": 4.9,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Blue",
+      "color2": "Gold",
+      "article_number": "LIB-31",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Libas/6031/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Libas"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.6"
+    },
+    {
+      "id": 6032,
+      "name": "Utsav Fashion Maroon Embroidered Sherwani",
+      "brand": "Utsav Fashion",
+      "price": 77342,
+      "discounted_price": 47359,
+      "discount_percentage": 31,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=Utsav+Fashion",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=Utsav+Fashion"
+      ],
+      "rating": 3.8,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "UTS-32",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Utsav Fashion/6032/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Utsav Fashion"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.3"
+    },
+    {
+      "id": 6033,
+      "name": "FabIndia Green Solid Bridal Wear",
+      "brand": "FabIndia",
+      "price": 19617,
+      "discounted_price": 99973,
+      "discount_percentage": 26,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Green",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Cotton",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/gre/fff&text=FabIndia",
+      "images": [
+        "https://dummyimage.com/600x800/gre/fff&text=FabIndia"
+      ],
+      "rating": 3.8,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Green",
+      "color2": "Gold",
+      "article_number": "FAB-33",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/FabIndia/6033/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:FabIndia"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.6"
+    },
+    {
+      "id": 6034,
+      "name": "Biba Maroon Solid Sherwani",
+      "brand": "Biba",
+      "price": 171386,
+      "discounted_price": 144014,
+      "discount_percentage": 33,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Cotton",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=Biba",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=Biba"
+      ],
+      "rating": 4.7,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "BIB-34",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Biba/6034/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Biba"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.0"
+    },
+    {
+      "id": 6035,
+      "name": "FabIndia Pink Zardozi Work Groom Wear",
+      "brand": "FabIndia",
+      "price": 8745,
+      "discounted_price": 58264,
+      "discount_percentage": 14,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=FabIndia",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=FabIndia"
+      ],
+      "rating": 3.8,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "FAB-35",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/FabIndia/6035/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:FabIndia"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.5"
+    },
+    {
+      "id": 6036,
+      "name": "FabIndia Red Embroidered Ethnic Wear",
+      "brand": "FabIndia",
+      "price": 61485,
+      "discounted_price": 119499,
+      "discount_percentage": 33,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Red",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/red/fff&text=FabIndia",
+      "images": [
+        "https://dummyimage.com/600x800/red/fff&text=FabIndia"
+      ],
+      "rating": 4.5,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Red",
+      "color2": "Gold",
+      "article_number": "FAB-36",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/FabIndia/6036/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:FabIndia"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.1"
+    },
+    {
+      "id": 6037,
+      "name": "FabIndia Maroon Printed Sherwani",
+      "brand": "FabIndia",
+      "price": 49116,
+      "discounted_price": 55227,
+      "discount_percentage": 5,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=FabIndia",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=FabIndia"
+      ],
+      "rating": 3.9,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "FAB-37",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/FabIndia/6037/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:FabIndia"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.2"
+    },
+    {
+      "id": 6038,
+      "name": "W Navy Handcrafted Ethnic Wear",
+      "brand": "W",
+      "price": 220193,
+      "discounted_price": 112230,
+      "discount_percentage": 18,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Navy",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Cotton",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/nav/fff&text=W",
+      "images": [
+        "https://dummyimage.com/600x800/nav/fff&text=W"
+      ],
+      "rating": 4.0,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Navy",
+      "color2": "Gold",
+      "article_number": "W-38",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/W/6038/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:W"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.4"
+    },
+    {
+      "id": 6039,
+      "name": "Anita Dongre Red Embroidered Ethnic Wear",
+      "brand": "Anita Dongre",
+      "price": 244984,
+      "discounted_price": 218053,
+      "discount_percentage": 27,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Red",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/red/fff&text=Anita+Dongre",
+      "images": [
+        "https://dummyimage.com/600x800/red/fff&text=Anita+Dongre"
+      ],
+      "rating": 4.4,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Red",
+      "color2": "Gold",
+      "article_number": "ANI-39",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/Anita Dongre/6039/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:Anita Dongre"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.1"
+    },
+    {
+      "id": 6040,
+      "name": "Manyavar Black Embroidered Lehenga",
+      "brand": "Manyavar",
+      "price": 94920,
+      "discounted_price": 50525,
+      "discount_percentage": 10,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Black",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/bla/fff&text=Manyavar",
+      "images": [
+        "https://dummyimage.com/600x800/bla/fff&text=Manyavar"
+      ],
+      "rating": 3.8,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Black",
+      "color2": "Gold",
+      "article_number": "MAN-40",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Manyavar/6040/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Manyavar"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.5"
+    },
+    {
+      "id": 6041,
+      "name": "Sabyasachi Gold Solid Groom Wear",
+      "brand": "Sabyasachi",
+      "price": 172948,
+      "discounted_price": 29824,
+      "discount_percentage": 11,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Gold",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/gol/fff&text=Sabyasachi",
+      "images": [
+        "https://dummyimage.com/600x800/gol/fff&text=Sabyasachi"
+      ],
+      "rating": 4.7,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Gold",
+      "color2": "Gold",
+      "article_number": "SAB-41",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/Sabyasachi/6041/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:Sabyasachi"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.3"
+    },
+    {
+      "id": 6042,
+      "name": "FabIndia Maroon Handcrafted Lehenga",
+      "brand": "FabIndia",
+      "price": 147680,
+      "discounted_price": 240509,
+      "discount_percentage": 19,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=FabIndia",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=FabIndia"
+      ],
+      "rating": 4.6,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "FAB-42",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/FabIndia/6042/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:FabIndia"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.8"
+    },
+    {
+      "id": 6043,
+      "name": "Manyavar Ivory Zardozi Work Ethnic Wear",
+      "brand": "Manyavar",
+      "price": 7587,
+      "discounted_price": 106304,
+      "discount_percentage": 29,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Ivory",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/ivo/fff&text=Manyavar",
+      "images": [
+        "https://dummyimage.com/600x800/ivo/fff&text=Manyavar"
+      ],
+      "rating": 4.3,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Ivory",
+      "color2": "Gold",
+      "article_number": "MAN-43",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/Manyavar/6043/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:Manyavar"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.8"
+    },
+    {
+      "id": 6044,
+      "name": "Libas Pink Zardozi Work Saree",
+      "brand": "Libas",
+      "price": 264154,
+      "discounted_price": 203010,
+      "discount_percentage": 30,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Saree",
+      "category": "Saree",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Cotton",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=Libas",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=Libas"
+      ],
+      "rating": 4.6,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Saree",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "LIB-44",
+      "navigation_id": 0,
+      "landing_page_url": "Saree/Libas/6044/buy",
+      "cross_links": [
+        {
+          "key": "More Saree",
+          "value": "saree?f=brand:Libas"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.2"
+    },
+    {
+      "id": 6045,
+      "name": "Tarun Tahiliani Peach Printed Lehenga",
+      "brand": "Tarun Tahiliani",
+      "price": 65579,
+      "discounted_price": 149196,
+      "discount_percentage": 29,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Peach",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/pea/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/pea/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 4.0,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Peach",
+      "color2": "Gold",
+      "article_number": "TAR-45",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Tarun Tahiliani/6045/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.4"
+    },
+    {
+      "id": 6046,
+      "name": "Utsav Fashion Black Printed Bridal Wear",
+      "brand": "Utsav Fashion",
+      "price": 263677,
+      "discounted_price": 5440,
+      "discount_percentage": 33,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Black",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/bla/fff&text=Utsav+Fashion",
+      "images": [
+        "https://dummyimage.com/600x800/bla/fff&text=Utsav+Fashion"
+      ],
+      "rating": 3.8,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Black",
+      "color2": "Gold",
+      "article_number": "UTS-46",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/Utsav Fashion/6046/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:Utsav Fashion"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.1"
+    },
+    {
+      "id": 6047,
+      "name": "W Black Zardozi Work Ethnic Wear",
+      "brand": "W",
+      "price": 297584,
+      "discounted_price": 188232,
+      "discount_percentage": 36,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Black",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Cotton",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/bla/fff&text=W",
+      "images": [
+        "https://dummyimage.com/600x800/bla/fff&text=W"
+      ],
+      "rating": 3.9,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Black",
+      "color2": "Gold",
+      "article_number": "W-47",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/W/6047/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:W"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.2"
+    },
+    {
+      "id": 6048,
+      "name": "W Pink Embroidered Bridal Wear",
+      "brand": "W",
+      "price": 253234,
+      "discounted_price": 134112,
+      "discount_percentage": 17,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=W",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=W"
+      ],
+      "rating": 4.5,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "W-48",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/W/6048/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:W"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.1"
+    },
+    {
+      "id": 6049,
+      "name": "Manyavar Ivory Solid Lehenga",
+      "brand": "Manyavar",
+      "price": 79429,
+      "discounted_price": 10609,
+      "discount_percentage": 15,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Ivory",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/ivo/fff&text=Manyavar",
+      "images": [
+        "https://dummyimage.com/600x800/ivo/fff&text=Manyavar"
+      ],
+      "rating": 4.4,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Ivory",
+      "color2": "Gold",
+      "article_number": "MAN-49",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Manyavar/6049/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Manyavar"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.4"
+    },
+    {
+      "id": 6050,
+      "name": "Tarun Tahiliani Black Zardozi Work Lehenga",
+      "brand": "Tarun Tahiliani",
+      "price": 176569,
+      "discounted_price": 157767,
+      "discount_percentage": 10,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Black",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/bla/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/bla/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 4.5,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Black",
+      "color2": "Gold",
+      "article_number": "TAR-50",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Tarun Tahiliani/6050/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.4"
+    },
+    {
+      "id": 6051,
+      "name": "Biba Maroon Zari Work Sherwani",
+      "brand": "Biba",
+      "price": 58732,
+      "discounted_price": 141932,
+      "discount_percentage": 27,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Zari Work",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=Biba",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=Biba"
+      ],
+      "rating": 3.8,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "BIB-51",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Biba/6051/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Biba"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.5"
+    },
+    {
+      "id": 6052,
+      "name": "W Blue Embroidered Sherwani",
+      "brand": "W",
+      "price": 290924,
+      "discounted_price": 65799,
+      "discount_percentage": 18,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Blue",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/blu/fff&text=W",
+      "images": [
+        "https://dummyimage.com/600x800/blu/fff&text=W"
+      ],
+      "rating": 3.5,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Blue",
+      "color2": "Gold",
+      "article_number": "W-52",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/W/6052/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:W"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.3"
+    },
+    {
+      "id": 6053,
+      "name": "Libas Red Zardozi Work Ethnic Wear",
+      "brand": "Libas",
+      "price": 64155,
+      "discounted_price": 138170,
+      "discount_percentage": 39,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Red",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/red/fff&text=Libas",
+      "images": [
+        "https://dummyimage.com/600x800/red/fff&text=Libas"
+      ],
+      "rating": 3.9,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Red",
+      "color2": "Gold",
+      "article_number": "LIB-53",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/Libas/6053/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:Libas"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.0"
+    },
+    {
+      "id": 6054,
+      "name": "Libas Green Zardozi Work Bridal Wear",
+      "brand": "Libas",
+      "price": 119570,
+      "discounted_price": 182119,
+      "discount_percentage": 38,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Green",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/gre/fff&text=Libas",
+      "images": [
+        "https://dummyimage.com/600x800/gre/fff&text=Libas"
+      ],
+      "rating": 4.5,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Green",
+      "color2": "Gold",
+      "article_number": "LIB-54",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/Libas/6054/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:Libas"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.4"
+    },
+    {
+      "id": 6055,
+      "name": "Sabyasachi Black Solid Sherwani",
+      "brand": "Sabyasachi",
+      "price": 237627,
+      "discounted_price": 156822,
+      "discount_percentage": 6,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Black",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/bla/fff&text=Sabyasachi",
+      "images": [
+        "https://dummyimage.com/600x800/bla/fff&text=Sabyasachi"
+      ],
+      "rating": 4.4,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Black",
+      "color2": "Gold",
+      "article_number": "SAB-55",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Sabyasachi/6055/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Sabyasachi"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.0"
+    },
+    {
+      "id": 6056,
+      "name": "Tarun Tahiliani Pink Zardozi Work Lehenga",
+      "brand": "Tarun Tahiliani",
+      "price": 15081,
+      "discounted_price": 71533,
+      "discount_percentage": 37,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 3.7,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "TAR-56",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Tarun Tahiliani/6056/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.6"
+    },
+    {
+      "id": 6057,
+      "name": "Anita Dongre Green Solid Lehenga",
+      "brand": "Anita Dongre",
+      "price": 218045,
+      "discounted_price": 51311,
+      "discount_percentage": 9,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Green",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Cotton",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/gre/fff&text=Anita+Dongre",
+      "images": [
+        "https://dummyimage.com/600x800/gre/fff&text=Anita+Dongre"
+      ],
+      "rating": 4.5,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Green",
+      "color2": "Gold",
+      "article_number": "ANI-57",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Anita Dongre/6057/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Anita Dongre"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.6"
+    },
+    {
+      "id": 6058,
+      "name": "Biba Red Handcrafted Groom Wear",
+      "brand": "Biba",
+      "price": 294042,
+      "discounted_price": 91137,
+      "discount_percentage": 39,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Red",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/red/fff&text=Biba",
+      "images": [
+        "https://dummyimage.com/600x800/red/fff&text=Biba"
+      ],
+      "rating": 4.7,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Red",
+      "color2": "Gold",
+      "article_number": "BIB-58",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/Biba/6058/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:Biba"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.3"
+    },
+    {
+      "id": 6059,
+      "name": "Manyavar Pink Solid Bridal Wear",
+      "brand": "Manyavar",
+      "price": 79507,
+      "discounted_price": 148214,
+      "discount_percentage": 27,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=Manyavar",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=Manyavar"
+      ],
+      "rating": 4.0,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "MAN-59",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/Manyavar/6059/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:Manyavar"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.8"
+    },
+    {
+      "id": 6060,
+      "name": "Anita Dongre Blue Zari Work Sherwani",
+      "brand": "Anita Dongre",
+      "price": 189961,
+      "discounted_price": 58232,
+      "discount_percentage": 24,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Blue",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Zari Work",
+      "image": "https://dummyimage.com/600x800/blu/fff&text=Anita+Dongre",
+      "images": [
+        "https://dummyimage.com/600x800/blu/fff&text=Anita+Dongre"
+      ],
+      "rating": 4.2,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Blue",
+      "color2": "Gold",
+      "article_number": "ANI-60",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Anita Dongre/6060/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Anita Dongre"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.4"
+    },
+    {
+      "id": 6061,
+      "name": "Libas Ivory Zari Work Groom Wear",
+      "brand": "Libas",
+      "price": 59461,
+      "discounted_price": 63303,
+      "discount_percentage": 5,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Ivory",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Zari Work",
+      "image": "https://dummyimage.com/600x800/ivo/fff&text=Libas",
+      "images": [
+        "https://dummyimage.com/600x800/ivo/fff&text=Libas"
+      ],
+      "rating": 4.2,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Ivory",
+      "color2": "Gold",
+      "article_number": "LIB-61",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/Libas/6061/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:Libas"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.0"
+    },
+    {
+      "id": 6062,
+      "name": "Sabyasachi Pink Handcrafted Saree",
+      "brand": "Sabyasachi",
+      "price": 68856,
+      "discounted_price": 174369,
+      "discount_percentage": 23,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Saree",
+      "category": "Saree",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=Sabyasachi",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=Sabyasachi"
+      ],
+      "rating": 5.0,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Saree",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "SAB-62",
+      "navigation_id": 0,
+      "landing_page_url": "Saree/Sabyasachi/6062/buy",
+      "cross_links": [
+        {
+          "key": "More Saree",
+          "value": "saree?f=brand:Sabyasachi"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.5"
+    },
+    {
+      "id": 6063,
+      "name": "Manyavar Gold Solid Lehenga",
+      "brand": "Manyavar",
+      "price": 218298,
+      "discounted_price": 208761,
+      "discount_percentage": 32,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Gold",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/gol/fff&text=Manyavar",
+      "images": [
+        "https://dummyimage.com/600x800/gol/fff&text=Manyavar"
+      ],
+      "rating": 4.4,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Gold",
+      "color2": "Gold",
+      "article_number": "MAN-63",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Manyavar/6063/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Manyavar"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.6"
+    },
+    {
+      "id": 6064,
+      "name": "Manyavar Navy Zardozi Work Groom Wear",
+      "brand": "Manyavar",
+      "price": 213087,
+      "discounted_price": 247901,
+      "discount_percentage": 7,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Navy",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/nav/fff&text=Manyavar",
+      "images": [
+        "https://dummyimage.com/600x800/nav/fff&text=Manyavar"
+      ],
+      "rating": 4.3,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Navy",
+      "color2": "Gold",
+      "article_number": "MAN-64",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/Manyavar/6064/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:Manyavar"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.9"
+    },
+    {
+      "id": 6065,
+      "name": "Utsav Fashion Pink Handcrafted Groom Wear",
+      "brand": "Utsav Fashion",
+      "price": 23221,
+      "discounted_price": 41676,
+      "discount_percentage": 31,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=Utsav+Fashion",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=Utsav+Fashion"
+      ],
+      "rating": 3.8,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "UTS-65",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/Utsav Fashion/6065/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:Utsav Fashion"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.7"
+    },
+    {
+      "id": 6066,
+      "name": "Anita Dongre Maroon Handcrafted Lehenga",
+      "brand": "Anita Dongre",
+      "price": 204598,
+      "discounted_price": 242658,
+      "discount_percentage": 10,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=Anita+Dongre",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=Anita+Dongre"
+      ],
+      "rating": 4.0,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "ANI-66",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Anita Dongre/6066/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Anita Dongre"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.2"
+    },
+    {
+      "id": 6067,
+      "name": "Manyavar Red Zardozi Work Bridal Wear",
+      "brand": "Manyavar",
+      "price": 72486,
+      "discounted_price": 99083,
+      "discount_percentage": 15,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Red",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/red/fff&text=Manyavar",
+      "images": [
+        "https://dummyimage.com/600x800/red/fff&text=Manyavar"
+      ],
+      "rating": 4.2,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Red",
+      "color2": "Gold",
+      "article_number": "MAN-67",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/Manyavar/6067/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:Manyavar"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.6"
+    },
+    {
+      "id": 6068,
+      "name": "Tarun Tahiliani Pink Embroidered Saree",
+      "brand": "Tarun Tahiliani",
+      "price": 288208,
+      "discounted_price": 89100,
+      "discount_percentage": 34,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Saree",
+      "category": "Saree",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 3.7,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Saree",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "TAR-68",
+      "navigation_id": 0,
+      "landing_page_url": "Saree/Tarun Tahiliani/6068/buy",
+      "cross_links": [
+        {
+          "key": "More Saree",
+          "value": "saree?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.8"
+    },
+    {
+      "id": 6069,
+      "name": "Libas Pink Printed Bridal Wear",
+      "brand": "Libas",
+      "price": 81277,
+      "discounted_price": 213643,
+      "discount_percentage": 6,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=Libas",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=Libas"
+      ],
+      "rating": 4.6,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "LIB-69",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/Libas/6069/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:Libas"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.7"
+    },
+    {
+      "id": 6070,
+      "name": "Anita Dongre Ivory Zari Work Sherwani",
+      "brand": "Anita Dongre",
+      "price": 62938,
+      "discounted_price": 179663,
+      "discount_percentage": 19,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Ivory",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Cotton",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Zari Work",
+      "image": "https://dummyimage.com/600x800/ivo/fff&text=Anita+Dongre",
+      "images": [
+        "https://dummyimage.com/600x800/ivo/fff&text=Anita+Dongre"
+      ],
+      "rating": 4.2,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Ivory",
+      "color2": "Gold",
+      "article_number": "ANI-70",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Anita Dongre/6070/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Anita Dongre"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "3.0"
+    },
+    {
+      "id": 6071,
+      "name": "FabIndia Navy Handcrafted Bridal Wear",
+      "brand": "FabIndia",
+      "price": 41826,
+      "discounted_price": 130632,
+      "discount_percentage": 8,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Navy",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/nav/fff&text=FabIndia",
+      "images": [
+        "https://dummyimage.com/600x800/nav/fff&text=FabIndia"
+      ],
+      "rating": 4.5,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Navy",
+      "color2": "Gold",
+      "article_number": "FAB-71",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/FabIndia/6071/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:FabIndia"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.3"
+    },
+    {
+      "id": 6072,
+      "name": "Tarun Tahiliani Peach Solid Ethnic Wear",
+      "brand": "Tarun Tahiliani",
+      "price": 103112,
+      "discounted_price": 68881,
+      "discount_percentage": 27,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Peach",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/pea/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/pea/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 4.1,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Peach",
+      "color2": "Gold",
+      "article_number": "TAR-72",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/Tarun Tahiliani/6072/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.2"
+    },
+    {
+      "id": 6073,
+      "name": "Utsav Fashion Pink Embroidered Groom Wear",
+      "brand": "Utsav Fashion",
+      "price": 50574,
+      "discounted_price": 31544,
+      "discount_percentage": 19,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=Utsav+Fashion",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=Utsav+Fashion"
+      ],
+      "rating": 4.7,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "UTS-73",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/Utsav Fashion/6073/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:Utsav Fashion"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.5"
+    },
+    {
+      "id": 6074,
+      "name": "Soch Gold Handcrafted Ethnic Wear",
+      "brand": "Soch",
+      "price": 198903,
+      "discounted_price": 234625,
+      "discount_percentage": 9,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Gold",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Cotton",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/gol/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/gol/fff&text=Soch"
+      ],
+      "rating": 4.2,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Gold",
+      "color2": "Gold",
+      "article_number": "SOC-74",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/Soch/6074/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.9"
+    },
+    {
+      "id": 6075,
+      "name": "Tarun Tahiliani Gold Solid Sherwani",
+      "brand": "Tarun Tahiliani",
+      "price": 51860,
+      "discounted_price": 199691,
+      "discount_percentage": 16,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Gold",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/gol/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/gol/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 4.6,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Gold",
+      "color2": "Gold",
+      "article_number": "TAR-75",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Tarun Tahiliani/6075/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.3"
+    },
+    {
+      "id": 6076,
+      "name": "Manyavar Navy Handcrafted Ethnic Wear",
+      "brand": "Manyavar",
+      "price": 30639,
+      "discounted_price": 32933,
+      "discount_percentage": 36,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Navy",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/nav/fff&text=Manyavar",
+      "images": [
+        "https://dummyimage.com/600x800/nav/fff&text=Manyavar"
+      ],
+      "rating": 3.7,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Navy",
+      "color2": "Gold",
+      "article_number": "MAN-76",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/Manyavar/6076/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:Manyavar"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.1"
+    },
+    {
+      "id": 6077,
+      "name": "Tarun Tahiliani Navy Zardozi Work Ethnic Wear",
+      "brand": "Tarun Tahiliani",
+      "price": 149123,
+      "discounted_price": 137750,
+      "discount_percentage": 12,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Navy",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Ethnic Wear",
+      "category": "Ethnic Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/nav/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/nav/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 3.6,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Ethnic Wear",
+      "color1": "Navy",
+      "color2": "Gold",
+      "article_number": "TAR-77",
+      "navigation_id": 0,
+      "landing_page_url": "Ethnic Wear/Tarun Tahiliani/6077/buy",
+      "cross_links": [
+        {
+          "key": "More Ethnic Wear",
+          "value": "ethnic wear?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.4"
+    },
+    {
+      "id": 6078,
+      "name": "Soch Blue Printed Bridal Wear",
+      "brand": "Soch",
+      "price": 12328,
+      "discounted_price": 69239,
+      "discount_percentage": 21,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Blue",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/blu/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/blu/fff&text=Soch"
+      ],
+      "rating": 4.7,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Blue",
+      "color2": "Gold",
+      "article_number": "SOC-78",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/Soch/6078/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.5"
+    },
+    {
+      "id": 6079,
+      "name": "Biba Red Solid Lehenga",
+      "brand": "Biba",
+      "price": 36526,
+      "discounted_price": 240070,
+      "discount_percentage": 21,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Red",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/red/fff&text=Biba",
+      "images": [
+        "https://dummyimage.com/600x800/red/fff&text=Biba"
+      ],
+      "rating": 4.6,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Red",
+      "color2": "Gold",
+      "article_number": "BIB-79",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Biba/6079/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Biba"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.9"
+    },
+    {
+      "id": 6080,
+      "name": "Biba Blue Embroidered Saree",
+      "brand": "Biba",
+      "price": 150742,
+      "discounted_price": 150351,
+      "discount_percentage": 38,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Blue",
+      "season": "Wedding",
+      "usage": "Wedding",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Saree",
+      "category": "Saree",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Wedding"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/blu/fff&text=Biba",
+      "images": [
+        "https://dummyimage.com/600x800/blu/fff&text=Biba"
+      ],
+      "rating": 4.4,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Saree",
+      "color1": "Blue",
+      "color2": "Gold",
+      "article_number": "BIB-80",
+      "navigation_id": 0,
+      "landing_page_url": "Saree/Biba/6080/buy",
+      "cross_links": [
+        {
+          "key": "More Saree",
+          "value": "saree?f=brand:Biba"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.5"
+    },
+    {
+      "id": 6081,
+      "name": "Biba Pink Handcrafted Lehenga",
+      "brand": "Biba",
+      "price": 107791,
+      "discounted_price": 26443,
+      "discount_percentage": 19,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Pink",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/pin/fff&text=Biba",
+      "images": [
+        "https://dummyimage.com/600x800/pin/fff&text=Biba"
+      ],
+      "rating": 4.9,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Pink",
+      "color2": "Gold",
+      "article_number": "BIB-81",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Biba/6081/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Biba"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.6"
+    },
+    {
+      "id": 6082,
+      "name": "Utsav Fashion Navy Zardozi Work Kurta Set",
+      "brand": "Utsav Fashion",
+      "price": 84674,
+      "discounted_price": 185540,
+      "discount_percentage": 23,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Navy",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Kurta Set",
+      "category": "Kurta Set",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/nav/fff&text=Utsav+Fashion",
+      "images": [
+        "https://dummyimage.com/600x800/nav/fff&text=Utsav+Fashion"
+      ],
+      "rating": 4.1,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Kurta Set",
+      "color1": "Navy",
+      "color2": "Gold",
+      "article_number": "UTS-82",
+      "navigation_id": 0,
+      "landing_page_url": "Kurta Set/Utsav Fashion/6082/buy",
+      "cross_links": [
+        {
+          "key": "More Kurta Set",
+          "value": "kurta set?f=brand:Utsav Fashion"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.3"
+    },
+    {
+      "id": 6083,
+      "name": "Soch Red Handcrafted Lehenga",
+      "brand": "Soch",
+      "price": 108659,
+      "discounted_price": 17067,
+      "discount_percentage": 35,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Red",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/red/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/red/fff&text=Soch"
+      ],
+      "rating": 4.3,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Red",
+      "color2": "Gold",
+      "article_number": "SOC-83",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Soch/6083/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.3"
+    },
+    {
+      "id": 6084,
+      "name": "Biba Gold Embroidered Groom Wear",
+      "brand": "Biba",
+      "price": 115429,
+      "discounted_price": 43136,
+      "discount_percentage": 34,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Gold",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Cotton",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/gol/fff&text=Biba",
+      "images": [
+        "https://dummyimage.com/600x800/gol/fff&text=Biba"
+      ],
+      "rating": 4.5,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Gold",
+      "color2": "Gold",
+      "article_number": "BIB-84",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/Biba/6084/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:Biba"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.5"
+    },
+    {
+      "id": 6085,
+      "name": "Anita Dongre Red Zardozi Work Kurta Set",
+      "brand": "Anita Dongre",
+      "price": 183187,
+      "discounted_price": 40204,
+      "discount_percentage": 27,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Red",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Kurta Set",
+      "category": "Kurta Set",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Cotton",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/red/fff&text=Anita+Dongre",
+      "images": [
+        "https://dummyimage.com/600x800/red/fff&text=Anita+Dongre"
+      ],
+      "rating": 3.9,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Kurta Set",
+      "color1": "Red",
+      "color2": "Gold",
+      "article_number": "ANI-85",
+      "navigation_id": 0,
+      "landing_page_url": "Kurta Set/Anita Dongre/6085/buy",
+      "cross_links": [
+        {
+          "key": "More Kurta Set",
+          "value": "kurta set?f=brand:Anita Dongre"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.8"
+    },
+    {
+      "id": 6086,
+      "name": "FabIndia Blue Zardozi Work Groom Wear",
+      "brand": "FabIndia",
+      "price": 87046,
+      "discounted_price": 69431,
+      "discount_percentage": 40,
+      "gender": "Men",
+      "age_group": "Adults-Women",
+      "base_colour": "Blue",
+      "season": "Wedding",
+      "usage": "Festive",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Groom Wear",
+      "category": "Groom Wear",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Festive"
+      },
+      "pattern": "Zardozi Work",
+      "image": "https://dummyimage.com/600x800/blu/fff&text=FabIndia",
+      "images": [
+        "https://dummyimage.com/600x800/blu/fff&text=FabIndia"
+      ],
+      "rating": 3.6,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Groom Wear",
+      "color1": "Blue",
+      "color2": "Gold",
+      "article_number": "FAB-86",
+      "navigation_id": 0,
+      "landing_page_url": "Groom Wear/FabIndia/6086/buy",
+      "cross_links": [
+        {
+          "key": "More Groom Wear",
+          "value": "groom wear?f=brand:FabIndia"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "3.0"
+    },
+    {
+      "id": 6087,
+      "name": "Soch Ivory Printed Kurta Set",
+      "brand": "Soch",
+      "price": 92429,
+      "discounted_price": 227469,
+      "discount_percentage": 18,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Ivory",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Kurta Set",
+      "category": "Kurta Set",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/ivo/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/ivo/fff&text=Soch"
+      ],
+      "rating": 3.8,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Kurta Set",
+      "color1": "Ivory",
+      "color2": "Gold",
+      "article_number": "SOC-87",
+      "navigation_id": 0,
+      "landing_page_url": "Kurta Set/Soch/6087/buy",
+      "cross_links": [
+        {
+          "key": "More Kurta Set",
+          "value": "kurta set?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.3"
+    },
+    {
+      "id": 6088,
+      "name": "Soch Gold Embroidered Bridal Wear",
+      "brand": "Soch",
+      "price": 206617,
+      "discounted_price": 135882,
+      "discount_percentage": 10,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Gold",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Embroidered",
+      "image": "https://dummyimage.com/600x800/gol/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/gol/fff&text=Soch"
+      ],
+      "rating": 3.7,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Gold",
+      "color2": "Gold",
+      "article_number": "SOC-88",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/Soch/6088/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.8"
+    },
+    {
+      "id": 6089,
+      "name": "Libas Gold Printed Kurta Set",
+      "brand": "Libas",
+      "price": 101630,
+      "discounted_price": 111005,
+      "discount_percentage": 33,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Gold",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Kurta Set",
+      "category": "Kurta Set",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Velvet",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/gol/fff&text=Libas",
+      "images": [
+        "https://dummyimage.com/600x800/gol/fff&text=Libas"
+      ],
+      "rating": 4.5,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Kurta Set",
+      "color1": "Gold",
+      "color2": "Gold",
+      "article_number": "LIB-89",
+      "navigation_id": 0,
+      "landing_page_url": "Kurta Set/Libas/6089/buy",
+      "cross_links": [
+        {
+          "key": "More Kurta Set",
+          "value": "kurta set?f=brand:Libas"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.6"
+    },
+    {
+      "id": 6090,
+      "name": "Tarun Tahiliani Blue Handcrafted Bridal Wear",
+      "brand": "Tarun Tahiliani",
+      "price": 68366,
+      "discounted_price": 64241,
+      "discount_percentage": 38,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Blue",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/blu/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/blu/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 4.3,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Blue",
+      "color2": "Gold",
+      "article_number": "TAR-90",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/Tarun Tahiliani/6090/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.1"
+    },
+    {
+      "id": 6091,
+      "name": "FabIndia Peach Printed Bridal Wear",
+      "brand": "FabIndia",
+      "price": 191008,
+      "discounted_price": 13881,
+      "discount_percentage": 37,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Peach",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/pea/fff&text=FabIndia",
+      "images": [
+        "https://dummyimage.com/600x800/pea/fff&text=FabIndia"
+      ],
+      "rating": 4.7,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Peach",
+      "color2": "Gold",
+      "article_number": "FAB-91",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/FabIndia/6091/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:FabIndia"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.8"
+    },
+    {
+      "id": 6092,
+      "name": "Tarun Tahiliani Gold Solid Sherwani",
+      "brand": "Tarun Tahiliani",
+      "price": 71336,
+      "discounted_price": 68077,
+      "discount_percentage": 19,
+      "gender": "Women",
+      "age_group": "Adults-Women",
+      "base_colour": "Gold",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Sherwani",
+      "category": "Sherwani",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Cotton",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/gol/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/gol/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 4.2,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Sherwani",
+      "color1": "Gold",
+      "color2": "Gold",
+      "article_number": "TAR-92",
+      "navigation_id": 0,
+      "landing_page_url": "Sherwani/Tarun Tahiliani/6092/buy",
+      "cross_links": [
+        {
+          "key": "More Sherwani",
+          "value": "sherwani?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.4"
+    },
+    {
+      "id": 6093,
+      "name": "Soch Ivory Printed Saree",
+      "brand": "Soch",
+      "price": 211281,
+      "discounted_price": 178144,
+      "discount_percentage": 25,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Ivory",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Saree",
+      "category": "Saree",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/ivo/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/ivo/fff&text=Soch"
+      ],
+      "rating": 4.7,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Saree",
+      "color1": "Ivory",
+      "color2": "Gold",
+      "article_number": "SOC-93",
+      "navigation_id": 0,
+      "landing_page_url": "Saree/Soch/6093/buy",
+      "cross_links": [
+        {
+          "key": "More Saree",
+          "value": "saree?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.2"
+    },
+    {
+      "id": 6094,
+      "name": "Anita Dongre Green Printed Saree",
+      "brand": "Anita Dongre",
+      "price": 277652,
+      "discounted_price": 66286,
+      "discount_percentage": 14,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Green",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Saree",
+      "category": "Saree",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Silk",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/gre/fff&text=Anita+Dongre",
+      "images": [
+        "https://dummyimage.com/600x800/gre/fff&text=Anita+Dongre"
+      ],
+      "rating": 3.5,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Saree",
+      "color1": "Green",
+      "color2": "Gold",
+      "article_number": "ANI-94",
+      "navigation_id": 0,
+      "landing_page_url": "Saree/Anita Dongre/6094/buy",
+      "cross_links": [
+        {
+          "key": "More Saree",
+          "value": "saree?f=brand:Anita Dongre"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.0"
+    },
+    {
+      "id": 6095,
+      "name": "Utsav Fashion Maroon Printed Saree",
+      "brand": "Utsav Fashion",
+      "price": 182483,
+      "discounted_price": 189963,
+      "discount_percentage": 22,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Saree",
+      "category": "Saree",
+      "article_attributes": {
+        "Fit": "Regular Fit",
+        "Fabric 3": "Silk Blend",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Printed",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=Utsav+Fashion",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=Utsav+Fashion"
+      ],
+      "rating": 4.0,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Saree",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "UTS-95",
+      "navigation_id": 0,
+      "landing_page_url": "Saree/Utsav Fashion/6095/buy",
+      "cross_links": [
+        {
+          "key": "More Saree",
+          "value": "saree?f=brand:Utsav Fashion"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.2"
+    },
+    {
+      "id": 6096,
+      "name": "Biba Navy Handcrafted Bridal Wear",
+      "brand": "Biba",
+      "price": 257533,
+      "discounted_price": 189945,
+      "discount_percentage": 40,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Navy",
+      "season": "Wedding",
+      "usage": "Bridal",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Bridal"
+      },
+      "pattern": "Handcrafted",
+      "image": "https://dummyimage.com/600x800/nav/fff&text=Biba",
+      "images": [
+        "https://dummyimage.com/600x800/nav/fff&text=Biba"
+      ],
+      "rating": 4.3,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Navy",
+      "color2": "Gold",
+      "article_number": "BIB-96",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/Biba/6096/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:Biba"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.3"
+    },
+    {
+      "id": 6097,
+      "name": "Soch Ivory Zari Work Lehenga",
+      "brand": "Soch",
+      "price": 41750,
+      "discounted_price": 129163,
+      "discount_percentage": 22,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Ivory",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Zari Work",
+      "image": "https://dummyimage.com/600x800/ivo/fff&text=Soch",
+      "images": [
+        "https://dummyimage.com/600x800/ivo/fff&text=Soch"
+      ],
+      "rating": 3.9,
+      "is_featured": true,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Ivory",
+      "color2": "Gold",
+      "article_number": "SOC-97",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Soch/6097/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Soch"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.4"
+    },
+    {
+      "id": 6098,
+      "name": "Tarun Tahiliani Maroon Solid Bridal Wear",
+      "brand": "Tarun Tahiliani",
+      "price": 123701,
+      "discounted_price": 147435,
+      "discount_percentage": 30,
+      "gender": "Men",
+      "age_group": "Adults-Men",
+      "base_colour": "Maroon",
+      "season": "Wedding",
+      "usage": "Party",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Bridal Wear",
+      "category": "Bridal Wear",
+      "article_attributes": {
+        "Fit": "Free Size",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Party"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/mar/fff&text=Tarun+Tahiliani",
+      "images": [
+        "https://dummyimage.com/600x800/mar/fff&text=Tarun+Tahiliani"
+      ],
+      "rating": 4.9,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Bridal Wear",
+      "color1": "Maroon",
+      "color2": "Gold",
+      "article_number": "TAR-98",
+      "navigation_id": 0,
+      "landing_page_url": "Bridal Wear/Tarun Tahiliani/6098/buy",
+      "cross_links": [
+        {
+          "key": "More Bridal Wear",
+          "value": "bridal wear?f=brand:Tarun Tahiliani"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "1.1"
+    },
+    {
+      "id": 6099,
+      "name": "Anita Dongre Green Solid Lehenga",
+      "brand": "Anita Dongre",
+      "price": 288527,
+      "discounted_price": 237823,
+      "discount_percentage": 30,
+      "gender": "Women",
+      "age_group": "Adults-Men",
+      "base_colour": "Green",
+      "season": "Wedding",
+      "usage": "Groom",
+      "fashion_type": "Ethnic",
+      "year": "2024",
+      "display_categories": "Lehenga",
+      "category": "Lehenga",
+      "article_attributes": {
+        "Fit": "Slim Fit",
+        "Fabric 3": "Georgette",
+        "Body or Garment Size": "Custom Measurements",
+        "Occasion": "Groom"
+      },
+      "pattern": "Solid",
+      "image": "https://dummyimage.com/600x800/gre/fff&text=Anita+Dongre",
+      "images": [
+        "https://dummyimage.com/600x800/gre/fff&text=Anita+Dongre"
+      ],
+      "rating": 4.0,
+      "is_featured": false,
+      "style_type": "DEL",
+      "variant_name": "Lehenga",
+      "color1": "Green",
+      "color2": "Gold",
+      "article_number": "ANI-99",
+      "navigation_id": 0,
+      "landing_page_url": "Lehenga/Anita Dongre/6099/buy",
+      "cross_links": [
+        {
+          "key": "More Lehenga",
+          "value": "lehenga?f=brand:Anita Dongre"
+        }
+      ],
+      "cod_enabled": true,
+      "vat": 5.0,
+      "weight": "2.0"
+    }
+  ]
+}

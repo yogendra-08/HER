@@ -180,6 +180,9 @@ export interface ApiResponse<T = any> {
   data?: T;
 }
 
+// Detect if we're using Netlify Functions as the API host
+const isNetlifyFunctions = BASE_URL && BASE_URL.toString().startsWith('/.netlify/functions');
+
 // Auth API
 export const authAPI = {
   register: async (userData: {
@@ -189,8 +192,10 @@ export const authAPI = {
     phone: string;
     address: string;
   }): Promise<ApiResponse<{ token: string; user: User }>> => {
-    console.log('🔵 Frontend: Registering user...', { url: `${API_BASE_URL}/auth/register`, data: { ...userData, password: '***' } });
-    const response = await api.post('/auth/register', userData);
+    // Netlify Functions use filenames as endpoints (e.g. auth-register.js -> /auth-register)
+    const path = isNetlifyFunctions ? '/auth-register' : '/auth/register';
+    console.log('🔵 Frontend: Registering user...', { baseURL: BASE_URL, path, data: { ...userData, password: '***' } });
+    const response = await api.post(path, userData);
     console.log('✅ Frontend: Register response received', response.data);
     return response.data;
   },
@@ -199,14 +204,16 @@ export const authAPI = {
     email: string;
     password: string;
   }): Promise<ApiResponse<{ token: string; user: User }>> => {
-    console.log('🔵 Frontend: Logging in...', { url: `${API_BASE_URL}/auth/login`, email: credentials.email });
-    const response = await api.post('/auth/login', credentials);
+    const path = isNetlifyFunctions ? '/auth-login' : '/auth/login';
+    console.log('🔵 Frontend: Logging in...', { baseURL: BASE_URL, path, email: credentials.email });
+    const response = await api.post(path, credentials);
     console.log('✅ Frontend: Login response received', response.data);
     return response.data;
   },
 
   getProfile: async (): Promise<ApiResponse<{ user: User }>> => {
-    const response = await api.get('/auth/profile');
+    const path = isNetlifyFunctions ? '/auth-profile' : '/auth/profile';
+    const response = await api.get(path);
     return response.data;
   },
 
@@ -215,7 +222,8 @@ export const authAPI = {
     phone?: string;
     address?: string;
   }): Promise<ApiResponse<{ user: User }>> => {
-    const response = await api.put('/auth/profile', userData);
+    const path = isNetlifyFunctions ? '/auth-profile' : '/auth/profile';
+    const response = await api.put(path, userData);
     return response.data;
   },
 };
