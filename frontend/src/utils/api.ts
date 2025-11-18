@@ -6,11 +6,14 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-// API Base URL - For Netlify Functions
-const API_BASE_URL = import.meta.env.VITE_API_URL || '/.netlify/functions';
+// API Base URL - Prefer VITE_API_URL, otherwise use deployed backend
+// NOTE: This defaults to your deployed backend so the production frontend
+// communicates with the hosted API. You can still override via the
+// `VITE_API_URL` environment variable in your hosting provider.
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://vastraverse.onrender.com/api/';
 
 // In development, you can still use a local backend if needed
-const DEV_API_URL = 'https://vastraverse.onrender.com/api';
+const DEV_API_URL = 'https://vastraverse.onrender.com/api/';
 
 // Function to determine the base URL
 const getBaseUrl = () => {
